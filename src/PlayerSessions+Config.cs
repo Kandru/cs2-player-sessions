@@ -49,13 +49,10 @@ namespace PlayerSessions
 
         private void CreateUserConfig(string steamId)
         {
-            Config.Reload();
             if (!Config.Player.ContainsKey(steamId))
             {
                 Config.Player.Add(steamId, new PlayerConfig());
             }
-            // save to disk
-            Config.Update();
         }
 
         public void OnConfigParsed(PluginConfig config)
