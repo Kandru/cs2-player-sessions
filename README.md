@@ -11,15 +11,13 @@ This plugin logs connecting and disconnecting players as well as showing a playe
 
 ## Current Features
 
-- show player connection and disconnection (with Country/City)
+- show player connection and disconnection (with Country and City)
+- show player his session (after joined the game)
+- save total player connections (with cooldown to avoid reconnections within a specific time frame)
+- save player overall play time
 
 ## Road Map
 
-- show player connection (and country) and disconnection
-- show player session (when in game)
-- save total player connections (with cooldown to avoid reconnections within a specific time frame)
-- save player overall connection time
-- save player overall play time
 - save player overall play time per team (Spectator / T / CT)
 - save player overall alive/death time
 
@@ -45,11 +43,67 @@ This plugin automatically creates a readable JSON configuration file. This confi
 {
   "enabled": true,
   "debug": false,
+  "joinmessage_enable": true,
+  "partmessage_enable": true,
+  "welcomemessage_enable": true,
+  "welcomemessage_delay": 5,
+  "enable_city_lookup": false,
+  "enable_country_lookup": true,
+  "geolite2": "GeoLite2-City.mmdb",
+  "player": {
+    "[U:X:XXXXXXXX]": {
+      "username": "TEST",
+      "clantag": "TEST",
+      "city": "Example City",
+      "country": "Example Country",
+      "last_ip": "127.0.0.1",
+      "connection_count": 1,
+      "connection_last_connected": 1739982463,
+      "connection_last_disconnected": 1739982512,
+      "playtime_total": 49
+    }
+  },
   "ConfigVersion": 1
 }
 ```
 
-You can either disable the complete PlayerSessions Plugin by simply setting the *enable* boolean to *false* or specify a specific map where you want this plugin to be disabled. This allows for a maximum customizability.
+You can either disable or enable the complete PlayerSessions Plugin by simply setting the *enable* boolean to *false* or *true*.
+
+### debug
+
+Shows debug messages useful when developing for this plugin.
+
+### joinmessage_enable
+
+Whether the join message is sent to all players when someone enters your server.
+
+### partmessage_enable
+
+Whether the part message is sent to all players when someone leaves your server.
+
+### welcomemessage_enable
+
+Whether the player will get a welcome message after he joined the server.
+
+### welcomemessage_delay
+
+The delay before this message gets shown.
+
+### enable_city_lookup
+
+When the geolite2 city database was added, should the city be displayed on join?
+
+### enable_country_lookup
+
+When the geolite2 city database was added, should the country be displayed on join?
+
+### geolite2
+
+The file name of the MaxMind GeoLite2 city mmdb file. Needs to be downloaded manually from the MaxMind website (free account necessary).
+
+### player
+
+All data about all players. Make sure to delete or change data only when user is not on the server. Otherwise user actions will overwrite it.
 
 ## Compile Yourself
 
