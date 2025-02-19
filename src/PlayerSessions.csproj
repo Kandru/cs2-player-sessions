@@ -12,7 +12,7 @@
       <ExcludeAssets>runtime</ExcludeAssets>
       <IncludeAssets>compile; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
-    <PackageReference Include="IP-2-Country.MaxMind" Version="1.2.0" />
+    <PackageReference Include="MaxMind.GeoIP2" Version="5.2.0" />
   </ItemGroup>
     <ItemGroup>
       <None Update="lang\**\*.*" CopyToOutputDirectory="PreserveNewest" />

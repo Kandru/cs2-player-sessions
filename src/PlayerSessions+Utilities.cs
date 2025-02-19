@@ -18,10 +18,10 @@ namespace PlayerSessions
             DebugPrint(message);
             foreach (CCSPlayerController entry in Utilities.GetPlayers())
             {
-                if (entry.IsBot || entry == player) continue;
+                if (entry == null || !entry.IsValid || entry.IsBot || entry == player) continue;
                 AddTimer(delay, () =>
                 {
-                    if (entry == null) return;
+                    if (entry == null || !entry.IsValid) return;
                     entry.PrintToChat(message);
                 });
             }

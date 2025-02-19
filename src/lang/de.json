@@ -9,6 +9,10 @@
     "ip2country.found": "[Spielsitzung] {default}IP2Country Datenbank gefunden",
     "ip2country.notfound": "[Spielsitzung] {red}IP2Country Datenbank fehlt",
     "player.connect": "{green}{player} {default}tritt bei!",
+    "player.connect.city": "{green}{player} {default}tritt aus {green}{city}{default}, {green}{country} {default}bei!",
     "player.connect.country": "{green}{player} {default}tritt aus {green}{country} {default}bei!",
-    "player.disconnect": "{green}{player} {default}verlässt uns!"
+    "player.disconnect": "{green}{player} {default}verlässt uns!",
+    "player.welcome": "{default}Hey {green}{player} {default} - Willkommen auf unserem Server!",
+    "player.welcome.visit": "- {green}{visit}{default}x Besuch",
+    "player.welcome.playtime": "- {green}{playtime}{default} Stunden Spielzeit"
 }

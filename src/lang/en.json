@@ -8,7 +8,11 @@
     "core.debugprint": "[PlayerSessions]{red}[DEBUG] {default}{message}",
     "ip2country.found": "[PlayerSessions] {default}found IP2Country database",
     "ip2country.notfound": "[PlayerSessions] {red}missing IP2Country database",
-    "player.connect": "{green}{player} {default}connected!",
-    "player.connect.country": "{green}{player} {default}connected from {green}{country}{default}!",
-    "player.disconnect": "{green}{player} {default}left the server!"
+    "player.connect": "{green}{player} {default}connects!",
+    "player.connect.city": "{green}{player} {default}connects from {green}{city}{default}, {green}{country}{default}!",
+    "player.connect.country": "{green}{player} {default}connects from {green}{country}{default}!",
+    "player.disconnect": "{green}{player} {default}left the server!",
+    "player.welcome": "{default}Hey {green}{player} {default} - Welcome on our server!",
+    "player.welcome.visit": "- {green}{visit}{default}x visit",
+    "player.welcome.playtime": "- {green}{playtime}{default} hours playtime"
 }
