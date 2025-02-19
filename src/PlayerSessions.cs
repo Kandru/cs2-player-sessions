@@ -16,6 +16,7 @@ namespace PlayerSessions
             // initialize IP lookup
             InitializeIP2Country();
             // register listeners
+            RegisterEventHandler<EventMapShutdown>(OnMapEnd);
             RegisterEventHandler<EventRoundEnd>(OnRoundEnd);
             RegisterEventHandler<EventPlayerConnect>(OnPlayerConnect);
             RegisterEventHandler<EventPlayerConnectFull>(OnPlayerConnectFull);
@@ -30,6 +31,7 @@ namespace PlayerSessions
         public override void Unload(bool hotReload)
         {
             // unregister listeners
+            DeregisterEventHandler<EventMapShutdown>(OnMapEnd);
             DeregisterEventHandler<EventRoundEnd>(OnRoundEnd);
             DeregisterEventHandler<EventPlayerConnect>(OnPlayerConnect);
             DeregisterEventHandler<EventPlayerConnectFull>(OnPlayerConnectFull);
@@ -37,6 +39,13 @@ namespace PlayerSessions
             // save config
             Config.Update();
             Console.WriteLine(Localizer["core.unload"]);
+        }
+
+        private HookResult OnMapEnd(EventMapShutdown @event, GameEventInfo info)
+        {
+            // save config
+            Config.Update();
+            return HookResult.Continue;
         }
 
         private HookResult OnRoundEnd(EventRoundEnd @event, GameEventInfo info)
