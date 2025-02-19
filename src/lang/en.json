@@ -1,0 +1,14 @@
+{
+    "core.hotreload": "{green}[PlayerSessions] {default}Hot-Reloaded!",
+    "core.unload": "[PlayerSessions] Unloaded PlayerSessions Plugin!",
+    "core.defaultconfig": "[PlayerSessions] Found no map-specific configuration for {mapName}, using default one!",
+    "core.noconfig": "[PlayerSessions] No map-specific configuration for {mapName} or default one found. Skipping!",
+    "core.foundconfig": "[PlayerSessions] Found {count} matching map-specific configurations for {mapName}!",
+    "core.disabled": "[PlayerSessions] {default}PlayerSessions is disabled!",
+    "core.debugprint": "[PlayerSessions]{red}[DEBUG] {default}{message}",
+    "ip2country.found": "[PlayerSessions] {default}found IP2Country database",
+    "ip2country.notfound": "[PlayerSessions] {red}missing IP2Country database",
+    "player.connect": "{green}{player} {default}connected!",
+    "player.connect.country": "{green}{player} {default}connected from {green}{country}{default}!",
+    "player.disconnect": "{green}{player} {default}left the server!"
+}
