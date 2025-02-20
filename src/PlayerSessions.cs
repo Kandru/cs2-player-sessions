@@ -140,7 +140,12 @@ namespace PlayerSessions
                     player: player
                 );
             // skip if not added
-            if (!_playerConfigs.ContainsKey(player.NetworkIDString)) return HookResult.Continue;
+            if (!_playerConfigs.ContainsKey(player.NetworkIDString))
+            {
+                // read user configuration
+                LoadPlayerConfig(player.NetworkIDString);
+                if (!_playerConfigs.ContainsKey(player.NetworkIDString)) return HookResult.Continue;
+            }
             // add data
             _playerConfigs[player.NetworkIDString].ClanTag = player.ClanName;
             // show welcome message
