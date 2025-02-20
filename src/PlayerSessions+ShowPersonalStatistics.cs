@@ -43,15 +43,6 @@ namespace PlayerSessions
             if (player == null
                 || !player.IsValid
                 || !_playerConfigs.ContainsKey(player.NetworkIDString)) return;
-            if (_playerHudPersonalStatistics.ContainsKey(player.NetworkIDString))
-            {
-                // do not kill if entity is no longer valid
-                if (_playerHudPersonalStatistics[player.NetworkIDString] != null
-                    && _playerHudPersonalStatistics[player.NetworkIDString].IsValid)
-                    _playerHudPersonalStatistics[player.NetworkIDString].AcceptInput("kill");
-                // remove hud from list
-                _playerHudPersonalStatistics.Remove(player.NetworkIDString);
-            }
             // build statistic message
             string message = Localizer["statistics.personal.title"].Value;
             message += "\n" + Localizer["statistics.personal.kills"].Value
@@ -86,35 +77,64 @@ namespace PlayerSessions
             {
                 if (backgroundWidth < line.Length * 0.012f) backgroundWidth = line.Length * 0.012f;
             }
-            // create hud
-            CPointWorldText? hudText = WorldTextManager.Create(
-                    player,
-                    message,
-                    Config.PersonalStatisticFontSize,
-                    ColorTranslator.FromHtml(Config.PersonalStatisticFontColor),
-                    Config.PersonalStatisticFontName,
-                    Config.PersonalStatisticPositionX,
-                    Config.PersonalStatisticPositionY,
-                    Config.PersonalStatisticBackground,
-                    backgroundHeight,
-                    backgroundWidth
-                );
-            if (hudText == null) return;
-            _playerHudPersonalStatistics.Add(player.NetworkIDString, hudText);
-            // remove hud after duration
-            AddTimer(duration, () =>
-            {
-                // return if player is no longer valid
-                if (player == null
-                    || !player.IsValid
-                    || !_playerHudPersonalStatistics.ContainsKey(player.NetworkIDString)) return;
-                // do not kill if entity is no longer valid
-                if (_playerHudPersonalStatistics[player.NetworkIDString] != null
+            // use our entity if it still exists
+            if (_playerHudPersonalStatistics.ContainsKey(player.NetworkIDString)
+                && _playerHudPersonalStatistics[player.NetworkIDString] != null
                     && _playerHudPersonalStatistics[player.NetworkIDString].IsValid)
-                    _playerHudPersonalStatistics[player.NetworkIDString].AcceptInput("kill");
-                // remove hud from list
-                _playerHudPersonalStatistics.Remove(player.NetworkIDString);
-            });
+            {
+                _playerHudPersonalStatistics[player.NetworkIDString].AcceptInput(
+                    "SetMessage",
+                    _playerHudPersonalStatistics[player.NetworkIDString],
+                    _playerHudPersonalStatistics[player.NetworkIDString],
+                    message
+                );
+            }
+            else
+            {
+                // create hud
+                CPointWorldText? hudText = WorldTextManager.Create(
+                        player,
+                        message,
+                        Config.PersonalStatisticFontSize,
+                        ColorTranslator.FromHtml(Config.PersonalStatisticFontColor),
+                        Config.PersonalStatisticFontName,
+                        Config.PersonalStatisticPositionX,
+                        Config.PersonalStatisticPositionY,
+                        Config.PersonalStatisticBackground,
+                        backgroundHeight,
+                        backgroundWidth
+                    );
+                if (hudText == null) return;
+                _playerHudPersonalStatistics.Add(player.NetworkIDString, hudText);
+            }
+            // remove hud after duration
+            if (duration > 0)
+                AddTimer(duration, () =>
+                {
+                    // return if player is no longer valid
+                    if (player == null
+                        || !player.IsValid
+                        || !_playerHudPersonalStatistics.ContainsKey(player.NetworkIDString)) return;
+                    // do not kill if entity is no longer valid
+                    if (_playerHudPersonalStatistics[player.NetworkIDString] != null
+                        && _playerHudPersonalStatistics[player.NetworkIDString].IsValid)
+                        _playerHudPersonalStatistics[player.NetworkIDString].AcceptInput("kill");
+                    // remove hud from list
+                    _playerHudPersonalStatistics.Remove(player.NetworkIDString);
+                });
+        }
+
+        private void HidePersonalStatistics(CCSPlayerController player)
+        {
+            if (player == null
+                || !player.IsValid
+                || !_playerHudPersonalStatistics.ContainsKey(player.NetworkIDString)) return;
+            // do not kill if entity is no longer valid
+            if (_playerHudPersonalStatistics[player.NetworkIDString] != null
+                && _playerHudPersonalStatistics[player.NetworkIDString].IsValid)
+                _playerHudPersonalStatistics[player.NetworkIDString].AcceptInput("kill");
+            // remove hud from list
+            _playerHudPersonalStatistics.Remove(player.NetworkIDString);
         }
     }
 }
