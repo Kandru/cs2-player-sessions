@@ -35,7 +35,7 @@ namespace PlayerSessions
         [JsonPropertyName("city")] public string City { get; set; } = "";
         [JsonPropertyName("country")] public string Country { get; set; } = "";
         [JsonPropertyName("last_ip")] public string LastIp { get; set; } = "";
-        [JsonPropertyName("connection_count")] public int ConnectionCount { get; set; } = 0;
+        [JsonPropertyName("connection_count")] public long ConnectionCount { get; set; } = 0;
         [JsonPropertyName("connection_last_connected")] public long LastConnected { get; set; } = 0;
         [JsonPropertyName("connection_last_disconnected")] public long LastDisconnected { get; set; } = 0;
         [JsonPropertyName("playtime_total")] public long PlaytimeTotal { get; set; } = 0;
