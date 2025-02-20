@@ -12,7 +12,7 @@ namespace PlayerSessions
 
         private void ShowPersonalStatisticsOnRoundStart()
         {
-            if (!_isDuringRound || !Config.SpawnMessageEnable) return;
+            if (!_isDuringRound || !Config.ShowPersonalStatisticsOnRoundStart) return;
             int freezeTime = 0;
             ConVar? mpFreezeTime = ConVar.Find("mp_freezetime");
             if (mpFreezeTime != null)
@@ -32,7 +32,7 @@ namespace PlayerSessions
                     || !player.IsValid) return;
                     ShowPersonalStatistics(
                         player,
-                        duration: freezeTime
+                        duration: freezeTime + Config.PersonalStatisticsOnRoundStartDuration
                     );
                 });
             }
@@ -84,18 +84,18 @@ namespace PlayerSessions
             float backgroundWidth = 0.015f;
             foreach (string line in message.Split('\n'))
             {
-                if (backgroundWidth < line.Length * 0.02f) backgroundWidth = line.Length * 0.02f;
+                if (backgroundWidth < line.Length * 0.012f) backgroundWidth = line.Length * 0.012f;
             }
             // create hud
             CPointWorldText? hudText = WorldTextManager.Create(
                     player,
                     message,
-                    32,
-                    Color.Orange,
-                    "Verdana Bold",
-                    -(backgroundWidth * 4.5f),
-                    0f,
-                    true,
+                    Config.PersonalStatisticFontSize,
+                    ColorTranslator.FromHtml(Config.PersonalStatisticFontColor),
+                    Config.PersonalStatisticFontName,
+                    Config.PersonalStatisticPositionX,
+                    Config.PersonalStatisticPositionY,
+                    Config.PersonalStatisticBackground,
                     backgroundHeight,
                     backgroundWidth
                 );

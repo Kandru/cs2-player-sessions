@@ -63,8 +63,15 @@ namespace PlayerSessions
         [JsonPropertyName("enabled")] public bool Enabled { get; set; } = true;
         // debug prints
         [JsonPropertyName("debug")] public bool Debug { get; set; } = false;
-        // spawn message
-        [JsonPropertyName("spawnmessage_enable")] public bool SpawnMessageEnable { get; set; } = true;
+        // statistics
+        [JsonPropertyName("show_personal_statistic_on_round_start")] public bool ShowPersonalStatisticsOnRoundStart { get; set; } = true;
+        [JsonPropertyName("personal_statistic_on_round_start_duration")] public int PersonalStatisticsOnRoundStartDuration { get; set; } = 3; // buy time + this value
+        [JsonPropertyName("personal_statistic_menu_font_size")] public int PersonalStatisticFontSize { get; set; } = 28;
+        [JsonPropertyName("personal_statistic_menu_font_name")] public string PersonalStatisticFontName { get; set; } = "Impact";
+        [JsonPropertyName("personal_statistic_menu_font_color")] public string PersonalStatisticFontColor { get; set; } = "#ffffff";
+        [JsonPropertyName("personal_statistic_menu_pos_x")] public float PersonalStatisticPositionX { get; set; } = -7.5f; // for 16:9 & 16:10
+        [JsonPropertyName("personal_statistic_menu_pos_y")] public float PersonalStatisticPositionY { get; set; } = 0f;
+        [JsonPropertyName("personal_statistic_menu_background")] public bool PersonalStatisticBackground { get; set; } = true;
         // join / part message
         [JsonPropertyName("joinmessage_enable")] public bool JoinMessageEnable { get; set; } = true;
         [JsonPropertyName("partmessage_enable")] public bool PartMessageEnable { get; set; } = true;
