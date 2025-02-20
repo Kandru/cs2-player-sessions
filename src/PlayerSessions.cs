@@ -16,7 +16,7 @@ namespace PlayerSessions
             // initialize IP lookup
             InitializeIP2Country();
             // register listeners
-            RegisterEventHandler<EventMapShutdown>(OnMapEnd);
+            RegisterListener<Listeners.OnMapEnd>(OnMapEnd);
             RegisterEventHandler<EventRoundEnd>(OnRoundEnd);
             RegisterEventHandler<EventPlayerConnect>(OnPlayerConnect);
             RegisterEventHandler<EventPlayerConnectFull>(OnPlayerConnectFull);
@@ -31,27 +31,29 @@ namespace PlayerSessions
         public override void Unload(bool hotReload)
         {
             // unregister listeners
-            DeregisterEventHandler<EventMapShutdown>(OnMapEnd);
+            RemoveListener<Listeners.OnMapEnd>(OnMapEnd);
             DeregisterEventHandler<EventRoundEnd>(OnRoundEnd);
             DeregisterEventHandler<EventPlayerConnect>(OnPlayerConnect);
             DeregisterEventHandler<EventPlayerConnectFull>(OnPlayerConnectFull);
             DeregisterEventHandler<EventPlayerDisconnect>(OnPlayerDisconnect);
-            // save config
+            // save config(s)
             Config.Update();
+            SavePlayerConfigs();
             Console.WriteLine(Localizer["core.unload"]);
         }
 
-        private HookResult OnMapEnd(EventMapShutdown @event, GameEventInfo info)
+        private void OnMapEnd()
         {
             // save config
-            Config.Update();
-            return HookResult.Continue;
+            SavePlayerConfigs();
+            // garbage collection
+            PlayerConfigsGarbageCollection();
         }
 
         private HookResult OnRoundEnd(EventRoundEnd @event, GameEventInfo info)
         {
-            // save config
-            Config.Update();
+            // garbage collection
+            PlayerConfigsGarbageCollection();
             return HookResult.Continue;
         }
 
@@ -65,8 +67,8 @@ namespace PlayerSessions
             string steamId = @event.Networkid;
             string city = "";
             string country = "";
-            // create user config if not exists
-            CreateUserConfig(steamId);
+            // read user configuration
+            GetPlayerConfig(steamId);
             // get data from ip resolver
             Dictionary<string, string> ipData = IP2Country(ipAddress);
             if (ipData.ContainsKey("city")) city = ipData["city"];
@@ -89,17 +91,17 @@ namespace PlayerSessions
                         .Replace("{player}", username)
                         .Replace("{country}", ipData["country"]));
             // add data
-            Config.Player[steamId].LastIp = ipAddress;
-            if (country != "") Config.Player[steamId].City = city;
-            if (country != "") Config.Player[steamId].Country = country;
-            Config.Player[steamId].Username = username;
-            Config.Player[steamId].ClanTag = "";
-            Config.Player[steamId].LastConnected = GetCurrentTimestamp();
+            _playerConfigs[steamId].LastIp = ipAddress;
+            if (country != "") _playerConfigs[steamId].City = city;
+            if (country != "") _playerConfigs[steamId].Country = country;
+            _playerConfigs[steamId].Username = username;
+            _playerConfigs[steamId].ClanTag = "";
+            _playerConfigs[steamId].LastConnected = GetCurrentTimestamp();
             // cooldown for connection counter (avoid counting rejoin)
-            if (Config.Player[steamId].LastConnected == 0
-                || Config.Player[steamId].LastConnected >= (Config.Player[steamId].LastDisconnected + (60 * 5)))
-                Config.Player[steamId].ConnectionCount += 1;
-            Config.Player[steamId].LastDisconnected = Config.Player[steamId].LastConnected;
+            if (_playerConfigs[steamId].LastConnected == 0
+                || _playerConfigs[steamId].LastConnected >= (_playerConfigs[steamId].LastDisconnected + (60 * 5)))
+                _playerConfigs[steamId].ConnectionCount += 1;
+            _playerConfigs[steamId].LastDisconnected = _playerConfigs[steamId].LastConnected;
             return HookResult.Continue;
         }
 
@@ -109,9 +111,9 @@ namespace PlayerSessions
             // skip bots
             if (player.IsBot) return HookResult.Continue;
             // skip if not added
-            if (!Config.Player.ContainsKey(player.NetworkIDString)) return HookResult.Continue;
+            if (!_playerConfigs.ContainsKey(player.NetworkIDString)) return HookResult.Continue;
             // add data
-            Config.Player[player.NetworkIDString].ClanTag = player.ClanName;
+            _playerConfigs[player.NetworkIDString].ClanTag = player.ClanName;
             // show welcome message
             if (Config.WelcomeMessageEnable)
                 AddTimer(Config.WelcomeMesageDelay, () =>
@@ -121,14 +123,14 @@ namespace PlayerSessions
                     // print welcome message(s)
                     player.PrintToChat(Localizer["player.welcome"].Value
                         .Replace("{player}", player.PlayerName));
-                    if (Config.Player[player.NetworkIDString].ConnectionCount > 1)
+                    if (_playerConfigs[player.NetworkIDString].ConnectionCount > 1)
                         player.PrintToChat(Localizer["player.welcome.visit"].Value
-                            .Replace("{visit}", Config.Player[player.NetworkIDString].ConnectionCount.ToString()));
-                    if (Config.Player[player.NetworkIDString].PlaytimeTotal > 0)
+                            .Replace("{visit}", _playerConfigs[player.NetworkIDString].ConnectionCount.ToString()));
+                    if (_playerConfigs[player.NetworkIDString].PlaytimeTotal > 0)
                         player.PrintToChat(Localizer["player.welcome.playtime"].Value
                             .Replace(
                                 "{playtime}",
-                                String.Format("{0:0.00}", Config.Player[player.NetworkIDString].PlaytimeTotal / 60.0f / 60.0f)
+                                String.Format("{0:0.00}", _playerConfigs[player.NetworkIDString].PlaytimeTotal / 60.0f / 60.0f)
                             ));
                 });
             return HookResult.Continue;
@@ -145,12 +147,12 @@ namespace PlayerSessions
                 SendGlobalChatMessage(Localizer["player.disconnect"].Value
                     .Replace("{player}", player.PlayerName));
             // add data
-            if (!Config.Player.ContainsKey(steamId)) return HookResult.Continue;
-            Config.Player[steamId].Username = player.PlayerName;
-            Config.Player[steamId].ClanTag = player.ClanName;
-            Config.Player[steamId].LastDisconnected = GetCurrentTimestamp();
+            if (!_playerConfigs.ContainsKey(steamId)) return HookResult.Continue;
+            _playerConfigs[steamId].Username = player.PlayerName;
+            _playerConfigs[steamId].ClanTag = player.ClanName;
+            _playerConfigs[steamId].LastDisconnected = GetCurrentTimestamp();
             // add total playtime
-            Config.Player[steamId].PlaytimeTotal += Config.Player[steamId].LastDisconnected - Config.Player[steamId].LastConnected;
+            _playerConfigs[steamId].PlaytimeTotal += _playerConfigs[steamId].LastDisconnected - _playerConfigs[steamId].LastConnected;
             return HookResult.Continue;
         }
     }
