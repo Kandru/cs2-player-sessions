@@ -4,6 +4,6 @@ namespace PlayerSessions
 {
     public partial class PlayerSessions : BasePlugin
     {
-        public override string ModuleVersion => "0.0.9";
+        public override string ModuleVersion => "0.0.10";
     }
 }
