@@ -22,28 +22,28 @@ namespace PlayerSessions
                 new PlayerConfigWeaponDeaths
                 {
                     Deaths = 1,
-                    AmountInAir = @event.Attackerinair ? 1 : 0,
-                    AmountBlind = @event.Attackerblind ? 1 : 0,
-                    AmountSmoke = @event.Thrusmoke ? 1 : 0,
-                    AmountHeadshots = @event.Headshot ? 1 : 0,
-                    AmountNoscope = @event.Noscope ? 1 : 0,
-                    AmountDominations = @event.Dominated > 0 ? 1 : 0,
-                    AmountPenetrations = @event.Penetrated > 0 ? 1 : 0,
-                    AmountRevenges = @event.Revenge > 0 ? 1 : 0,
+                    AttackerAmountInAir = @event.Attackerinair ? 1 : 0,
+                    AttackerAmountBlind = @event.Attackerblind ? 1 : 0,
+                    AttackerAmountSmoke = @event.Thrusmoke ? 1 : 0,
+                    AttackerAmountHeadshots = @event.Headshot ? 1 : 0,
+                    AttackerAmountNoscope = @event.Noscope ? 1 : 0,
+                    AttackerAmountDominations = @event.Dominated > 0 ? 1 : 0,
+                    AttackerAmountPenetrations = @event.Penetrated > 0 ? 1 : 0,
+                    AttackerAmountRevenges = @event.Revenge > 0 ? 1 : 0,
                     LargestDistance = @event.Distance
                 });
             }
             else
             {
                 _playerConfigs[victim.NetworkIDString].WeaponDeaths[@event.Weapon].Deaths++;
-                if (@event.Attackerinair) _playerConfigs[victim.NetworkIDString].WeaponDeaths[@event.Weapon].AmountInAir++;
-                if (@event.Attackerblind) _playerConfigs[victim.NetworkIDString].WeaponDeaths[@event.Weapon].AmountBlind++;
-                if (@event.Thrusmoke) _playerConfigs[victim.NetworkIDString].WeaponDeaths[@event.Weapon].AmountSmoke++;
-                if (@event.Headshot) _playerConfigs[victim.NetworkIDString].WeaponDeaths[@event.Weapon].AmountHeadshots++;
-                if (@event.Noscope) _playerConfigs[victim.NetworkIDString].WeaponDeaths[@event.Weapon].AmountNoscope++;
-                if (@event.Dominated > 0) _playerConfigs[victim.NetworkIDString].WeaponDeaths[@event.Weapon].AmountDominations++;
-                if (@event.Penetrated > 0) _playerConfigs[victim.NetworkIDString].WeaponDeaths[@event.Weapon].AmountPenetrations++;
-                if (@event.Revenge > 0) _playerConfigs[victim.NetworkIDString].WeaponDeaths[@event.Weapon].AmountRevenges++;
+                if (@event.Attackerinair) _playerConfigs[victim.NetworkIDString].WeaponDeaths[@event.Weapon].AttackerAmountInAir++;
+                if (@event.Attackerblind) _playerConfigs[victim.NetworkIDString].WeaponDeaths[@event.Weapon].AttackerAmountBlind++;
+                if (@event.Thrusmoke) _playerConfigs[victim.NetworkIDString].WeaponDeaths[@event.Weapon].AttackerAmountSmoke++;
+                if (@event.Headshot) _playerConfigs[victim.NetworkIDString].WeaponDeaths[@event.Weapon].AttackerAmountHeadshots++;
+                if (@event.Noscope) _playerConfigs[victim.NetworkIDString].WeaponDeaths[@event.Weapon].AttackerAmountNoscope++;
+                if (@event.Dominated > 0) _playerConfigs[victim.NetworkIDString].WeaponDeaths[@event.Weapon].AttackerAmountDominations++;
+                if (@event.Penetrated > 0) _playerConfigs[victim.NetworkIDString].WeaponDeaths[@event.Weapon].AttackerAmountPenetrations++;
+                if (@event.Revenge > 0) _playerConfigs[victim.NetworkIDString].WeaponDeaths[@event.Weapon].AttackerAmountRevenges++;
                 if (@event.Distance > _playerConfigs[victim.NetworkIDString].WeaponDeaths[@event.Weapon].LargestDistance)
                     _playerConfigs[victim.NetworkIDString].WeaponDeaths[@event.Weapon].LargestDistance = @event.Distance;
             }

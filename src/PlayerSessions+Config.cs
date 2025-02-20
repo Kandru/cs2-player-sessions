@@ -23,14 +23,14 @@ namespace PlayerSessions
     public class PlayerConfigWeaponDeaths
     {
         [JsonPropertyName("deaths")] public long Deaths { get; set; } = 0;
-        [JsonPropertyName("attacker_inair_counter")] public long AmountInAir { get; set; } = 0;
-        [JsonPropertyName("attacker_blind_counter")] public long AmountBlind { get; set; } = 0;
-        [JsonPropertyName("attacker_smoke_counter")] public long AmountSmoke { get; set; } = 0;
-        [JsonPropertyName("attacker_headshot_counter")] public long AmountHeadshots { get; set; } = 0;
-        [JsonPropertyName("attacker_noscope_counter")] public long AmountNoscope { get; set; } = 0;
-        [JsonPropertyName("attacker_domination_counter")] public long AmountDominations { get; set; } = 0;
-        [JsonPropertyName("attacker_penetration_counter")] public long AmountPenetrations { get; set; } = 0;
-        [JsonPropertyName("attacker_revenge_counter")] public long AmountRevenges { get; set; } = 0;
+        [JsonPropertyName("attacker_inair_counter")] public long AttackerAmountInAir { get; set; } = 0;
+        [JsonPropertyName("attacker_blind_counter")] public long AttackerAmountBlind { get; set; } = 0;
+        [JsonPropertyName("attacker_smoke_counter")] public long AttackerAmountSmoke { get; set; } = 0;
+        [JsonPropertyName("attacker_headshot_counter")] public long AttackerAmountHeadshots { get; set; } = 0;
+        [JsonPropertyName("attacker_noscope_counter")] public long AttackerAmountNoscope { get; set; } = 0;
+        [JsonPropertyName("attacker_domination_counter")] public long AttackerAmountDominations { get; set; } = 0;
+        [JsonPropertyName("attacker_penetration_counter")] public long AttackerAmountPenetrations { get; set; } = 0;
+        [JsonPropertyName("attacker_revenge_counter")] public long AttackerAmountRevenges { get; set; } = 0;
         [JsonPropertyName("largest_distance")] public float LargestDistance { get; set; } = 0.0f;
     }
 
