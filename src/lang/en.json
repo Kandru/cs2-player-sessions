@@ -16,10 +16,10 @@
     "player.welcome": "{default}Hey {green}{player} {default} - Welcome on our server!",
     "player.welcome.visit": "- {green}{visit}{default}x visit",
     "player.welcome.playtime": "- {green}{playtime}{default} hours playtime",
-    "statistics.personal.title": "= Statistics =",
-    "statistics.personal.kills": "Kills: {kills}",
-    "statistics.personal.deaths": "Deaths: {deaths}",
-    "statistics.personal.kd": "K/D Ratio: {kd}",
-    "statistics.personal.assists": "Assists: {assists}",
-    "statistics.personal.topweapon": "=======\nBest Weapon: {weapon}\n- {kills} kills\n- {headshots} headshots\n- Distance: {distance}m"
+    "statistics.personal.title": "== Statistics ==",
+    "statistics.personal.kills": "Kills:           {kills}",
+    "statistics.personal.deaths": "Deaths:      {deaths}",
+    "statistics.personal.kd": "K/D Ratio:  {kd}",
+    "statistics.personal.assists": "Assists:      {assists}",
+    "statistics.personal.topweapon": "============\nBest Weapon: {weapon}\nKills:               {kills}\nHeadshots:    {headshots}\nDistance:       {distance}m"
 }

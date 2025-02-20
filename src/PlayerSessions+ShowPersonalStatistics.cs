@@ -55,15 +55,15 @@ namespace PlayerSessions
             // build statistic message
             string message = Localizer["statistics.personal.title"].Value;
             message += "\n" + Localizer["statistics.personal.kills"].Value
-                .Replace("{kills}", _playerConfigs[player.NetworkIDString].Kills.ToString());
+                .Replace("{kills}", _playerConfigs[player.NetworkIDString].Kills.ToString("N0"));
             message += "\n" + Localizer["statistics.personal.deaths"].Value
-                .Replace("{deaths}", _playerConfigs[player.NetworkIDString].Deaths.ToString());
+                .Replace("{deaths}", _playerConfigs[player.NetworkIDString].Deaths.ToString("N0"));
             message += "\n" + Localizer["statistics.personal.kd"].Value
                 .Replace("{kd}", _playerConfigs[player.NetworkIDString].Kills == 0
                     ? "0.00"
                     : string.Format("{0:0.00}", (float)_playerConfigs[player.NetworkIDString].Kills / (float)_playerConfigs[player.NetworkIDString].Deaths));
             message += "\n" + Localizer["statistics.personal.assists"].Value
-                .Replace("{assists}", _playerConfigs[player.NetworkIDString].KillAssists.ToString());
+                .Replace("{assists}", _playerConfigs[player.NetworkIDString].KillAssists.ToString("N0"));
             // find the weapon with the most kills
             var topWeapon = _playerConfigs[player.NetworkIDString].WeaponKills
                 .Where(w => w.Key != "world")
@@ -73,15 +73,15 @@ namespace PlayerSessions
             {
                 message += "\n" + Localizer["statistics.personal.topweapon"].Value
                     .Replace("{weapon}", topWeapon.Key.Replace("_", " ").ToUpper())
-                    .Replace("{kills}", topWeapon.Value.Kills.ToString())
-                    .Replace("{headshots}", topWeapon.Value.AmountHeadshots.ToString())
+                    .Replace("{kills}", topWeapon.Value.Kills.ToString("N0"))
+                    .Replace("{headshots}", topWeapon.Value.AmountHeadshots.ToString("N0"))
                     .Replace("{distance}", string.Format("{0:0.00}", topWeapon.Value.LargestDistance));
             }
             // set background height dynamically
-            float backgroundHeight = 0.05f * message.Split('\n').Length;
+            float backgroundHeight = 0.01f * message.Split('\n').Length;
             if (backgroundHeight == 0) backgroundHeight = 0.05f;
             // set background width dynamically by counting the longest line
-            float backgroundWidth = 0.02f;
+            float backgroundWidth = 0.015f;
             foreach (string line in message.Split('\n'))
             {
                 if (backgroundWidth < line.Length * 0.02f) backgroundWidth = line.Length * 0.02f;
@@ -90,7 +90,7 @@ namespace PlayerSessions
             CPointWorldText? hudText = WorldTextManager.Create(
                     player,
                     message,
-                    35,
+                    32,
                     Color.Orange,
                     "Verdana Bold",
                     -(backgroundWidth * 4.5f),
