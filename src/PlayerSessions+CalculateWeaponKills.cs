@@ -13,6 +13,15 @@ namespace PlayerSessions
                 || !attacker.IsValid
                 || attacker.IsBot
                 || !_playerConfigs.ContainsKey(attacker.NetworkIDString)) return;
+            // check if we have an assister and add kill assists
+            CCSPlayerController? assister = @event.Assister;
+            if (assister != null
+                && assister.IsValid
+                && !assister.IsBot
+                && _playerConfigs.ContainsKey(assister.NetworkIDString))
+            {
+                _playerConfigs[assister.NetworkIDString].KillAssists++;
+            }
             // add weapon to list if not added already
             if (!_playerConfigs[attacker.NetworkIDString].WeaponKills.ContainsKey(@event.Weapon))
             {
