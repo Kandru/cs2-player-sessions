@@ -189,6 +189,7 @@ namespace PlayerSessions
             // run functions
             CalculatePlaytimePlayerDeath(@event, info);
             CalculateWeaponKillsPlayerDeath(@event, info);
+            CalculateWeaponDeathsPlayerDeath(@event, info);
             return HookResult.Continue;
         }
     }
