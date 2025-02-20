@@ -72,7 +72,7 @@ namespace PlayerSessions
             if (topWeapon.Key != null)
             {
                 message += "\n" + Localizer["statistics.personal.topweapon"].Value
-                    .Replace("{weapon}", topWeapon.Key.ToUpper())
+                    .Replace("{weapon}", topWeapon.Key.Replace("_", " ").ToUpper())
                     .Replace("{kills}", topWeapon.Value.Kills.ToString())
                     .Replace("{headshots}", topWeapon.Value.AmountHeadshots.ToString())
                     .Replace("{distance}", string.Format("{0:0.00}", topWeapon.Value.LargestDistance));
