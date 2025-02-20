@@ -11,6 +11,7 @@
     "player.connect": "{green}{player} {default}connects!",
     "player.connect.city": "{green}{player} {default}connects from {green}{city}{default}, {green}{country}{default}!",
     "player.connect.country": "{green}{player} {default}connects from {green}{country}{default}!",
+    "player.connected": "{green}{player} {default}entered the game!",
     "player.disconnect": "{green}{player} {default}left the server!",
     "player.welcome": "{default}Hey {green}{player} {default} - Welcome on our server!",
     "player.welcome.visit": "- {green}{visit}{default}x visit",

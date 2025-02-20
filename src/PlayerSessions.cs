@@ -110,6 +110,14 @@ namespace PlayerSessions
             CCSPlayerController player = @event.Userid!;
             // skip bots
             if (player.IsBot) return HookResult.Continue;
+            // show join message
+            if (Config.JoinMessageEnable)
+                SendGlobalChatMessage(
+                    message: Localizer["player.connected"].Value
+                        .Replace("{player}", player.PlayerName)
+                    ,
+                    player: player
+                );
             // skip if not added
             if (!_playerConfigs.ContainsKey(player.NetworkIDString)) return HookResult.Continue;
             // add data
