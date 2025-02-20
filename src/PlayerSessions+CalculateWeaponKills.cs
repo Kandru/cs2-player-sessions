@@ -8,7 +8,7 @@ namespace PlayerSessions
         {
             // only calculate if we have a round start (to avoid errors on hot-reload)
             if (!_isDuringRound) return;
-            CCSPlayerController? attacker = @event.Userid;
+            CCSPlayerController? attacker = @event.Attacker;
             if (attacker == null
                 || !attacker.IsValid
                 || attacker.IsBot
