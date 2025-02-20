@@ -50,7 +50,9 @@ namespace PlayerSessions
         [JsonPropertyName("playtime_t_alive")] public long PlaytimeTAlive { get; set; } = 0;
         [JsonPropertyName("playtime_ct")] public long PlaytimeCT { get; set; } = 0;
         [JsonPropertyName("playtime_ct_alive")] public long PlaytimeCTAlive { get; set; } = 0;
-        [JsonPropertyName("kill_assists")] public long KillAssists { get; set; } = 0;
+        [JsonPropertyName("player_kills")] public long Kills { get; set; } = 0;
+        [JsonPropertyName("player_kill_assists")] public long KillAssists { get; set; } = 0;
+        [JsonPropertyName("player_deaths")] public long Deaths { get; set; } = 0;
         [JsonPropertyName("weapon_kills")] public Dictionary<string, PlayerConfigWeaponKills> WeaponKills { get; set; } = new Dictionary<string, PlayerConfigWeaponKills>();
         [JsonPropertyName("weapon_deaths")] public Dictionary<string, PlayerConfigWeaponDeaths> WeaponDeaths { get; set; } = new Dictionary<string, PlayerConfigWeaponDeaths>();
     }

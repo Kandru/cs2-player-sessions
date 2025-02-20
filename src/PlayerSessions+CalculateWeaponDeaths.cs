@@ -13,6 +13,8 @@ namespace PlayerSessions
                 || !victim.IsValid
                 || victim.IsBot
                 || !_playerConfigs.ContainsKey(victim.NetworkIDString)) return;
+            // increase death counter
+            _playerConfigs[victim.NetworkIDString].Deaths++;
             // add weapon to list if not added already
             if (!_playerConfigs[victim.NetworkIDString].WeaponDeaths.ContainsKey(@event.Weapon))
             {

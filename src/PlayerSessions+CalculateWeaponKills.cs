@@ -22,6 +22,8 @@ namespace PlayerSessions
             {
                 _playerConfigs[assister.NetworkIDString].KillAssists++;
             }
+            // increase kill counter
+            _playerConfigs[attacker.NetworkIDString].Kills++;
             // add weapon to list if not added already
             if (!_playerConfigs[attacker.NetworkIDString].WeaponKills.ContainsKey(@event.Weapon))
             {
