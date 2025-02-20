@@ -16,6 +16,8 @@ namespace PlayerSessions
         {
             // initialize IP lookup
             InitializeIP2Country();
+            // load player configs
+            LoadPlayerConfigs();
             // register listeners
             RegisterListener<Listeners.OnMapEnd>(OnMapEnd);
             RegisterEventHandler<EventRoundStart>(OnRoundStart);
@@ -86,7 +88,7 @@ namespace PlayerSessions
             string city = "";
             string country = "";
             // read user configuration
-            GetPlayerConfig(steamId);
+            LoadPlayerConfig(steamId);
             // get data from ip resolver
             Dictionary<string, string> ipData = IP2Country(ipAddress);
             if (ipData.ContainsKey("city")) city = ipData["city"];

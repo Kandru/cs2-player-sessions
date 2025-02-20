@@ -48,7 +48,7 @@ namespace PlayerSessions
         public required PluginConfig Config { get; set; }
         private Dictionary<string, PlayerConfig> _playerConfigs = [];
 
-        private PlayerConfig GetPlayerConfig(string steamId)
+        private PlayerConfig LoadPlayerConfig(string steamId)
         {
             if (!_playerConfigs.ContainsKey(steamId))
             {
@@ -69,6 +69,20 @@ namespace PlayerSessions
                 }
             }
             return _playerConfigs[steamId];
+        }
+
+        private void LoadPlayerConfigs()
+        {
+            foreach (CCSPlayerController entry in Utilities.GetPlayers())
+            {
+                if (entry == null
+                    || !entry.IsValid
+                    || entry.IsBot
+                    || _playerConfigs.ContainsKey(entry.NetworkIDString)) return;
+                LoadPlayerConfig(entry.NetworkIDString);
+                // set data
+                _playerConfigs[entry.NetworkIDString].LastConnected = GetCurrentTimestamp();
+            }
         }
 
         private void SavePlayerConfig(string steamId)
