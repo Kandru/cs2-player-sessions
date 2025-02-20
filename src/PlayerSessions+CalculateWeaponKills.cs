@@ -9,9 +9,12 @@ namespace PlayerSessions
             // only calculate if we have a round start (to avoid errors on hot-reload)
             if (!_isDuringRound) return;
             CCSPlayerController? attacker = @event.Attacker;
+            CCSPlayerController? victim = @event.Userid;
             if (attacker == null
                 || !attacker.IsValid
                 || attacker.IsBot
+                || victim == null
+                || !victim.IsValid
                 || !_playerConfigs.ContainsKey(attacker.NetworkIDString)) return;
             // check if we have an assister and add kill assists
             CCSPlayerController? assister = @event.Assister;
@@ -21,9 +24,23 @@ namespace PlayerSessions
                 && _playerConfigs.ContainsKey(assister.NetworkIDString))
             {
                 _playerConfigs[assister.NetworkIDString].KillAssists++;
+                // update ranking points
+                UpdateRankingPoints(assister, Config.RankingPointsPerKillAssist, new Dictionary<string, string>
+                {
+                    { "translation", "assist" },
+                    { "player", attacker.PlayerName }
+                });
             }
             // increase kill counter
             _playerConfigs[attacker.NetworkIDString].Kills++;
+            // update player list
+            _playerList[attacker.NetworkIDString].Kills++;
+            // update ranking points
+            UpdateRankingPoints(attacker, Config.RankingPointsPerKill, new Dictionary<string, string>
+            {
+                { "translation", "kill" },
+                { "player", victim.PlayerName }
+            });
             // add weapon to list if not added already
             if (!_playerConfigs[attacker.NetworkIDString].WeaponKills.ContainsKey(@event.Weapon))
             {

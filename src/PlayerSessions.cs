@@ -16,6 +16,8 @@ namespace PlayerSessions
         {
             // initialize IP lookup
             InitializeIP2Country();
+            // load player list
+            LoadPlayerlist();
             // register listeners
             RegisterListener<Listeners.OnMapEnd>(OnMapEnd);
             RegisterEventHandler<EventRoundStart>(OnRoundStart);
@@ -28,7 +30,7 @@ namespace PlayerSessions
             if (hotReload)
             {
                 // load player configs
-                LoadPlayerConfigs();
+                LoadActivePlayerConfigs();
                 Console.WriteLine(Localizer["core.hotreload"]);
             }
         }
@@ -46,6 +48,7 @@ namespace PlayerSessions
             // save config(s)
             Config.Update();
             SavePlayerConfigs();
+            SavePlayerList();
             Console.WriteLine(Localizer["core.unload"]);
         }
 
@@ -53,6 +56,7 @@ namespace PlayerSessions
         {
             // save config
             SavePlayerConfigs();
+            SavePlayerList();
             // garbage collection
             PlayerConfigsGarbageCollection();
         }
@@ -116,8 +120,11 @@ namespace PlayerSessions
             if (country != "") _playerConfigs[steamId].City = city;
             if (country != "") _playerConfigs[steamId].Country = country;
             _playerConfigs[steamId].Username = username;
-            _playerConfigs[steamId].ClanTag = "";
             _playerConfigs[steamId].LastConnected = GetCurrentTimestamp();
+            // update player list
+            _playerList[steamId].Username = username;
+            _playerList[steamId].Kills = _playerConfigs[steamId].Kills;
+            _playerList[steamId].Deaths = _playerConfigs[steamId].Deaths;
             // cooldown for connection counter (avoid counting rejoin)
             if (_playerConfigs[steamId].LastConnected == 0
                 || _playerConfigs[steamId].LastConnected >= (_playerConfigs[steamId].LastDisconnected + (60 * 5)))
@@ -148,6 +155,8 @@ namespace PlayerSessions
             }
             // add data
             _playerConfigs[player.NetworkIDString].ClanTag = player.ClanName;
+            // update player list
+            _playerList[player.NetworkIDString].ClanTag = player.ClanName;
             // show welcome message
             if (Config.WelcomeMessageEnable)
                 AddTimer(Config.WelcomeMesageDelay, () =>
@@ -185,6 +194,9 @@ namespace PlayerSessions
             _playerConfigs[steamId].Username = player.PlayerName;
             _playerConfigs[steamId].ClanTag = player.ClanName;
             _playerConfigs[steamId].LastDisconnected = GetCurrentTimestamp();
+            // update player list
+            _playerList[steamId].Username = player.PlayerName;
+            _playerList[steamId].ClanTag = player.ClanName;
             // add total playtime
             _playerConfigs[steamId].PlaytimeTotal += _playerConfigs[steamId].LastDisconnected - _playerConfigs[steamId].LastConnected;
             return HookResult.Continue;

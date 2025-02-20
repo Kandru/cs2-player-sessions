@@ -11,6 +11,9 @@
     "command.notalive": "[PlayerSessions] Du musst am Leben sein um deine Statistik einzusehen.",
     "command.showpersonalstatistics": "[Spielsitzung] {default}Statistikfenster geöffnet",
     "command.hidepersonalstatistics": "[Spielsitzung] {default}Statistikfenster geschlossen",
+    "command.topplayers.title": "{default}== Top Spieler ==",
+    "command.topplayers.entry": "{default}#{rank} - {green}{name} {default}({green}{points}{default} Punkte)",
+    "command.topplayers.footer": "{default}==============",
     "player.connect": "{green}{player} {default}tritt bei!",
     "player.connect.city": "{green}{player} {default}tritt aus {green}{city}{default}, {green}{country} {default}bei!",
     "player.connect.country": "{green}{player} {default}tritt aus {green}{country} {default}bei!",
@@ -24,5 +27,8 @@
     "statistics.personal.deaths": "Tode: {deaths}",
     "statistics.personal.kd": "K/D Ratio: {kd}",
     "statistics.personal.assists": "Assists: {assists}",
-    "statistics.personal.topweapon": "=============\nBeste Waffe:\n{weapon}\nKills: {kills}\nKopfschüsse: {headshots}\nDistanz: {distance}m"
+    "statistics.personal.topweapon": "=============\nBeste Waffe:\n{weapon}\nKills: {kills}\nKopfschüsse: {headshots}\nDistanz: {distance}m",
+    "rankingpoints.added.kill": "{green}{points} {default}Punkte für das Töten von {green}{player}",
+    "rankingpoints.added.assist": "{green}{points} {default}Punkte für die Unterstützung von {player}.",
+    "rankingpoints.added.death": "{green}{points} {default}Punkte für den Tod durch {green}{player}"
 }

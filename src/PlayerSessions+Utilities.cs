@@ -19,11 +19,14 @@ namespace PlayerSessions
             foreach (CCSPlayerController entry in Utilities.GetPlayers())
             {
                 if (entry == null || !entry.IsValid || entry.IsBot || entry == player) continue;
-                AddTimer(delay, () =>
-                {
-                    if (entry == null || !entry.IsValid) return;
+                if (delay > 0)
+                    AddTimer(delay, () =>
+                    {
+                        if (entry == null || !entry.IsValid) return;
+                        entry.PrintToChat(message);
+                    });
+                else
                     entry.PrintToChat(message);
-                });
             }
         }
 

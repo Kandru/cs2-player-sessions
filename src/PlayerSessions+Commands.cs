@@ -8,7 +8,7 @@ namespace PlayerSessions
     {
         [ConsoleCommand("stats", "toggle your stats")]
         [CommandHelper(whoCanExecute: CommandUsage.CLIENT_ONLY, minArgs: 0, usage: "!stats")]
-        public void CommandGiveDice(CCSPlayerController player, CommandInfo command)
+        public void CommandShowStats(CCSPlayerController player, CommandInfo command)
         {
             if (player == null
                 || !player.IsValid
@@ -29,6 +29,29 @@ namespace PlayerSessions
                 }
             else
                 command.ReplyToCommand(Localizer["command.notalive"]);
+        }
+
+        [ConsoleCommand("top", "top players")]
+        [ConsoleCommand("top5", "top players")]
+        [ConsoleCommand("top10", "top players")]
+        [CommandHelper(whoCanExecute: CommandUsage.CLIENT_ONLY, minArgs: 0, usage: "!top")]
+        public void CommandShowTopPlayers(CCSPlayerController player, CommandInfo command)
+        {
+            // sort player list by ranking points and print top 5
+            var topPlayers = _playerList.Values
+                .OrderByDescending(p => p.RankingPoints)
+                .Take(5)
+                .ToList();
+            SendGlobalChatMessage(Localizer["command.topplayers.title"]);
+            foreach (var topPlayer in topPlayers)
+            {
+                SendGlobalChatMessage(Localizer["command.topplayers.entry"].Value
+                    .Replace("{rank}", (topPlayers.IndexOf(topPlayer) + 1).ToString())
+                    .Replace("{name}", topPlayer.Username)
+                    .Replace("{points}", topPlayer.RankingPoints.ToString("N0"))
+                );
+            }
+            SendGlobalChatMessage(Localizer["command.topplayers.footer"]);
         }
     }
 }

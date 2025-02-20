@@ -8,13 +8,24 @@ namespace PlayerSessions
         {
             // only calculate if we have a round start (to avoid errors on hot-reload)
             if (!_isDuringRound) return;
+            CCSPlayerController? attacker = @event.Attacker;
             CCSPlayerController? victim = @event.Userid;
             if (victim == null
                 || !victim.IsValid
                 || victim.IsBot
+                || attacker == null
+                || !attacker.IsValid
                 || !_playerConfigs.ContainsKey(victim.NetworkIDString)) return;
             // increase death counter
             _playerConfigs[victim.NetworkIDString].Deaths++;
+            // update player list
+            _playerList[victim.NetworkIDString].Deaths++;
+            // update ranking points
+            UpdateRankingPoints(victim, Config.RankingPointsPerDeath, new Dictionary<string, string>
+            {
+                { "translation", "death" },
+                { "player", attacker.PlayerName }
+            });
             // add weapon to list if not added already
             if (!_playerConfigs[victim.NetworkIDString].WeaponDeaths.ContainsKey(@event.Weapon))
             {

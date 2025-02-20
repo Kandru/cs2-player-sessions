@@ -6,6 +6,15 @@ using System.Text.Json.Serialization;
 
 namespace PlayerSessions
 {
+    public class PlayerList
+    {
+        [JsonPropertyName("username")] public string Username { get; set; } = "";
+        [JsonPropertyName("clantag")] public string ClanTag { get; set; } = "";
+        [JsonPropertyName("kills")] public long Kills { get; set; } = 0;
+        [JsonPropertyName("deaths")] public long Deaths { get; set; } = 0;
+        [JsonPropertyName("ranking_points")] public long RankingPoints { get; set; } = 0;
+    }
+
     public class PlayerConfigWeaponKills
     {
         [JsonPropertyName("kills")] public long Kills { get; set; } = 0;
@@ -83,15 +92,21 @@ namespace PlayerSessions
         [JsonPropertyName("enable_country_lookup")] public bool EnableCountryLookup { get; set; } = true;
         // Geolite2 Country or City binary file (.mmdb)
         [JsonPropertyName("geolite2")] public string Geolite2 { get; set; } = "GeoLite2-City.mmdb";
+        // ranking points configuration
+        [JsonPropertyName("ranking_points_per_kill")] public int RankingPointsPerKill { get; set; } = 2;
+        [JsonPropertyName("ranking_points_per_kill_assist")] public int RankingPointsPerKillAssist { get; set; } = 1;
+        [JsonPropertyName("ranking_points_per_death")] public int RankingPointsPerDeath { get; set; } = -1;
     }
 
     public partial class PlayerSessions : BasePlugin, IPluginConfig<PluginConfig>
     {
         public required PluginConfig Config { get; set; }
         private Dictionary<string, PlayerConfig> _playerConfigs = [];
+        private Dictionary<string, PlayerList> _playerList = [];
 
         private PlayerConfig LoadPlayerConfig(string steamId)
         {
+            // check if player config does not exist
             if (!_playerConfigs.ContainsKey(steamId))
             {
                 string safeSteamId = string.Concat(steamId.Split(Path.GetInvalidFileNameChars()));
@@ -110,10 +125,15 @@ namespace PlayerSessions
                     }
                 }
             }
+            // check if player list entry does not exist
+            if (!_playerList.ContainsKey(steamId))
+            {
+                _playerList.Add(steamId, new PlayerList());
+            }
             return _playerConfigs[steamId];
         }
 
-        private void LoadPlayerConfigs()
+        private void LoadActivePlayerConfigs()
         {
             foreach (CCSPlayerController entry in Utilities.GetPlayers())
             {
@@ -143,6 +163,25 @@ namespace PlayerSessions
             {
                 SavePlayerConfig(kvp.Key);
             }
+        }
+
+        private void LoadPlayerlist()
+        {
+            string playerlistPath = Path.Combine(Path.GetDirectoryName(Config.GetConfigPath()) ?? "./", "playerlist.json");
+            DebugPrint($"Loading player list");
+            if (Path.Exists(playerlistPath))
+            {
+                var jsonString = File.ReadAllText(playerlistPath);
+                _playerList = JsonSerializer.Deserialize<Dictionary<string, PlayerList>>(jsonString) ?? new Dictionary<string, PlayerList>();
+            }
+        }
+
+        private void SavePlayerList()
+        {
+            string playerlistPath = Path.Combine(Path.GetDirectoryName(Config.GetConfigPath()) ?? "./", "playerlist.json");
+            DebugPrint($"Saving player list");
+            var jsonString = JsonSerializer.Serialize(_playerList, new JsonSerializerOptions { WriteIndented = true });
+            File.WriteAllText(playerlistPath, jsonString);
         }
 
         private void PlayerConfigsGarbageCollection()
