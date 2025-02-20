@@ -34,6 +34,9 @@ namespace PlayerSessions
                     AmountSmoke = @event.Thrusmoke ? 1 : 0,
                     AmountHeadshots = @event.Headshot ? 1 : 0,
                     AmountNoscope = @event.Noscope ? 1 : 0,
+                    AmountDominations = @event.Dominated > 0 ? 1 : 0,
+                    AmountPenetrations = @event.Penetrated > 0 ? 1 : 0,
+                    AmountRevenges = @event.Revenge > 0 ? 1 : 0,
                     LargestDistance = @event.Distance
                 });
             }
@@ -45,6 +48,9 @@ namespace PlayerSessions
                 if (@event.Thrusmoke) _playerConfigs[attacker.NetworkIDString].WeaponKills[@event.Weapon].AmountSmoke++;
                 if (@event.Headshot) _playerConfigs[attacker.NetworkIDString].WeaponKills[@event.Weapon].AmountHeadshots++;
                 if (@event.Noscope) _playerConfigs[attacker.NetworkIDString].WeaponKills[@event.Weapon].AmountNoscope++;
+                if (@event.Dominated > 0) _playerConfigs[attacker.NetworkIDString].WeaponKills[@event.Weapon].AmountDominations++;
+                if (@event.Penetrated > 0) _playerConfigs[attacker.NetworkIDString].WeaponKills[@event.Weapon].AmountPenetrations++;
+                if (@event.Revenge > 0) _playerConfigs[attacker.NetworkIDString].WeaponKills[@event.Weapon].AmountRevenges++;
                 if (@event.Distance > _playerConfigs[attacker.NetworkIDString].WeaponKills[@event.Weapon].LargestDistance)
                     _playerConfigs[attacker.NetworkIDString].WeaponKills[@event.Weapon].LargestDistance = @event.Distance;
             }

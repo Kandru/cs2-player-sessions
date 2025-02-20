@@ -14,6 +14,9 @@ namespace PlayerSessions
         [JsonPropertyName("smoke_counter")] public long AmountSmoke { get; set; } = 0;
         [JsonPropertyName("headshot_counter")] public long AmountHeadshots { get; set; } = 0;
         [JsonPropertyName("noscope_counter")] public long AmountNoscope { get; set; } = 0;
+        [JsonPropertyName("domination_counter")] public long AmountDominations { get; set; } = 0;
+        [JsonPropertyName("penetration_counter")] public long AmountPenetrations { get; set; } = 0;
+        [JsonPropertyName("revenge_counter")] public long AmountRevenges { get; set; } = 0;
         [JsonPropertyName("largest_distance")] public float LargestDistance { get; set; } = 0.0f;
     }
 
@@ -25,6 +28,9 @@ namespace PlayerSessions
         [JsonPropertyName("attacker_smoke_counter")] public long AmountSmoke { get; set; } = 0;
         [JsonPropertyName("attacker_headshot_counter")] public long AmountHeadshots { get; set; } = 0;
         [JsonPropertyName("attacker_noscope_counter")] public long AmountNoscope { get; set; } = 0;
+        [JsonPropertyName("attacker_domination_counter")] public long AmountDominations { get; set; } = 0;
+        [JsonPropertyName("attacker_penetration_counter")] public long AmountPenetrations { get; set; } = 0;
+        [JsonPropertyName("attacker_revenge_counter")] public long AmountRevenges { get; set; } = 0;
         [JsonPropertyName("largest_distance")] public float LargestDistance { get; set; } = 0.0f;
     }
 
