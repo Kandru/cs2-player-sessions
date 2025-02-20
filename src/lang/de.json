@@ -3,7 +3,7 @@
     "core.unload": "[Spielsitzung] PlayerSessions Plugin entladen!",
     "core.defaultconfig": "[Spielsitzung] Keine kartenspezifische Konfiguration für {mapName} gefunden, Standardkonfiguration wird verwendet!",
     "core.noconfig": "[Spielsitzung] Keine kartenspezifische Konfiguration für {mapName} oder Standardkonfiguration gefunden. Überspringen!",
-    "core.foundconfig": "[Spielsitzung] {count} passende kartenspezifische Konfigurationen für {mapName} gefunden!",
+    "core.config": "[Spielsitzung] Konfiguration geladen!",
     "core.disabled": "[Spielsitzung] {default}Spielsitzung ist deaktiviert!",
     "core.debugprint": "[Spielsitzung]{red}[DEBUG] {default}{message}",
     "ip2country.found": "[Spielsitzung] {default}IP2Country Datenbank gefunden",
