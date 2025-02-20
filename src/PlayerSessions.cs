@@ -16,8 +16,6 @@ namespace PlayerSessions
         {
             // initialize IP lookup
             InitializeIP2Country();
-            // load player configs
-            LoadPlayerConfigs();
             // register listeners
             RegisterListener<Listeners.OnMapEnd>(OnMapEnd);
             RegisterEventHandler<EventRoundStart>(OnRoundStart);
@@ -29,6 +27,8 @@ namespace PlayerSessions
             // print message if hot reload
             if (hotReload)
             {
+                // load player configs
+                LoadPlayerConfigs();
                 Console.WriteLine(Localizer["core.hotreload"]);
             }
         }
@@ -63,6 +63,7 @@ namespace PlayerSessions
             _isDuringRound = true;
             // run functions
             CalculatePlaytimeRoundStart();
+            ShowPersonalStatisticsOnRoundStart();
             return HookResult.Continue;
         }
 

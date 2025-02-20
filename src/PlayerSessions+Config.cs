@@ -63,6 +63,8 @@ namespace PlayerSessions
         [JsonPropertyName("enabled")] public bool Enabled { get; set; } = true;
         // debug prints
         [JsonPropertyName("debug")] public bool Debug { get; set; } = false;
+        // spawn message
+        [JsonPropertyName("spawnmessage_enable")] public bool SpawnMessageEnable { get; set; } = true;
         // join / part message
         [JsonPropertyName("joinmessage_enable")] public bool JoinMessageEnable { get; set; } = true;
         [JsonPropertyName("partmessage_enable")] public bool PartMessageEnable { get; set; } = true;

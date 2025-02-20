@@ -15,5 +15,11 @@
     "player.disconnect": "{green}{player} {default}verlässt uns!",
     "player.welcome": "{default}Hey {green}{player} {default} - Willkommen auf unserem Server!",
     "player.welcome.visit": "- {green}{visit}{default}x Besuch",
-    "player.welcome.playtime": "- {green}{playtime}{default} Stunden Spielzeit"
+    "player.welcome.playtime": "- {green}{playtime}{default} Stunden Spielzeit",
+    "statistics.personal.title": "= Statistik =",
+    "statistics.personal.kills": "Kills: {kills}",
+    "statistics.personal.deaths": "Tode: {deaths}",
+    "statistics.personal.kd": "K/D Ratio: {kd}",
+    "statistics.personal.assists": "Assists: {assists}",
+    "statistics.personal.topweapon": "=======\nBeste Waffe: {weapon}\n- {kills} Kills\n- {headshots} Kopfschüsse\n- Distanz: {distance}m"
 }
