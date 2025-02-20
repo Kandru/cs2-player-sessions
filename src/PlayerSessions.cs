@@ -9,7 +9,8 @@ namespace PlayerSessions
         public override string ModuleName => "Player Sessions";
         public override string ModuleAuthor => "Kalle <kalle@kandru.de>";
 
-        Random _random = new Random(Guid.NewGuid().GetHashCode());
+        private Random _random = new Random(Guid.NewGuid().GetHashCode());
+        private bool _isDuringRound = false;
 
         public override void Load(bool hotReload)
         {
@@ -17,10 +18,12 @@ namespace PlayerSessions
             InitializeIP2Country();
             // register listeners
             RegisterListener<Listeners.OnMapEnd>(OnMapEnd);
+            RegisterEventHandler<EventRoundStart>(OnRoundStart);
             RegisterEventHandler<EventRoundEnd>(OnRoundEnd);
             RegisterEventHandler<EventPlayerConnect>(OnPlayerConnect);
             RegisterEventHandler<EventPlayerConnectFull>(OnPlayerConnectFull);
             RegisterEventHandler<EventPlayerDisconnect>(OnPlayerDisconnect);
+            RegisterEventHandler<EventPlayerDeath>(OnPlayerDeath);
             // print message if hot reload
             if (hotReload)
             {
@@ -32,10 +35,12 @@ namespace PlayerSessions
         {
             // unregister listeners
             RemoveListener<Listeners.OnMapEnd>(OnMapEnd);
+            DeregisterEventHandler<EventRoundStart>(OnRoundStart);
             DeregisterEventHandler<EventRoundEnd>(OnRoundEnd);
             DeregisterEventHandler<EventPlayerConnect>(OnPlayerConnect);
             DeregisterEventHandler<EventPlayerConnectFull>(OnPlayerConnectFull);
             DeregisterEventHandler<EventPlayerDisconnect>(OnPlayerDisconnect);
+            DeregisterEventHandler<EventPlayerDeath>(OnPlayerDeath);
             // save config(s)
             Config.Update();
             SavePlayerConfigs();
@@ -50,8 +55,21 @@ namespace PlayerSessions
             PlayerConfigsGarbageCollection();
         }
 
+        private HookResult OnRoundStart(EventRoundStart @event, GameEventInfo info)
+        {
+            // set variables
+            _isDuringRound = true;
+            // run functions
+            CalculatePlaytimeRoundStart();
+            return HookResult.Continue;
+        }
+
         private HookResult OnRoundEnd(EventRoundEnd @event, GameEventInfo info)
         {
+            // run functions
+            CalculatePlaytimeRoundEnd();
+            // reset variables
+            _isDuringRound = false;
             // garbage collection
             PlayerConfigsGarbageCollection();
             return HookResult.Continue;
@@ -161,6 +179,13 @@ namespace PlayerSessions
             _playerConfigs[steamId].LastDisconnected = GetCurrentTimestamp();
             // add total playtime
             _playerConfigs[steamId].PlaytimeTotal += _playerConfigs[steamId].LastDisconnected - _playerConfigs[steamId].LastConnected;
+            return HookResult.Continue;
+        }
+
+        private HookResult OnPlayerDeath(EventPlayerDeath @event, GameEventInfo info)
+        {
+            // run functions
+            CalculatePlaytimePlayerDeath(@event, info);
             return HookResult.Continue;
         }
     }
