@@ -6,6 +6,17 @@ using System.Text.Json.Serialization;
 
 namespace PlayerSessions
 {
+    public class PlayerConfigWeaponKills
+    {
+        [JsonPropertyName("attacker_kills")] public long Kills { get; set; } = 0;
+        [JsonPropertyName("inair_counter")] public long AmountInAir { get; set; } = 0;
+        [JsonPropertyName("blind_counter")] public long AmountBlind { get; set; } = 0;
+        [JsonPropertyName("smoke_counter")] public long AmountSmoke { get; set; } = 0;
+        [JsonPropertyName("headshot_counter")] public long AmountHeadshots { get; set; } = 0;
+        [JsonPropertyName("noscope_counter")] public long AmountNoscope { get; set; } = 0;
+        [JsonPropertyName("largest_distance")] public float LargestDistance { get; set; } = 0.0f;
+    }
+
     public class PlayerConfig
     {
         [JsonPropertyName("username")] public string Username { get; set; } = "";
@@ -22,6 +33,7 @@ namespace PlayerSessions
         [JsonPropertyName("playtime_t_alive")] public long PlaytimeTAlive { get; set; } = 0;
         [JsonPropertyName("playtime_ct")] public long PlaytimeCT { get; set; } = 0;
         [JsonPropertyName("playtime_ct_alive")] public long PlaytimeCTAlive { get; set; } = 0;
+        [JsonPropertyName("weapon_kills")] public Dictionary<string, PlayerConfigWeaponKills> WeaponKills { get; set; } = new Dictionary<string, PlayerConfigWeaponKills>();
     }
 
     public class PluginConfig : BasePluginConfig
