@@ -23,12 +23,13 @@
     "player.welcome.visit": "- {green}{visit}{default}x Besuch",
     "player.welcome.playtime": "- {green}{playtime}{default} Stunden Spielzeit",
     "statistics.personal.title": "=== Statistik ===",
+    "statistics.personal.rank": "Rang: {rank} (von {total})",
     "statistics.personal.kills": "Kills: {kills}",
     "statistics.personal.deaths": "Tode: {deaths}",
     "statistics.personal.kd": "K/D Ratio: {kd}",
     "statistics.personal.assists": "Assists: {assists}",
     "statistics.personal.topweapon": "=============\nBeste Waffe:\n{weapon}\nKills: {kills}\nKopfschüsse: {headshots}\nDistanz: {distance}m",
-    "rankingpoints.added.kill": "{green}{points} {default}Punkte für das Töten von {green}{player}",
-    "rankingpoints.added.assist": "{green}{points} {default}Punkte für die Unterstützung von {player}.",
-    "rankingpoints.added.death": "{green}{points} {default}Punkte für den Tod durch {green}{player}"
+    "rankingpoints.added.kill": "{green}{points} {default}Punkt(e) für das Töten von {green}{player}",
+    "rankingpoints.added.assist": "{green}{points} {default}Punkt(e) für die Unterstützung von {player}.",
+    "rankingpoints.added.death": "{green}{points} {default}Punkt(e) für den Tod durch {green}{player}"
 }

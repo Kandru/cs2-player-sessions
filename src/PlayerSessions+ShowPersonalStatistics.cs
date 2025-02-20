@@ -45,6 +45,10 @@ namespace PlayerSessions
                 || !_playerConfigs.ContainsKey(player.NetworkIDString)) return;
             // build statistic message
             string message = Localizer["statistics.personal.title"].Value;
+            var playerRankings = _playerConfigs.Values.OrderByDescending(p => p.Kills).ToList();
+            message += "\n" + Localizer["statistics.personal.rank"].Value
+                .Replace("{rank}", (playerRankings.FindIndex(p => p == _playerConfigs[player.NetworkIDString]) + 1).ToString())
+                .Replace("{total}", playerRankings.Select(p => p.Kills).Distinct().Count().ToString());
             message += "\n" + Localizer["statistics.personal.kills"].Value
                 .Replace("{kills}", _playerConfigs[player.NetworkIDString].Kills.ToString("N0"));
             message += "\n" + Localizer["statistics.personal.deaths"].Value
