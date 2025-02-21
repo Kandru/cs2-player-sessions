@@ -265,21 +265,38 @@ namespace PlayerSessions
             // iterate through all challenges and list them
             int displayedChallenges = 0;
             int finishedChallenges = 0;
-            foreach (var kvp in challenges)
+            var playerChallenges = _playerConfigs[player.NetworkIDString].Challenges;
+
+            foreach (var kvp in challenges.OrderByDescending(c => playerChallenges.TryGetValue(c.Key, out var challenge) ? challenge.Amount : 0))
             {
-                bool isFinished = _playerConfigs[player.NetworkIDString]
-                    .Challenges.TryGetValue(kvp.Key, out var challenge)
-                    && challenge.Amount >= kvp.Value.Amount;
-                if (isFinished) finishedChallenges++;
-                // display only unfinished challenges or all if they are less or equal than the maximum
-                if (displayedChallenges < Config.PersonalChallengesDisplayMaximum && !isFinished
-                    || challenges.Count <= Config.PersonalChallengesDisplayMaximum)
+                if (playerChallenges.TryGetValue(kvp.Key, out var challenge))
                 {
-                    string tmpMessage = $"\n{kvp.Value.Title}"
-                        .Replace("{total}", kvp.Value.Amount.ToString("N0"))
-                        .Replace("{count}", challenge?.Amount.ToString("N0") ?? "0");
-                    message += tmpMessage;
-                    displayedChallenges++;
+                    bool isFinished = challenge.Amount >= kvp.Value.Amount;
+                    if (isFinished) finishedChallenges++;
+
+                    // display only unfinished challenges or all if they are less or equal than the maximum
+                    if (displayedChallenges < Config.PersonalChallengesDisplayMaximum && !isFinished
+                        || challenges.Count <= Config.PersonalChallengesDisplayMaximum)
+                    {
+                        string tmpMessage = $"\n{kvp.Value.Title}"
+                            .Replace("{total}", kvp.Value.Amount.ToString("N0"))
+                            .Replace("{count}", challenge.Amount.ToString("N0"));
+                        message += tmpMessage;
+                        displayedChallenges++;
+                    }
+                }
+                else
+                {
+                    // display only unfinished challenges or all if they are less or equal than the maximum
+                    if (displayedChallenges < Config.PersonalChallengesDisplayMaximum
+                        || challenges.Count <= Config.PersonalChallengesDisplayMaximum)
+                    {
+                        string tmpMessage = $"\n{kvp.Value.Title}"
+                            .Replace("{total}", kvp.Value.Amount.ToString("N0"))
+                            .Replace("{count}", "0");
+                        message += tmpMessage;
+                        displayedChallenges++;
+                    }
                 }
             }
             // replace title with actual values
