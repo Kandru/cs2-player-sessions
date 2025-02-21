@@ -162,6 +162,9 @@ namespace PlayerSessions
                         case "bool!=":
                             if (bool.Parse(currentValue) == bool.Parse(targetValue)) compliedWithRules = false;
                             break;
+                        case "contains":
+                            if (!currentValue.Contains(targetValue)) compliedWithRules = false;
+                            break;
                         default:
                             DebugPrint($"unknown operator {rule.Operator}");
                             compliedWithRules = false;
