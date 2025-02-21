@@ -6,7 +6,7 @@ namespace PlayerSessions
 {
     public partial class PlayerSessions : BasePlugin
     {
-        [ConsoleCommand("stats", "toggle your stats")]
+        [ConsoleCommand("stats", "toggle your stats overview")]
         [CommandHelper(whoCanExecute: CommandUsage.CLIENT_ONLY, minArgs: 0, usage: "!stats")]
         public void CommandShowStats(CCSPlayerController player, CommandInfo command)
         {
@@ -26,6 +26,32 @@ namespace PlayerSessions
                 {
                     command.ReplyToCommand(Localizer["command.showpersonalstatistics"]);
                     ShowPersonalStatistics(player, 0);
+                }
+            else
+                command.ReplyToCommand(Localizer["command.notalive"]);
+        }
+
+        [ConsoleCommand("challenges", "toggle your challenge overview")]
+        [ConsoleCommand("c", "toggle your challenge overview")]
+        [CommandHelper(whoCanExecute: CommandUsage.CLIENT_ONLY, minArgs: 0, usage: "!c")]
+        public void CommandShowChallenges(CCSPlayerController player, CommandInfo command)
+        {
+            if (player == null
+                || !player.IsValid
+                || player.IsBot
+                || player.PlayerPawn == null
+                || !player.PlayerPawn.IsValid
+                || player.PlayerPawn.Value == null) return;
+            if (player.PlayerPawn.Value.LifeState == (byte)LifeState_t.LIFE_ALIVE)
+                if (_playerHudPersonalChallenges.ContainsKey(player.NetworkIDString))
+                {
+                    command.ReplyToCommand(Localizer["command.hidepersonalchallenges"]);
+                    HidePersonalChallengesGUI(player);
+                }
+                else
+                {
+                    command.ReplyToCommand(Localizer["command.showpersonalchallenges"]);
+                    ShowPersonalChallengesGUI(player, 0);
                 }
             else
                 command.ReplyToCommand(Localizer["command.notalive"]);

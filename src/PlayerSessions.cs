@@ -18,6 +18,9 @@ namespace PlayerSessions
             InitializeIP2Country();
             // load player list
             LoadPlayerlist();
+            // load challenges
+            LoadChallenges();
+            CheckForRunningChallenge();
             // register listeners
             RegisterListener<Listeners.OnMapEnd>(OnMapEnd);
             RegisterEventHandler<EventRoundStart>(OnRoundStart);
@@ -57,6 +60,9 @@ namespace PlayerSessions
             // save config
             SavePlayerConfigs();
             SavePlayerList();
+            // load (new) challenges (if any)
+            LoadChallenges();
+            CheckForRunningChallenge();
             // garbage collection
             PlayerConfigsGarbageCollection();
         }
@@ -120,7 +126,7 @@ namespace PlayerSessions
             if (country != "") _playerConfigs[steamId].City = city;
             if (country != "") _playerConfigs[steamId].Country = country;
             _playerConfigs[steamId].Username = username;
-            _playerConfigs[steamId].LastConnected = GetCurrentTimestamp();
+            _playerConfigs[steamId].LastConnected = GetUnixTimestamp();
             // update player list
             _playerList[steamId].Username = username;
             _playerList[steamId].Kills = _playerConfigs[steamId].Kills;
@@ -193,7 +199,7 @@ namespace PlayerSessions
             if (!_playerConfigs.ContainsKey(steamId)) return HookResult.Continue;
             _playerConfigs[steamId].Username = player.PlayerName;
             _playerConfigs[steamId].ClanTag = player.ClanName;
-            _playerConfigs[steamId].LastDisconnected = GetCurrentTimestamp();
+            _playerConfigs[steamId].LastDisconnected = GetUnixTimestamp();
             // update player list
             _playerList[steamId].Username = player.PlayerName;
             _playerList[steamId].ClanTag = player.ClanName;

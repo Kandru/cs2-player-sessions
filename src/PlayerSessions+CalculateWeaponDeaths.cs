@@ -23,8 +23,26 @@ namespace PlayerSessions
             // update ranking points
             UpdateRankingPoints(victim, Config.RankingPointsPerDeath, new Dictionary<string, string>
             {
-                { "translation", "death" },
-                { "player", attacker.PlayerName }
+                { "type", "death" },
+                { "attacker", attacker.PlayerName },
+                { "attacker_isbot", victim.IsBot.ToString() },
+                { "victim", victim.PlayerName },
+                { "victim_isbot", victim.IsBot.ToString() },
+                { "assistedflash", @event.Assistedflash.ToString() },
+                { "attackerblind", @event.Attackerblind.ToString() },
+                { "attackerinair", @event.Attackerinair.ToString() },
+                { "distance", @event.Distance.ToString() },
+                { "dmgarmor", @event.DmgArmor.ToString() },
+                { "dmghealth", @event.DmgHealth.ToString() },
+                { "dominated", @event.Dominated.ToString() },
+                { "headshot", @event.Headshot.ToString() },
+                { "hitgroup", @event.Hitgroup.ToString() },
+                { "noscope", @event.Noscope.ToString() },
+                { "penetrated", @event.Penetrated.ToString() },
+                { "revenge", @event.Revenge.ToString() },
+                { "thrusmoke", @event.Thrusmoke.ToString() },
+                { "weapon", @event.Weapon },
+                { "weaponitemid", @event.WeaponItemid }
             });
             // add weapon to list if not added already
             if (!_playerConfigs[victim.NetworkIDString].WeaponDeaths.ContainsKey(@event.Weapon))

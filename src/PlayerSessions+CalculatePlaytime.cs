@@ -10,7 +10,7 @@ namespace PlayerSessions
 
         private void CalculatePlaytimeRoundStart()
         {
-            _calculatePlaytimeRoundStart = GetCurrentTimestamp();
+            _calculatePlaytimeRoundStart = GetUnixTimestamp();
         }
 
         private void CalculatePlaytimePlayerDeath(EventPlayerDeath @event, GameEventInfo info)
@@ -24,7 +24,7 @@ namespace PlayerSessions
                 || victim.IsBot
                 || !_playerConfigs.ContainsKey(victim.NetworkIDString)) return;
             // get seconds played
-            long currentRoundTime = GetCurrentTimestamp() - _calculatePlaytimeRoundStart;
+            long currentRoundTime = GetUnixTimestamp() - _calculatePlaytimeRoundStart;
             if (victim.TeamNum == (int)CsTeam.Terrorist)
             {
                 // add time to terrorist statistic
@@ -43,7 +43,7 @@ namespace PlayerSessions
             if (_calculatePlaytimeRoundStart == 0
                 || !_isDuringRound) return;
             // get seconds played
-            long currentRoundTime = GetCurrentTimestamp() - _calculatePlaytimeRoundStart;
+            long currentRoundTime = GetUnixTimestamp() - _calculatePlaytimeRoundStart;
             // iterate over all players currently on the server
             foreach (CCSPlayerController entry in Utilities.GetPlayers())
             {

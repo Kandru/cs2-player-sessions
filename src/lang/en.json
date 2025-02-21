@@ -11,9 +11,12 @@
     "command.notalive": "[PlayerSessions] you need to be alive to see your stats.",
     "command.showpersonalstatistics": "[PlayerSessions] {default}Opened statistics popup",
     "command.hidepersonalstatistics": "[PlayerSessions] {default}Closed statistics popup",
+    "command.showpersonalchallenges": "[PlayerSessions] {default}Opened challenges popup",
+    "command.hidepersonalchallenges": "[PlayerSessions] {default}Closed challenges popup",
     "command.topplayers.title": "{default}== Top Players ==",
     "command.topplayers.entry": "{default}#{rank} - {green}{name} {default}({green}{points}{default} points)",
     "command.topplayers.footer": "{default}==============",
+    "challenges.progress": "{default}Challenge Progress: {green}{challenge}",
     "player.connect": "{green}{player} {default}connects!",
     "player.connect.city": "{green}{player} {default}connects from {green}{city}{default}, {green}{country}{default}!",
     "player.connect.country": "{green}{player} {default}connects from {green}{country}{default}!",
@@ -29,7 +32,8 @@
     "statistics.personal.kd": "K/D Ratio: {kd}",
     "statistics.personal.assists": "Assists: {assists}",
     "statistics.personal.topweapon": "============\nBest Weapon:\n{weapon}\nKills: {kills}\nHeadshots: {headshots}\nDistance: {distance}m",
-    "rankingpoints.added.kill": "{green}{points} {default}point(s) for killing {green}{player}",
-    "rankingpoints.added.assist": "{green}{points} {default}point(s) for assisting {player}.",
-    "rankingpoints.added.death": "{green}{points} {default}point(s) for death by {green}{player}"
+    "rankingpoints.added.kill": "{green}{points} {default}point(s) for killing {green}{victim}",
+    "rankingpoints.added.kill_assist": "{green}{points} {default}point(s) for assisting {attacker}.",
+    "rankingpoints.added.death": "{green}{points} {default}point(s) for death by {green}{attacker}",
+    "rankingpoints.added.challenge": "{green}{points} {default}point(s) for completing challenge {green}{challenge}"
 }

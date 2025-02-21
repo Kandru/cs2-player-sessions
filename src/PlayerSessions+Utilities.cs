@@ -30,9 +30,10 @@ namespace PlayerSessions
             }
         }
 
-        private long GetCurrentTimestamp()
+        private long GetUnixTimestamp(DateTime? currentTime = null)
         {
-            DateTime currentTime = DateTime.UtcNow;
+            if (currentTime == null)
+                currentTime = DateTime.UtcNow;
             return ((DateTimeOffset)currentTime).ToUnixTimeSeconds();
         }
     }

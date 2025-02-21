@@ -11,9 +11,12 @@
     "command.notalive": "[PlayerSessions] Du musst am Leben sein um deine Statistik einzusehen.",
     "command.showpersonalstatistics": "[Spielsitzung] {default}Statistikfenster geöffnet",
     "command.hidepersonalstatistics": "[Spielsitzung] {default}Statistikfenster geschlossen",
+    "command.showpersonalchallenges": "[Spielsitzung] {default}Herausforderungsfenster geöffnet",
+    "command.hidepersonalchallenges": "[Spielsitzung] {default}Herausforderungsfenster geschlossen",
     "command.topplayers.title": "{default}== Top Spieler ==",
     "command.topplayers.entry": "{default}#{rank} - {green}{name} {default}({green}{points}{default} Punkte)",
     "command.topplayers.footer": "{default}==============",
+    "challenges.progress": "{default}Fortschritt: {green}{challenge}",
     "player.connect": "{green}{player} {default}tritt bei!",
     "player.connect.city": "{green}{player} {default}tritt aus {green}{city}{default}, {green}{country} {default}bei!",
     "player.connect.country": "{green}{player} {default}tritt aus {green}{country} {default}bei!",
@@ -30,6 +33,7 @@
     "statistics.personal.assists": "Assists: {assists}",
     "statistics.personal.topweapon": "=============\nBeste Waffe:\n{weapon}\nKills: {kills}\nKopfschüsse: {headshots}\nDistanz: {distance}m",
     "rankingpoints.added.kill": "{green}{points} {default}Punkt(e) für das Töten von {green}{player}",
-    "rankingpoints.added.assist": "{green}{points} {default}Punkt(e) für die Unterstützung von {player}.",
-    "rankingpoints.added.death": "{green}{points} {default}Punkt(e) für den Tod durch {green}{player}"
+    "rankingpoints.added.kill_assist": "{green}{points} {default}Punkt(e) für die Unterstützung von {player}.",
+    "rankingpoints.added.death": "{green}{points} {default}Punkt(e) für den Tod durch {green}{player}",
+    "rankingpoints.added.challenge": "{green}{points} {default}Punkt(e) für das Abschließen der Herausforderung {green}{challenge}"
 }

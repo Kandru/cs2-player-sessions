@@ -6,6 +6,36 @@ using System.Text.Json.Serialization;
 
 namespace PlayerSessions
 {
+    public class ChallengesSchedule
+    {
+        [JsonPropertyName("title")] public string Title { get; set; } = "";
+        [JsonPropertyName("date_start")] public string StartDate { get; set; } = "2025-01-01 00:00:00";
+        [JsonPropertyName("date_end")] public string EndDate { get; set; } = "2025-02-01 00:00:00";
+        [JsonPropertyName("challenges")] public List<string> Challenges { get; set; } = [];
+    }
+
+    public class ChallengesBlueprintRules
+    {
+        [JsonPropertyName("key")] public string Key { get; set; } = "";
+        [JsonPropertyName("operator")] public string Operator { get; set; } = "";
+        [JsonPropertyName("value")] public string Value { get; set; } = "";
+    }
+
+    public class ChallengesBlueprint
+    {
+        [JsonPropertyName("title")] public string Title { get; set; } = "";
+        [JsonPropertyName("type")] public string Type { get; set; } = "";
+        [JsonPropertyName("points")] public int Points { get; set; } = 0;
+        [JsonPropertyName("amount")] public int Amount { get; set; } = 0;
+        [JsonPropertyName("rules")] public List<ChallengesBlueprintRules> Rules { get; set; } = [];
+    }
+
+    public class ChallengesConfig
+    {
+        [JsonPropertyName("schedule")] public Dictionary<string, ChallengesSchedule> Schedule { get; set; } = [];
+        [JsonPropertyName("blueprints")] public Dictionary<string, ChallengesBlueprint> Blueprints { get; set; } = [];
+    }
+
     public class PlayerList
     {
         [JsonPropertyName("username")] public string Username { get; set; } = "";
@@ -13,6 +43,12 @@ namespace PlayerSessions
         [JsonPropertyName("kills")] public long Kills { get; set; } = 0;
         [JsonPropertyName("deaths")] public long Deaths { get; set; } = 0;
         [JsonPropertyName("ranking_points")] public long RankingPoints { get; set; } = 0;
+    }
+
+    public class PlayerConfigChallenges
+    {
+        [JsonPropertyName("schedule_key")] public string ScheduleKey { get; set; } = "";
+        [JsonPropertyName("amount")] public int Amount { get; set; } = 0;
     }
 
     public class PlayerConfigWeaponKills
@@ -62,8 +98,9 @@ namespace PlayerSessions
         [JsonPropertyName("player_kills")] public long Kills { get; set; } = 0;
         [JsonPropertyName("player_kill_assists")] public long KillAssists { get; set; } = 0;
         [JsonPropertyName("player_deaths")] public long Deaths { get; set; } = 0;
-        [JsonPropertyName("weapon_kills")] public Dictionary<string, PlayerConfigWeaponKills> WeaponKills { get; set; } = new Dictionary<string, PlayerConfigWeaponKills>();
-        [JsonPropertyName("weapon_deaths")] public Dictionary<string, PlayerConfigWeaponDeaths> WeaponDeaths { get; set; } = new Dictionary<string, PlayerConfigWeaponDeaths>();
+        [JsonPropertyName("weapon_kills")] public Dictionary<string, PlayerConfigWeaponKills> WeaponKills { get; set; } = [];
+        [JsonPropertyName("weapon_deaths")] public Dictionary<string, PlayerConfigWeaponDeaths> WeaponDeaths { get; set; } = [];
+        [JsonPropertyName("challenges")] public Dictionary<string, PlayerConfigChallenges> Challenges { get; set; } = [];
     }
 
     public class PluginConfig : BasePluginConfig
@@ -76,11 +113,21 @@ namespace PlayerSessions
         [JsonPropertyName("show_personal_statistic_on_round_start")] public bool ShowPersonalStatisticsOnRoundStart { get; set; } = true;
         [JsonPropertyName("personal_statistic_on_round_start_duration")] public int PersonalStatisticsOnRoundStartDuration { get; set; } = 3; // buy time + this value
         [JsonPropertyName("personal_statistic_menu_font_size")] public int PersonalStatisticFontSize { get; set; } = 28;
-        [JsonPropertyName("personal_statistic_menu_font_name")] public string PersonalStatisticFontName { get; set; } = "Impact";
+        [JsonPropertyName("personal_statistic_menu_font_name")] public string PersonalStatisticFontName { get; set; } = "Arial Black Standard";
         [JsonPropertyName("personal_statistic_menu_font_color")] public string PersonalStatisticFontColor { get; set; } = "#ffffff";
         [JsonPropertyName("personal_statistic_menu_pos_x")] public float PersonalStatisticPositionX { get; set; } = -7.5f; // for 16:9 & 16:10
-        [JsonPropertyName("personal_statistic_menu_pos_y")] public float PersonalStatisticPositionY { get; set; } = 0f;
+        [JsonPropertyName("personal_statistic_menu_pos_y")] public float PersonalStatisticPositionY { get; set; } = 0f; // for 16:9 & 16:10
         [JsonPropertyName("personal_statistic_menu_background")] public bool PersonalStatisticBackground { get; set; } = true;
+        // challenges
+        [JsonPropertyName("show_personal_challenges_on_round_start")] public bool ShowPersonalChallengesOnRoundStart { get; set; } = true;
+        [JsonPropertyName("personal_challenges_on_round_start_duration")] public int PersonalChallengesOnRoundStartDuration { get; set; } = 3; // buy time + this value
+        [JsonPropertyName("personal_challenges_on_update_duration")] public float PersonalChallengesOnUpdateDuration { get; set; } = 5f;
+        [JsonPropertyName("personal_challenges_menu_font_size")] public int PersonalChallengesFontSize { get; set; } = 28;
+        [JsonPropertyName("personal_challenges_menu_font_name")] public string PersonalChallengesFontName { get; set; } = "Arial Black Standard";
+        [JsonPropertyName("personal_challenges_menu_font_color")] public string PersonalChallengesFontColor { get; set; } = "#ffffff";
+        [JsonPropertyName("personal_challenges_menu_pos_x")] public float PersonalChallengesPositionX { get; set; } = 3.6f; // for 16:9 & 16:10
+        [JsonPropertyName("personal_challenges_menu_pos_y")] public float PersonalChallengesPositionY { get; set; } = 4f; // for 16:9 & 16:10
+        [JsonPropertyName("personal_challenges_menu_background")] public bool PersonalChallengesBackground { get; set; } = true;
         // join / part message
         [JsonPropertyName("joinmessage_enable")] public bool JoinMessageEnable { get; set; } = true;
         [JsonPropertyName("partmessage_enable")] public bool PartMessageEnable { get; set; } = true;
@@ -103,6 +150,7 @@ namespace PlayerSessions
         public required PluginConfig Config { get; set; }
         private Dictionary<string, PlayerConfig> _playerConfigs = [];
         private Dictionary<string, PlayerList> _playerList = [];
+        private ChallengesConfig _playerChallenges = new();
 
         private PlayerConfig LoadPlayerConfig(string steamId)
         {
@@ -143,7 +191,7 @@ namespace PlayerSessions
                     || _playerConfigs.ContainsKey(entry.NetworkIDString)) return;
                 LoadPlayerConfig(entry.NetworkIDString);
                 // set data
-                _playerConfigs[entry.NetworkIDString].LastConnected = GetCurrentTimestamp();
+                _playerConfigs[entry.NetworkIDString].LastConnected = GetUnixTimestamp();
             }
         }
 
@@ -163,6 +211,29 @@ namespace PlayerSessions
             {
                 SavePlayerConfig(kvp.Key);
             }
+        }
+
+        private void LoadChallenges()
+        {
+            string challengesPath = Path.Combine(Path.GetDirectoryName(Config.GetConfigPath()) ?? "./", "challenges.json");
+            DebugPrint($"Loading challenges");
+            if (Path.Exists(challengesPath))
+            {
+                var jsonString = File.ReadAllText(challengesPath);
+                _playerChallenges = JsonSerializer.Deserialize<ChallengesConfig>(jsonString) ?? new();
+            }
+            else
+            {
+                SaveChallenges();
+            }
+        }
+
+        private void SaveChallenges()
+        {
+            string challengesPath = Path.Combine(Path.GetDirectoryName(Config.GetConfigPath()) ?? "./", "challenges.json");
+            DebugPrint($"Saving challenges");
+            var jsonString = JsonSerializer.Serialize(_playerChallenges, new JsonSerializerOptions { WriteIndented = true });
+            File.WriteAllText(challengesPath, jsonString);
         }
 
         private void LoadPlayerlist()

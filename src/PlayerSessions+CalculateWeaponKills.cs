@@ -27,8 +27,28 @@ namespace PlayerSessions
                 // update ranking points
                 UpdateRankingPoints(assister, Config.RankingPointsPerKillAssist, new Dictionary<string, string>
                 {
-                    { "translation", "assist" },
-                    { "player", attacker.PlayerName }
+                    { "type", "kill_assist" },
+                    { "attacker", attacker.PlayerName },
+                    { "attacker_isbot", attacker.IsBot.ToString() },
+                    { "assister", assister.PlayerName },
+                    { "assister_isbot", assister.IsBot.ToString() },
+                    { "victim", victim.PlayerName },
+                    { "victim_isbot", victim.IsBot.ToString() },
+                    { "assistedflash", @event.Assistedflash.ToString() },
+                    { "attackerblind", @event.Attackerblind.ToString() },
+                    { "attackerinair", @event.Attackerinair.ToString() },
+                    { "distance", @event.Distance.ToString() },
+                    { "dmgarmor", @event.DmgArmor.ToString() },
+                    { "dmghealth", @event.DmgHealth.ToString() },
+                    { "dominated", @event.Dominated.ToString() },
+                    { "headshot", @event.Headshot.ToString() },
+                    { "hitgroup", @event.Hitgroup.ToString() },
+                    { "noscope", @event.Noscope.ToString() },
+                    { "penetrated", @event.Penetrated.ToString() },
+                    { "revenge", @event.Revenge.ToString() },
+                    { "thrusmoke", @event.Thrusmoke.ToString() },
+                    { "weapon", @event.Weapon },
+                    { "weaponitemid", @event.WeaponItemid }
                 });
             }
             // increase kill counter
@@ -38,8 +58,26 @@ namespace PlayerSessions
             // update ranking points
             UpdateRankingPoints(attacker, Config.RankingPointsPerKill, new Dictionary<string, string>
             {
-                { "translation", "kill" },
-                { "player", victim.PlayerName }
+                { "type", "kill" },
+                { "attacker", attacker.PlayerName },
+                { "attacker_isbot", victim.IsBot.ToString() },
+                { "victim", victim.PlayerName },
+                { "victim_isbot", victim.IsBot.ToString() },
+                { "assistedflash", @event.Assistedflash.ToString() },
+                { "attackerblind", @event.Attackerblind.ToString() },
+                { "attackerinair", @event.Attackerinair.ToString() },
+                { "distance", @event.Distance.ToString() },
+                { "dmgarmor", @event.DmgArmor.ToString() },
+                { "dmghealth", @event.DmgHealth.ToString() },
+                { "dominated", @event.Dominated.ToString() },
+                { "headshot", @event.Headshot.ToString() },
+                { "hitgroup", @event.Hitgroup.ToString() },
+                { "noscope", @event.Noscope.ToString() },
+                { "penetrated", @event.Penetrated.ToString() },
+                { "revenge", @event.Revenge.ToString() },
+                { "thrusmoke", @event.Thrusmoke.ToString() },
+                { "weapon", @event.Weapon },
+                { "weaponitemid", @event.WeaponItemid }
             });
             // add weapon to list if not added already
             if (!_playerConfigs[attacker.NetworkIDString].WeaponKills.ContainsKey(@event.Weapon))

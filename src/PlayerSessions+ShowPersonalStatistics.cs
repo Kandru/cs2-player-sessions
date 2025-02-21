@@ -115,16 +115,7 @@ namespace PlayerSessions
             if (duration > 0)
                 AddTimer(duration, () =>
                 {
-                    // return if player is no longer valid
-                    if (player == null
-                        || !player.IsValid
-                        || !_playerHudPersonalStatistics.ContainsKey(player.NetworkIDString)) return;
-                    // do not kill if entity is no longer valid
-                    if (_playerHudPersonalStatistics[player.NetworkIDString] != null
-                        && _playerHudPersonalStatistics[player.NetworkIDString].IsValid)
-                        _playerHudPersonalStatistics[player.NetworkIDString].AcceptInput("kill");
-                    // remove hud from list
-                    _playerHudPersonalStatistics.Remove(player.NetworkIDString);
+                    HidePersonalStatistics(player);
                 });
         }
 

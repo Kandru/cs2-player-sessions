@@ -12,16 +12,20 @@ namespace PlayerSessions
             data ??= [];
             if (!_playerList.ContainsKey(player.NetworkIDString)) return;
             _playerList[player.NetworkIDString].RankingPoints += points;
-            if (data.ContainsKey("translation"))
+            // let player know
+            if (data.ContainsKey("type"))
             {
                 string pointsString = points > 0 ? $"+{points:N0}" : points.ToString("N0");
-                string message = Localizer[$"rankingpoints.added.{data["translation"]}"].Value.Replace("{points}", pointsString);
+                string message = Localizer[$"rankingpoints.added.{data["type"]}"].Value.Replace("{points}", pointsString);
                 foreach (var kvp in data)
                 {
-                    if (kvp.Key == "translation") continue;
+                    if (kvp.Key == "type") continue;
                     message = message.Replace($"{{{kvp.Key}}}", kvp.Value);
                 }
                 player.PrintToChat(message);
+                // check for challenge
+                if (!data["type"].Contains("challenge"))
+                    CheckChallengeGoal(player, data["type"], data);
             }
         }
     }
