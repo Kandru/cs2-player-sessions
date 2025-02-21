@@ -32,6 +32,7 @@ namespace PlayerSessions
             RegisterEventHandler<EventPlayerDisconnect>(OnPlayerDisconnect);
             RegisterEventHandler<EventPlayerDeath>(OnPlayerDeath);
             RegisterEventHandler<EventPlayerJump>(OnPlayerJump);
+            RegisterEventHandler<EventPlayerBlind>(OnPlayerBlind);
             // print message if hot reload
             if (hotReload)
             {
@@ -54,6 +55,7 @@ namespace PlayerSessions
             DeregisterEventHandler<EventPlayerDisconnect>(OnPlayerDisconnect);
             DeregisterEventHandler<EventPlayerDeath>(OnPlayerDeath);
             DeregisterEventHandler<EventPlayerJump>(OnPlayerJump);
+            DeregisterEventHandler<EventPlayerBlind>(OnPlayerBlind);
             // save config(s)
             Config.Update();
             SavePlayerConfigs();
@@ -233,6 +235,13 @@ namespace PlayerSessions
         {
             // run functions
             CalculatePlayerJump(@event, info);
+            return HookResult.Continue;
+        }
+
+        private HookResult OnPlayerBlind(EventPlayerBlind @event, GameEventInfo info)
+        {
+            // run functions
+            CalculatePlayerBlind(@event, info);
             return HookResult.Continue;
         }
     }
