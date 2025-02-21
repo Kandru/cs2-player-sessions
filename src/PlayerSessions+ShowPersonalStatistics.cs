@@ -95,24 +95,21 @@ namespace PlayerSessions
                     _playerHudPersonalStatistics.Remove(player.NetworkIDString);
                 }
             }
-            else
-            {
-                // create hud
-                CPointWorldText? hudText = WorldTextManager.Create(
-                        player,
-                        message,
-                        Config.PersonalStatisticFontSize,
-                        ColorTranslator.FromHtml(Config.PersonalStatisticFontColor),
-                        Config.PersonalStatisticFontName,
-                        Config.PersonalStatisticPositionX,
-                        Config.PersonalStatisticPositionY,
-                        Config.PersonalStatisticBackground,
-                        backgroundHeight,
-                        backgroundWidth
-                    );
-                if (hudText == null) return;
-                _playerHudPersonalStatistics.Add(player.NetworkIDString, hudText);
-            }
+            // create hud
+            CPointWorldText? hudText = WorldTextManager.Create(
+                    player,
+                    message,
+                    Config.PersonalStatisticFontSize,
+                    ColorTranslator.FromHtml(Config.PersonalStatisticFontColor),
+                    Config.PersonalStatisticFontName,
+                    Config.PersonalStatisticPositionX,
+                    Config.PersonalStatisticPositionY,
+                    Config.PersonalStatisticBackground,
+                    backgroundHeight,
+                    backgroundWidth
+                );
+            if (hudText == null) return;
+            _playerHudPersonalStatistics.Add(player.NetworkIDString, hudText);
             // remove hud after duration
             if (duration > 0)
                 AddTimer(duration, () =>

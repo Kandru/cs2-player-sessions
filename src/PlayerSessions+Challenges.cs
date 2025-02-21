@@ -291,24 +291,21 @@ namespace PlayerSessions
                     _playerHudPersonalChallenges.Remove(player.NetworkIDString);
                 }
             }
-            else
-            {
-                // create hud
-                CPointWorldText? hudText = WorldTextManager.Create(
-                        player,
-                        message,
-                        Config.PersonalChallengesFontSize,
-                        ColorTranslator.FromHtml(Config.PersonalChallengesFontColor),
-                        Config.PersonalChallengesFontName,
-                        Config.PersonalChallengesPositionX,
-                        Config.PersonalChallengesPositionY,
-                        Config.PersonalChallengesBackground,
-                        backgroundHeight,
-                        backgroundWidth
-                    );
-                if (hudText == null) return;
-                _playerHudPersonalChallenges.Add(player.NetworkIDString, hudText);
-            }
+            // create hud
+            CPointWorldText? hudText = WorldTextManager.Create(
+                    player,
+                    message,
+                    Config.PersonalChallengesFontSize,
+                    ColorTranslator.FromHtml(Config.PersonalChallengesFontColor),
+                    Config.PersonalChallengesFontName,
+                    Config.PersonalChallengesPositionX,
+                    Config.PersonalChallengesPositionY,
+                    Config.PersonalChallengesBackground,
+                    backgroundHeight,
+                    backgroundWidth
+                );
+            if (hudText == null) return;
+            _playerHudPersonalChallenges.Add(player.NetworkIDString, hudText);
             // remove hud after duration
             if (duration > 0)
                 AddTimer(duration, () =>
