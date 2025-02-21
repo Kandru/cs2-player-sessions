@@ -60,7 +60,7 @@ namespace PlayerSessions
             {
                 { "type", "kill" },
                 { "attacker", attacker.PlayerName },
-                { "attacker_isbot", victim.IsBot.ToString() },
+                { "attacker_isbot", attacker.IsBot.ToString() },
                 { "victim", victim.PlayerName },
                 { "victim_isbot", victim.IsBot.ToString() },
                 { "assistedflash", @event.Assistedflash.ToString() },
