@@ -278,12 +278,18 @@ namespace PlayerSessions
                 if (backgroundWidth < line.Length * 0.012f) backgroundWidth = line.Length * 0.012f;
             }
             // use our entity if it still exists
-            if (_playerHudPersonalChallenges.ContainsKey(player.NetworkIDString)
-                && _playerHudPersonalChallenges[player.NetworkIDString] != null
-                    && _playerHudPersonalChallenges[player.NetworkIDString].IsValid)
+            if (_playerHudPersonalChallenges.ContainsKey(player.NetworkIDString))
             {
-                UpdatePersonalChallengesGUI(player, message);
-                return;
+                if (_playerHudPersonalChallenges[player.NetworkIDString] != null
+                    && _playerHudPersonalChallenges[player.NetworkIDString].IsValid)
+                {
+                    UpdatePersonalChallengesGUI(player, message);
+                    return;
+                }
+                else
+                {
+                    _playerHudPersonalChallenges.Remove(player.NetworkIDString);
+                }
             }
             else
             {
