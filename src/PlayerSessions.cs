@@ -22,13 +22,17 @@ namespace PlayerSessions
             LoadChallenges();
             CheckForRunningChallenge();
             // register listeners
+            // map events
             RegisterListener<Listeners.OnMapEnd>(OnMapEnd);
             RegisterEventHandler<EventRoundStart>(OnRoundStart);
             RegisterEventHandler<EventRoundEnd>(OnRoundEnd);
+            // player events
             RegisterEventHandler<EventPlayerConnect>(OnPlayerConnect);
             RegisterEventHandler<EventPlayerConnectFull>(OnPlayerConnectFull);
             RegisterEventHandler<EventPlayerDisconnect>(OnPlayerDisconnect);
             RegisterEventHandler<EventPlayerDeath>(OnPlayerDeath);
+            RegisterEventHandler<EventPlayerDeath>(OnPlayerDeath);
+            RegisterEventHandler<EventPlayerJump>(OnPlayerJump);
             // print message if hot reload
             if (hotReload)
             {
@@ -41,13 +45,16 @@ namespace PlayerSessions
         public override void Unload(bool hotReload)
         {
             // unregister listeners
+            // map events
             RemoveListener<Listeners.OnMapEnd>(OnMapEnd);
             DeregisterEventHandler<EventRoundStart>(OnRoundStart);
             DeregisterEventHandler<EventRoundEnd>(OnRoundEnd);
+            // player events
             DeregisterEventHandler<EventPlayerConnect>(OnPlayerConnect);
             DeregisterEventHandler<EventPlayerConnectFull>(OnPlayerConnectFull);
             DeregisterEventHandler<EventPlayerDisconnect>(OnPlayerDisconnect);
             DeregisterEventHandler<EventPlayerDeath>(OnPlayerDeath);
+            DeregisterEventHandler<EventPlayerJump>(OnPlayerJump);
             // save config(s)
             Config.Update();
             SavePlayerConfigs();
@@ -220,6 +227,13 @@ namespace PlayerSessions
             CalculatePlaytimePlayerDeath(@event, info);
             CalculateWeaponKillsPlayerDeath(@event, info);
             CalculateWeaponDeathsPlayerDeath(@event, info);
+            return HookResult.Continue;
+        }
+
+        private HookResult OnPlayerJump(EventPlayerJump @event, GameEventInfo info)
+        {
+            // run functions
+            CalculatePlayerJump(@event, info);
             return HookResult.Continue;
         }
     }
