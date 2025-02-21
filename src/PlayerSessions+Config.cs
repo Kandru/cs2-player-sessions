@@ -173,11 +173,18 @@ namespace PlayerSessions
                 }
                 else
                 {
-                    var jsonString = File.ReadAllText(playerConfigPath);
-                    var playerConfig = JsonSerializer.Deserialize<PlayerConfig>(jsonString);
-                    if (playerConfig != null)
+                    try
                     {
-                        _playerConfigs.Add(steamId, playerConfig);
+                        var jsonString = File.ReadAllText(playerConfigPath);
+                        var playerConfig = JsonSerializer.Deserialize<PlayerConfig>(jsonString);
+                        if (playerConfig != null)
+                        {
+                            _playerConfigs.Add(steamId, playerConfig);
+                        }
+                    }
+                    catch
+                    {
+                        Console.WriteLine(Localizer["core.faultyconfig"].Value.Replace("{config}", playerConfigPath));
                     }
                 }
             }
@@ -227,8 +234,15 @@ namespace PlayerSessions
             DebugPrint($"Loading challenges");
             if (Path.Exists(challengesPath))
             {
-                var jsonString = File.ReadAllText(challengesPath);
-                _playerChallenges = JsonSerializer.Deserialize<ChallengesConfig>(jsonString) ?? new();
+                try
+                {
+                    var jsonString = File.ReadAllText(challengesPath);
+                    _playerChallenges = JsonSerializer.Deserialize<ChallengesConfig>(jsonString) ?? new();
+                }
+                catch
+                {
+                    Console.WriteLine(Localizer["core.faultyconfig"].Value.Replace("{config}", challengesPath));
+                }
             }
             else
             {
@@ -250,8 +264,15 @@ namespace PlayerSessions
             DebugPrint($"Loading player list");
             if (Path.Exists(playerlistPath))
             {
-                var jsonString = File.ReadAllText(playerlistPath);
-                _playerList = JsonSerializer.Deserialize<Dictionary<string, PlayerList>>(jsonString) ?? new Dictionary<string, PlayerList>();
+                try
+                {
+                    var jsonString = File.ReadAllText(playerlistPath);
+                    _playerList = JsonSerializer.Deserialize<Dictionary<string, PlayerList>>(jsonString) ?? new Dictionary<string, PlayerList>();
+                }
+                catch
+                {
+                    Console.WriteLine(Localizer["core.faultyconfig"].Value.Replace("{config}", playerlistPath));
+                }
             }
         }
 
