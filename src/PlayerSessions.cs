@@ -77,6 +77,7 @@ namespace PlayerSessions
             // run functions
             CalculatePlaytimeRoundStart();
             ShowPersonalStatisticsOnRoundStart();
+            ShowPersonalChallengesOnRoundStart();
             return HookResult.Continue;
         }
 
