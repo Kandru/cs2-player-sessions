@@ -124,16 +124,17 @@ namespace PlayerSessions
                 bool compliedWithRules = true;
                 foreach (var rule in kvp.Value.Rules)
                 {
-                    DebugPrint($"checking rule {rule.Key} {rule.Operator} {rule.Value} against {data[rule.Key.ToLower()]}");
                     // stop checking if we have a rule that is not in our data (e.g. wrong spelling)
                     if (!data.ContainsKey(rule.Key.ToLower()))
                     {
                         DebugPrint($"rule {rule.Key} not found in data for type {type}");
-                        return;
+                        compliedWithRules = false;
+                        continue;
                     }
                     // check if the rule is met
                     var currentValue = data[rule.Key.ToLower()];
                     var targetValue = rule.Value.ToLower();
+                    DebugPrint($"checking rule {rule.Key} {rule.Operator} {targetValue} against {currentValue}");
                     // check mathematically and for boolean values
                     switch (rule.Operator)
                     {
