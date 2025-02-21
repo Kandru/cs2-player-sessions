@@ -186,6 +186,8 @@ namespace PlayerSessions
                                 String.Format("{0:0.00}", _playerConfigs[player.NetworkIDString].PlaytimeTotal / 60.0f / 60.0f)
                             ));
                 });
+            // bugfix: show empty worldtext on connect to allow instant display of worldtext entity
+            WorldTextManager.Create(player, "");
             return HookResult.Continue;
         }
 
