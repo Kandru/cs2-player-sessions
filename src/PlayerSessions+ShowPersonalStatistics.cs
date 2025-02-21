@@ -28,12 +28,12 @@ namespace PlayerSessions
                     || (player.TeamNum != (int)CsTeam.CounterTerrorist && player.TeamNum != (int)CsTeam.Terrorist)) continue;
                 AddTimer(0.1f, () =>
                 {
-                    if (player == null
-                    || !player.IsValid) return;
-                    ShowPersonalStatisticsGUI(
-                        player,
-                        duration: freezeTime + Config.PersonalStatisticsOnRoundStartDuration
-                    );
+                    // check for user preferences
+                    float duration = _playerConfigs[player.NetworkIDString].Settings.AlwaysShowPersonalStatistics
+                        ? 0
+                        : freezeTime + Config.PersonalStatisticsOnRoundStartDuration;
+                    // show GUI
+                    ShowPersonalStatisticsGUI(player, duration);
                 });
             }
         }

@@ -45,6 +45,12 @@ namespace PlayerSessions
         [JsonPropertyName("ranking_points")] public long RankingPoints { get; set; } = 0;
     }
 
+    public class PlayerConfigSettings
+    {
+        [JsonPropertyName("always_show_personal_statistics")] public bool AlwaysShowPersonalStatistics { get; set; } = false;
+        [JsonPropertyName("always_show_personal_challenges")] public bool AlwaysShowPersonalChallenges { get; set; } = true;
+    }
+
     public class PlayerConfigChallenges
     {
         [JsonPropertyName("schedule_key")] public string ScheduleKey { get; set; } = "";
@@ -101,6 +107,7 @@ namespace PlayerSessions
         [JsonPropertyName("weapon_kills")] public Dictionary<string, PlayerConfigWeaponKills> WeaponKills { get; set; } = [];
         [JsonPropertyName("weapon_deaths")] public Dictionary<string, PlayerConfigWeaponDeaths> WeaponDeaths { get; set; } = [];
         [JsonPropertyName("challenges")] public Dictionary<string, PlayerConfigChallenges> Challenges { get; set; } = [];
+        [JsonPropertyName("settings")] public PlayerConfigSettings Settings { get; set; } = new();
     }
 
     public class PluginConfig : BasePluginConfig

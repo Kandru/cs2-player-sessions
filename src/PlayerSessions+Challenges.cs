@@ -242,10 +242,12 @@ namespace PlayerSessions
                 {
                     if (player == null
                     || !player.IsValid) return;
-                    ShowPersonalChallengesGUI(
-                        player,
-                        duration: freezeTime + Config.PersonalChallengesOnRoundStartDuration
-                    );
+                    // check for user preferences
+                    float duration = _playerConfigs[player.NetworkIDString].Settings.AlwaysShowPersonalChallenges
+                        ? 0
+                        : freezeTime + Config.PersonalChallengesOnRoundStartDuration;
+                    // show GUI
+                    ShowPersonalChallengesGUI(player, duration);
                 });
             }
         }

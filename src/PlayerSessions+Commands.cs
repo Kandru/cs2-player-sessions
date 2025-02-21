@@ -15,17 +15,22 @@ namespace PlayerSessions
                 || player.IsBot
                 || player.PlayerPawn == null
                 || !player.PlayerPawn.IsValid
-                || player.PlayerPawn.Value == null) return;
+                || player.PlayerPawn.Value == null
+                || !_playerConfigs.ContainsKey(player.NetworkIDString)) return;
             if (player.PlayerPawn.Value.LifeState == (byte)LifeState_t.LIFE_ALIVE)
                 if (_playerHudPersonalStatistics.ContainsKey(player.NetworkIDString))
                 {
                     command.ReplyToCommand(Localizer["command.hidepersonalstatistics"]);
                     HidePersonalStatisticsGUI(player);
+                    // save chosen user setting
+                    _playerConfigs[player.NetworkIDString].Settings.AlwaysShowPersonalStatistics = false;
                 }
                 else
                 {
                     command.ReplyToCommand(Localizer["command.showpersonalstatistics"]);
                     ShowPersonalStatisticsGUI(player, 0);
+                    // save chosen user setting
+                    _playerConfigs[player.NetworkIDString].Settings.AlwaysShowPersonalStatistics = true;
                 }
             else
                 command.ReplyToCommand(Localizer["command.notalive"]);
@@ -41,7 +46,8 @@ namespace PlayerSessions
                 || player.IsBot
                 || player.PlayerPawn == null
                 || !player.PlayerPawn.IsValid
-                || player.PlayerPawn.Value == null) return;
+                || player.PlayerPawn.Value == null
+                || !_playerConfigs.ContainsKey(player.NetworkIDString)) return;
             if (_currentChallenge.Challenges.Count == 0)
             {
                 command.ReplyToCommand(Localizer["command.nochallenges"]);
@@ -52,11 +58,15 @@ namespace PlayerSessions
                 {
                     command.ReplyToCommand(Localizer["command.hidepersonalchallenges"]);
                     HidePersonalChallengesGUI(player);
+                    // save chosen user setting
+                    _playerConfigs[player.NetworkIDString].Settings.AlwaysShowPersonalChallenges = false;
                 }
                 else
                 {
                     command.ReplyToCommand(Localizer["command.showpersonalchallenges"]);
                     ShowPersonalChallengesGUI(player, 0);
+                    // save chosen user setting
+                    _playerConfigs[player.NetworkIDString].Settings.AlwaysShowPersonalChallenges = true;
                 }
             else
                 command.ReplyToCommand(Localizer["command.notalive"]);
