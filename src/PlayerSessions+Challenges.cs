@@ -339,5 +339,16 @@ namespace PlayerSessions
             // remove hud from list
             _playerHudPersonalChallenges.Remove(player.NetworkIDString);
         }
+
+        private void HideAllPersonalChallengesGUI()
+        {
+            foreach (var kvp in _playerHudPersonalChallenges)
+            {
+                if (kvp.Value != null
+                    && kvp.Value.IsValid)
+                    kvp.Value.AcceptInput("kill");
+            }
+            _playerHudPersonalChallenges.Clear();
+        }
     }
 }

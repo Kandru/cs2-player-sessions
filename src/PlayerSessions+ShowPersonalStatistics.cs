@@ -30,7 +30,7 @@ namespace PlayerSessions
                 {
                     if (player == null
                     || !player.IsValid) return;
-                    ShowPersonalStatisticGUI(
+                    ShowPersonalStatisticsGUI(
                         player,
                         duration: freezeTime + Config.PersonalStatisticsOnRoundStartDuration
                     );
@@ -38,7 +38,7 @@ namespace PlayerSessions
             }
         }
 
-        private void ShowPersonalStatisticGUI(CCSPlayerController player, float duration = 10.0f)
+        private void ShowPersonalStatisticsGUI(CCSPlayerController player, float duration = 10.0f)
         {
             if (player == null
                 || !player.IsValid
@@ -86,7 +86,7 @@ namespace PlayerSessions
                 && _playerHudPersonalStatistics[player.NetworkIDString] != null
                     && _playerHudPersonalStatistics[player.NetworkIDString].IsValid)
             {
-                UpdatePersonalStatisticGUI(player, message);
+                UpdatePersonalStatisticsGUI(player, message);
                 return;
             }
             else
@@ -111,11 +111,11 @@ namespace PlayerSessions
             if (duration > 0)
                 AddTimer(duration, () =>
                 {
-                    HidePersonalStatisticGUI(player);
+                    HidePersonalStatisticsGUI(player);
                 });
         }
 
-        private void UpdatePersonalStatisticGUI(CCSPlayerController player, string message)
+        private void UpdatePersonalStatisticsGUI(CCSPlayerController player, string message)
         {
             if (player == null
                 || !player.IsValid
@@ -132,7 +132,7 @@ namespace PlayerSessions
             );
         }
 
-        private void HidePersonalStatisticGUI(CCSPlayerController player)
+        private void HidePersonalStatisticsGUI(CCSPlayerController player)
         {
             if (player == null
                 || !player.IsValid
@@ -143,6 +143,17 @@ namespace PlayerSessions
                 _playerHudPersonalStatistics[player.NetworkIDString].AcceptInput("kill");
             // remove hud from list
             _playerHudPersonalStatistics.Remove(player.NetworkIDString);
+        }
+
+        private void HideAllPersonalStatisticsGUI()
+        {
+            foreach (var playerHud in _playerHudPersonalStatistics)
+            {
+                if (playerHud.Value != null
+                    && playerHud.Value.IsValid)
+                    playerHud.Value.AcceptInput("kill");
+            }
+            _playerHudPersonalStatistics.Clear();
         }
     }
 }

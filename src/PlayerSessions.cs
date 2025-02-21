@@ -52,6 +52,9 @@ namespace PlayerSessions
             Config.Update();
             SavePlayerConfigs();
             SavePlayerList();
+            // hide GUI(s)
+            HideAllPersonalStatisticsGUI();
+            HideAllPersonalChallengesGUI();
             Console.WriteLine(Localizer["core.unload"]);
         }
 
