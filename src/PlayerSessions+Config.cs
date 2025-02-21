@@ -129,6 +129,7 @@ namespace PlayerSessions
         [JsonPropertyName("show_personal_challenges_on_round_start")] public bool ShowPersonalChallengesOnRoundStart { get; set; } = true;
         [JsonPropertyName("personal_challenges_on_round_start_duration")] public int PersonalChallengesOnRoundStartDuration { get; set; } = 3; // buy time + this value
         [JsonPropertyName("personal_challenges_on_update_duration")] public float PersonalChallengesOnUpdateDuration { get; set; } = 5f;
+        [JsonPropertyName("personal_challenges_menu_display_maximum")] public int PersonalChallengesDisplayMaximum { get; set; } = 4;
         [JsonPropertyName("personal_challenges_menu_font_size")] public int PersonalChallengesFontSize { get; set; } = 28;
         [JsonPropertyName("personal_challenges_menu_font_name")] public string PersonalChallengesFontName { get; set; } = "Arial Black Standard";
         [JsonPropertyName("personal_challenges_menu_font_color")] public string PersonalChallengesFontColor { get; set; } = "#ffffff";

@@ -261,15 +261,34 @@ namespace PlayerSessions
             var challenges = _currentChallenge.Challenges.ToList();
             if (challenges.Count == 0) return;
             // build challenges message
-            string message = _currentChallenge.Title;
+            string message = "{challenges_title}";
             // iterate through all challenges and list them
+            int displayedChallenges = 0;
+            int finishedChallenges = 0;
             foreach (var kvp in challenges)
             {
-                message += "\n" + kvp.Value.Title
-                    .Replace("{total}", kvp.Value.Amount.ToString("N0"))
-                    .Replace("{count}", _playerConfigs[player.NetworkIDString]
-                        .Challenges.TryGetValue(kvp.Key, out var challenge) ? challenge.Amount.ToString("N0") : "0");
+                bool isFinished = _playerConfigs[player.NetworkIDString]
+                    .Challenges.TryGetValue(kvp.Key, out var challenge)
+                    && challenge.Amount >= kvp.Value.Amount;
+                if (isFinished) finishedChallenges++;
+                // display only unfinished challenges or all if they are less or equal than the maximum
+                if (displayedChallenges < Config.PersonalChallengesDisplayMaximum && !isFinished
+                    || challenges.Count <= Config.PersonalChallengesDisplayMaximum)
+                {
+                    string tmpMessage = $"\n{kvp.Value.Title}"
+                        .Replace("{total}", kvp.Value.Amount.ToString("N0"))
+                        .Replace("{count}", challenge?.Amount.ToString("N0") ?? "0");
+                    message += tmpMessage;
+                    displayedChallenges++;
+                }
             }
+            // replace title with actual values
+            message = message.Replace(
+                "{challenges_title}",
+                _currentChallenge.Title
+                    .Replace("{total}", _currentChallenge.Challenges.Count.ToString())
+                    .Replace("{count}", finishedChallenges.ToString())
+            );
             // set background height dynamically
             float backgroundHeight = 0.01f * message.Split('\n').Length;
             if (backgroundHeight == 0) backgroundHeight = 0.05f;
