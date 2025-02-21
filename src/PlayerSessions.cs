@@ -23,6 +23,7 @@ namespace PlayerSessions
             CheckForRunningChallenge();
             // register listeners
             // map events
+            RegisterListener<Listeners.OnServerHibernationUpdate>(OnServerHibernationUpdate);
             RegisterListener<Listeners.OnMapEnd>(OnMapEnd);
             RegisterEventHandler<EventRoundStart>(OnRoundStart);
             RegisterEventHandler<EventRoundEnd>(OnRoundEnd);
@@ -46,6 +47,7 @@ namespace PlayerSessions
         {
             // unregister listeners
             // map events
+            RemoveListener<Listeners.OnServerHibernationUpdate>(OnServerHibernationUpdate);
             RemoveListener<Listeners.OnMapEnd>(OnMapEnd);
             DeregisterEventHandler<EventRoundStart>(OnRoundStart);
             DeregisterEventHandler<EventRoundEnd>(OnRoundEnd);
@@ -64,6 +66,29 @@ namespace PlayerSessions
             HideAllPersonalStatisticsGUI();
             HideAllPersonalChallengesGUI();
             Console.WriteLine(Localizer["core.unload"]);
+        }
+
+        private void OnServerHibernationUpdate(bool isHibernating)
+        {
+            if (isHibernating)
+            {
+                // save config(s)
+                SavePlayerConfigs();
+                SavePlayerList();
+                // hide GUI(s)
+                HideAllPersonalStatisticsGUI();
+                HideAllPersonalChallengesGUI();
+                // garbage collection
+                PlayerConfigsGarbageCollection();
+            }
+            else
+            {
+                // load
+                LoadPlayerlist();
+                LoadActivePlayerConfigs();
+                LoadChallenges();
+                CheckForRunningChallenge();
+            }
         }
 
         private void OnMapEnd()
