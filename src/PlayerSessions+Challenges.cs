@@ -263,7 +263,7 @@ namespace PlayerSessions
                 || player.PlayerPawn == null
                 || !player.PlayerPawn.IsValid
                 || player.PlayerPawn.Value == null
-                || player.PlayerPawn.Value.LifeState == (byte)LifeState_t.LIFE_ALIVE) return;
+                || player.PlayerPawn.Value.LifeState != (byte)LifeState_t.LIFE_ALIVE) return;
             // check for running challenges of the specified type
             var challenges = _currentChallenge.Challenges.ToList();
             if (challenges.Count == 0) return;
