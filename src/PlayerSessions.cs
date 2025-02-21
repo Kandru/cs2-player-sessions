@@ -31,7 +31,6 @@ namespace PlayerSessions
             RegisterEventHandler<EventPlayerConnectFull>(OnPlayerConnectFull);
             RegisterEventHandler<EventPlayerDisconnect>(OnPlayerDisconnect);
             RegisterEventHandler<EventPlayerDeath>(OnPlayerDeath);
-            RegisterEventHandler<EventPlayerDeath>(OnPlayerDeath);
             RegisterEventHandler<EventPlayerJump>(OnPlayerJump);
             // print message if hot reload
             if (hotReload)
