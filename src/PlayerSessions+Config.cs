@@ -166,7 +166,9 @@ namespace PlayerSessions
             if (!_playerConfigs.ContainsKey(steamId))
             {
                 string safeSteamId = string.Concat(steamId.Split(Path.GetInvalidFileNameChars()));
-                string playerConfigPath = Path.Combine(Path.GetDirectoryName(Config.GetConfigPath()) ?? "./", $"{safeSteamId}.json");
+                string playerConfigPath = Path.Combine(
+                    $"{Path.GetDirectoryName(Config.GetConfigPath())}/players/" ?? "./players/", $"{safeSteamId}.json"
+                );
                 if (!Path.Exists(playerConfigPath))
                 {
                     _playerConfigs.Add(steamId, new PlayerConfig());
@@ -214,7 +216,18 @@ namespace PlayerSessions
         {
             if (!_playerConfigs.ContainsKey(steamId)) return;
             string safeSteamId = string.Concat(steamId.Split(Path.GetInvalidFileNameChars()));
-            string playerConfigPath = Path.Combine(Path.GetDirectoryName(Config.GetConfigPath()) ?? "./", $"{safeSteamId}.json");
+            string playerConfigPath = Path.Combine(
+                    $"{Path.GetDirectoryName(Config.GetConfigPath())}/players/" ?? "./players/", $"{safeSteamId}.json"
+                );
+            // check if folder exists and create otherwise
+            if (!Path.Exists(Path.GetDirectoryName(playerConfigPath)))
+            {
+                var directoryPath = Path.GetDirectoryName(playerConfigPath);
+                if (directoryPath != null)
+                {
+                    Directory.CreateDirectory(directoryPath);
+                }
+            }
             DebugPrint($"Saving player config for {steamId} to {playerConfigPath}");
             var jsonString = JsonSerializer.Serialize(_playerConfigs[steamId], new JsonSerializerOptions { WriteIndented = true });
             File.WriteAllText(playerConfigPath, jsonString);
