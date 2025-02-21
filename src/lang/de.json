@@ -9,6 +9,7 @@
     "ip2country.found": "[Spielsitzung] {default}IP2Country Datenbank gefunden",
     "ip2country.notfound": "[Spielsitzung] {red}IP2Country Datenbank fehlt",
     "command.notalive": "[PlayerSessions] Du musst am Leben sein um deine Statistik einzusehen.",
+    "command.nochallenges": "[Spielsitzung] Keine aktiven Herausforderungen.",
     "command.showpersonalstatistics": "[Spielsitzung] {default}Statistikfenster geöffnet",
     "command.hidepersonalstatistics": "[Spielsitzung] {default}Statistikfenster geschlossen",
     "command.showpersonalchallenges": "[Spielsitzung] {default}Herausforderungsfenster geöffnet",

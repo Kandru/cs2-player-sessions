@@ -9,6 +9,7 @@
     "ip2country.found": "[PlayerSessions] {default}found IP2Country database",
     "ip2country.notfound": "[PlayerSessions] {red}missing IP2Country database",
     "command.notalive": "[PlayerSessions] you need to be alive to see your stats.",
+    "command.nochallenges": "[PlayerSessions] no active challenges.",
     "command.showpersonalstatistics": "[PlayerSessions] {default}Opened statistics popup",
     "command.hidepersonalstatistics": "[PlayerSessions] {default}Closed statistics popup",
     "command.showpersonalchallenges": "[PlayerSessions] {default}Opened challenges popup",
