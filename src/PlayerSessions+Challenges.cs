@@ -259,7 +259,11 @@ namespace PlayerSessions
         {
             if (player == null
                 || !player.IsValid
-                || !_playerConfigs.ContainsKey(player.NetworkIDString)) return;
+                || !_playerConfigs.ContainsKey(player.NetworkIDString)
+                || player.PlayerPawn == null
+                || !player.PlayerPawn.IsValid
+                || player.PlayerPawn.Value == null
+                || player.PlayerPawn.Value.LifeState == (byte)LifeState_t.LIFE_ALIVE) return;
             // check for running challenges of the specified type
             var challenges = _currentChallenge.Challenges.ToList();
             if (challenges.Count == 0) return;

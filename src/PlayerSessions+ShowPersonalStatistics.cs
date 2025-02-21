@@ -42,7 +42,11 @@ namespace PlayerSessions
         {
             if (player == null
                 || !player.IsValid
-                || !_playerConfigs.ContainsKey(player.NetworkIDString)) return;
+                || !_playerConfigs.ContainsKey(player.NetworkIDString)
+                || player.PlayerPawn == null
+                || !player.PlayerPawn.IsValid
+                || player.PlayerPawn.Value == null
+                || player.PlayerPawn.Value.LifeState == (byte)LifeState_t.LIFE_ALIVE) return;
             // build statistic message
             string message = Localizer["statistics.personal.title"].Value;
             var playerRankings = _playerConfigs.Values.OrderByDescending(p => p.Kills).ToList();
