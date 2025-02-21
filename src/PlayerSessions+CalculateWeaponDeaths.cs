@@ -76,6 +76,9 @@ namespace PlayerSessions
                 if (@event.Distance > _playerConfigs[victim.NetworkIDString].WeaponDeaths[@event.Weapon].LargestDistance)
                     _playerConfigs[victim.NetworkIDString].WeaponDeaths[@event.Weapon].LargestDistance = @event.Distance;
             }
+            // trigger live statistics update for player(s)
+            TriggerPersonalStatisticsUpdate(attacker);
+            TriggerPersonalStatisticsUpdate(victim);
         }
     }
 }

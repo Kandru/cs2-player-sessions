@@ -50,6 +50,8 @@ namespace PlayerSessions
                     { "weapon", @event.Weapon },
                     { "weaponitemid", @event.WeaponItemid }
                 });
+                // trigger live statistics update for player(s)
+                TriggerPersonalStatisticsUpdate(assister);
             }
             // increase kill counter
             _playerConfigs[attacker.NetworkIDString].Kills++;
@@ -111,6 +113,9 @@ namespace PlayerSessions
                 if (@event.Distance > _playerConfigs[attacker.NetworkIDString].WeaponKills[@event.Weapon].LargestDistance)
                     _playerConfigs[attacker.NetworkIDString].WeaponKills[@event.Weapon].LargestDistance = @event.Distance;
             }
+            // trigger live statistics update for player(s)
+            TriggerPersonalStatisticsUpdate(attacker);
+            TriggerPersonalStatisticsUpdate(victim);
         }
     }
 }

@@ -82,12 +82,18 @@ namespace PlayerSessions
                 if (backgroundWidth < line.Length * 0.012f) backgroundWidth = line.Length * 0.012f;
             }
             // use our entity if it still exists
-            if (_playerHudPersonalStatistics.ContainsKey(player.NetworkIDString)
-                && _playerHudPersonalStatistics[player.NetworkIDString] != null
-                    && _playerHudPersonalStatistics[player.NetworkIDString].IsValid)
+            if (_playerHudPersonalStatistics.ContainsKey(player.NetworkIDString))
             {
-                UpdatePersonalStatisticsGUI(player, message);
-                return;
+                if (_playerHudPersonalStatistics[player.NetworkIDString] != null
+                    && _playerHudPersonalStatistics[player.NetworkIDString].IsValid)
+                {
+                    UpdatePersonalStatisticsGUI(player, message);
+                    return;
+                }
+                else
+                {
+                    _playerHudPersonalStatistics.Remove(player.NetworkIDString);
+                }
             }
             else
             {
@@ -113,6 +119,16 @@ namespace PlayerSessions
                 {
                     HidePersonalStatisticsGUI(player);
                 });
+        }
+
+        private void TriggerPersonalStatisticsUpdate(CCSPlayerController player)
+        {
+            if (player == null
+                || !player.IsValid
+                || !_playerHudPersonalStatistics.ContainsKey(player.NetworkIDString)
+                || _playerHudPersonalStatistics[player.NetworkIDString] == null
+                || !_playerHudPersonalStatistics[player.NetworkIDString].IsValid) return;
+            ShowPersonalStatisticsGUI(player, 0);
         }
 
         private void UpdatePersonalStatisticsGUI(CCSPlayerController player, string message)
