@@ -20,12 +20,12 @@ namespace PlayerSessions
                 if (_playerHudPersonalStatistics.ContainsKey(player.NetworkIDString))
                 {
                     command.ReplyToCommand(Localizer["command.hidepersonalstatistics"]);
-                    HidePersonalStatistics(player);
+                    HidePersonalStatisticGUI(player);
                 }
                 else
                 {
                     command.ReplyToCommand(Localizer["command.showpersonalstatistics"]);
-                    ShowPersonalStatistics(player, 0);
+                    ShowPersonalStatisticGUI(player, 0);
                 }
             else
                 command.ReplyToCommand(Localizer["command.notalive"]);

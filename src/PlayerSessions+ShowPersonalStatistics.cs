@@ -30,7 +30,7 @@ namespace PlayerSessions
                 {
                     if (player == null
                     || !player.IsValid) return;
-                    ShowPersonalStatistics(
+                    ShowPersonalStatisticGUI(
                         player,
                         duration: freezeTime + Config.PersonalStatisticsOnRoundStartDuration
                     );
@@ -38,7 +38,7 @@ namespace PlayerSessions
             }
         }
 
-        private void ShowPersonalStatistics(CCSPlayerController player, float duration = 10.0f)
+        private void ShowPersonalStatisticGUI(CCSPlayerController player, float duration = 10.0f)
         {
             if (player == null
                 || !player.IsValid
@@ -86,12 +86,8 @@ namespace PlayerSessions
                 && _playerHudPersonalStatistics[player.NetworkIDString] != null
                     && _playerHudPersonalStatistics[player.NetworkIDString].IsValid)
             {
-                _playerHudPersonalStatistics[player.NetworkIDString].AcceptInput(
-                    "SetMessage",
-                    _playerHudPersonalStatistics[player.NetworkIDString],
-                    _playerHudPersonalStatistics[player.NetworkIDString],
-                    message
-                );
+                UpdatePersonalStatisticGUI(player, message);
+                return;
             }
             else
             {
@@ -115,11 +111,28 @@ namespace PlayerSessions
             if (duration > 0)
                 AddTimer(duration, () =>
                 {
-                    HidePersonalStatistics(player);
+                    HidePersonalStatisticGUI(player);
                 });
         }
 
-        private void HidePersonalStatistics(CCSPlayerController player)
+        private void UpdatePersonalStatisticGUI(CCSPlayerController player, string message)
+        {
+            if (player == null
+                || !player.IsValid
+                || !_playerHudPersonalStatistics.ContainsKey(player.NetworkIDString)
+                || _playerHudPersonalStatistics[player.NetworkIDString] == null
+                || !_playerHudPersonalStatistics[player.NetworkIDString].IsValid) return;
+
+            // set new message
+            _playerHudPersonalStatistics[player.NetworkIDString].AcceptInput(
+                "SetMessage",
+                _playerHudPersonalStatistics[player.NetworkIDString],
+                _playerHudPersonalStatistics[player.NetworkIDString],
+                message
+            );
+        }
+
+        private void HidePersonalStatisticGUI(CCSPlayerController player)
         {
             if (player == null
                 || !player.IsValid
