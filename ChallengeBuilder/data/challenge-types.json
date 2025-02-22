@@ -1,0 +1,85 @@
+{
+    "types": {
+        "kill": {
+            "name": "Player kills someone",
+            "rules": [
+                {
+                    "name": "Weapon",
+                    "slug": "weapon",
+                    "description": "The weapon name used for the kill (e.g. deagle, awp)",
+                    "type": "string"
+                },
+                {
+                    "name": "Victim is Bot?",
+                    "slug": "victim_isbot",
+                    "description": "Whether the victim is a bot",
+                    "type": "checkbox"
+                },
+                {
+                    "name": "Is Headshot?",
+                    "slug": "headshot",
+                    "description": "Whether the kill was a headshot",
+                    "type": "checkbox"
+                },
+                {
+                    "name": "Distance",
+                    "slug": "distance",
+                    "description": "The distance between the attacker and the victim",
+                    "type": "number"
+                },
+                {
+                    "name": "Attacker is blind?",
+                    "slug": "attackerblind",
+                    "description": "Whether the attacker was blinded",
+                    "type": "checkbox"
+                },
+                {
+                    "name": "Attacker is Dominating?",
+                    "slug": "dominated",
+                    "description": "Whether the victim was dominated by the attacker",
+                    "type": "checkbox"
+                },
+                {
+                    "name": "Amount Damage",
+                    "slug": "dmghealth",
+                    "description": "The amount of health damage dealt",
+                    "type": "number"
+                },
+                {
+                    "name": "Noscope?",
+                    "slug": "noscope",
+                    "description": "Whether the kill was made without using the scope",
+                    "type": "checkbox"
+                },
+                {
+                    "name": "Through Smoke?",
+                    "slug": "thrusmoke",
+                    "description": "Whether the kill was made through smoke",
+                    "type": "checkbox"
+                }
+            ]
+        },
+        "jump": {
+            "name": "Player jumps",
+            "rules": []
+        },
+        "blind": {
+            "name": "Player gets blinded",
+            "rules": [
+                "blindduration",
+                "victim_isbot"
+            ]
+        }
+    },
+    "operators": [
+        "==",
+        "!=",
+        "<",
+        ">",
+        "<=",
+        ">=",
+        "bool==",
+        "bool!=",
+        "contains"
+    ]
+}

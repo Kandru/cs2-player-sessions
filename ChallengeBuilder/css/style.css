@@ -1,0 +1,29 @@
+/* Add your styles here */
+.container {
+    max-width: 800px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+form {
+    display: flex;
+    flex-direction: column;
+}
+
+label, input, select, button {
+    margin-bottom: 10px;
+}
+
+#rules-container {
+    margin-bottom: 10px;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+li {
+    cursor: pointer;
+    margin-bottom: 5px;
+}

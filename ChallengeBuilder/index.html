@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Challenge Builder</title>
+        <meta name="description"
+              content="Build and manage your challenges easily with Challenge Builder.">
+        <meta name="keywords" content="challenge, builder, manage, tasks, points">
+        <link rel="stylesheet" href="css/style.css">
+    </head>
+    <body>
+        <div class="container">
+            <h1>Challenge Builder</h1>
+            <form id="challenge-form">
+                <label for="type">Type:</label>
+                <select id="type" name="type"></select>
+                <label for="title">Title:</label>
+                <input type="text" id="title" name="title">
+                <label for="title">Slug:</label>
+                <input type="text" id="slug" name="slug">
+                <label for="points">Points:</label>
+                <input type="number" id="points" name="points">
+                <label for="amount">Amount:</label>
+                <input type="number" id="amount" name="amount">
+                <div id="rules-container"></div>
+                <button type="button" id="add-rule">Add Rule</button>
+                <button type="button" id="save-challenge">Save Challenge</button>
+            </form>
+            <h2>Challenges</h2>
+            <ul id="challenges-list">
+            </ul>
+            <button id="download-challenges">Download Challenges</button>
+            <input type="file" id="upload-challenges" accept=".json">
+        </div>
+        <script src="js/scripts.js"></script>
+    </body>
+</html>
