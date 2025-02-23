@@ -329,6 +329,7 @@ namespace PlayerSessions
             message = message.Replace(
                 "{challenges_title}",
                 _currentChallenge.Title
+                    .Replace("{playerName}", player.PlayerName.Length > 12 ? player.PlayerName.Substring(0, 12) : player.PlayerName)
                     .Replace("{total}", _currentChallenge.Challenges.Count.ToString())
                     .Replace("{count}", finishedChallenges.ToString())
             );

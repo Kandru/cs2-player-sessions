@@ -1,9 +1,9 @@
 {
 	"schedule": {
-		"daily_challenge_1": {
-			"title": "=== Daily Challenge ({count} / {total}) ===",
-			"date_start": "2025-02-21 00:00:00",
-			"date_end": "2025-02-21 23:59:59",
+		"weekly_challenge_1": {
+			"title": "== {playerName}'s Challenges ({count} / {total}) ==",
+			"date_start": "2025-02-24 00:00:00",
+			"date_end": "2025-03-02 23:59:59",
 			"challenges": [
 				"taser_challenge_easy",
 				"hegrenade_challenge_easy",
@@ -21,10 +21,10 @@
 				"blind_challenge_easy"
 			]
 		},
-		"daily_challenge_2": {
-			"title": "=== Daily Challenge ({count} / {total}) ===",
-			"date_start": "2025-02-22 00:00:00",
-			"date_end": "2025-02-22 23:59:59",
+		"weekly_challenge_2": {
+			"title": "== {playerName}'s Challenges ({count} / {total}) ==",
+			"date_start": "2025-03-03 00:00:00",
+			"date_end": "2025-03-09 23:59:59",
 			"challenges": [
 				"taser_challenge_medium",
 				"hegrenade_challenge_medium",
@@ -40,49 +40,6 @@
 				"attackerintheair_challenge_medium",
 				"jump_challenge_medium",
 				"blind_challenge_medium"
-			]
-		},
-		"daily_challenge_3": {
-			"title": "== Daily Challenge ({count} / {total}) ==",
-			"date_start": "2025-02-23 00:00:00",
-			"date_end": "2025-02-23 23:59:59",
-			"challenges": [
-				"taser_challenge_hard",
-				"hegrenade_challenge_hard",
-				"knife_challenge_hard",
-				"deagle_challenge_hard",
-				"ssg08_challenge_hard",
-				"headshot_challenge_hard",
-				"negev_challenge_hard",
-				"hitgroup_challenge_hard",
-				"domination_challenge_hard",
-				"blindfolded_challenge_hard",
-				"smoke_challenge_hard",
-				"attackerintheair_challenge_hard",
-				"jump_challenge_hard",
-				"blind_challenge_hard"
-			]
-		},
-		"weekly_challenge_1": {
-			"title": "== Weekly Challenges ({count} / {total}) ==",
-			"date_start": "2025-02-24 00:00:00",
-			"date_end": "2025-03-02 23:59:59",
-			"challenges": [
-				"hegrenade_challenge_medium",
-				"knife_challenge_medium",
-				"deagle_challenge_medium",
-				"smoke_challenge_medium"
-			]
-		},
-		"weekly_challenge_2": {
-			"title": "== Weekly Challenges ({count} / {total}) ==",
-			"date_start": "2025-03-03 00:00:00",
-			"date_end": "2025-03-09 23:59:59",
-			"challenges": [
-				"hegrenade_challenge_medium",
-				"knife_challenge_medium",
-				"deagle_challenge_medium",
-				"smoke_challenge_medium"
 			]
 		}
 	},
