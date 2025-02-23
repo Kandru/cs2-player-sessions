@@ -193,7 +193,7 @@ namespace PlayerSessions
         {
             CCSPlayerController player = @event.Userid!;
             // skip bots
-            if (player.IsBot) return HookResult.Continue;
+            if (player == null || player.IsBot) return HookResult.Continue;
             // show join message
             if (Config.JoinMessageEnable)
                 SendGlobalChatMessage(
@@ -262,21 +262,27 @@ namespace PlayerSessions
 
         private HookResult OnPlayerSpawn(EventPlayerSpawn @event, GameEventInfo info)
         {
+            CCSPlayerController player = @event.Userid!;
+            // skip bots
+            if (player == null || player.IsBot) return HookResult.Continue;
             // show GUIs
-            ShowPersonalStatisticsOnSpawn(@event.Userid!);
-            ShowPersonalChallengesOnSpawn(@event.Userid!);
+            ShowPersonalStatisticsOnSpawn(player);
+            ShowPersonalChallengesOnSpawn(player);
             return HookResult.Continue;
         }
 
         private HookResult OnPlayerDeath(EventPlayerDeath @event, GameEventInfo info)
         {
+            CCSPlayerController player = @event.Userid!;
+            // skip bots
+            if (player == null || player.IsBot) return HookResult.Continue;
             // run functions
             CalculatePlaytimePlayerDeath(@event, info);
             CalculateWeaponKillsPlayerDeath(@event, info);
             CalculateWeaponDeathsPlayerDeath(@event, info);
             // hide GUIs
-            HidePersonalStatisticsGUI(@event.Userid!);
-            HidePersonalChallengesGUI(@event.Userid!);
+            HidePersonalStatisticsGUI(player);
+            HidePersonalChallengesGUI(player);
             return HookResult.Continue;
         }
 

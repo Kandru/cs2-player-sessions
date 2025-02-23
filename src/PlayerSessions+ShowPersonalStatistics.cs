@@ -68,10 +68,14 @@ namespace PlayerSessions
                 || player.PlayerPawn.Value.LifeState != (byte)LifeState_t.LIFE_ALIVE) return;
             // build statistic message
             string message = Localizer["statistics.personal.title"].Value;
-            var playerRankings = _playerList.Values.OrderByDescending(p => p.RankingPoints).ToList();
-            message += "\n" + Localizer["statistics.personal.rank"].Value
-                .Replace("{rank}", (playerRankings.FindIndex(p => p == _playerList[player.NetworkIDString]) + 1).ToString())
-                .Replace("{total}", playerRankings.Count().ToString());
+            // check if player got a rank
+            if (_playerList.ContainsKey(player.NetworkIDString))
+            {
+                var playerRankings = _playerList.Values.OrderByDescending(p => p.RankingPoints).ToList();
+                message += "\n" + Localizer["statistics.personal.rank"].Value
+                    .Replace("{rank}", (playerRankings.FindIndex(p => p == _playerList[player.NetworkIDString]) + 1).ToString())
+                    .Replace("{total}", playerRankings.Count().ToString());
+            }
             message += "\n" + Localizer["statistics.personal.kills"].Value
                 .Replace("{kills}", _playerConfigs[player.NetworkIDString].Kills.ToString("N0"));
             message += "\n" + Localizer["statistics.personal.deaths"].Value
