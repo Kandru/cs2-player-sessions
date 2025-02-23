@@ -42,15 +42,21 @@ document.addEventListener('DOMContentLoaded', () => {
         const points = document.getElementById('points').value;
         const amount = document.getElementById('amount').value;
         const rules = Array.from(document.querySelectorAll('#rules-container .rule')).map(ruleDiv => {
-            const key = ruleDiv.querySelector('[name="key"]').value;
-            const operator = ruleDiv.querySelector('[name="operator"]').value;
-            if (ruleDiv.querySelector('[name="value"]').type == "checkbox") {
-                var value = ruleDiv.querySelector('[name="value"]').checked;
-            } else {
-                var value = ruleDiv.querySelector('[name="value"]').value;
-            }
-            if (key && operator && value !== null) {
-                return { key, operator, value };
+            const keyElement = ruleDiv.querySelector('[name="key"]');
+            const operatorElement = ruleDiv.querySelector('[name="operator"]');
+            const valueElement = ruleDiv.querySelector('[name="value"]');
+            if (keyElement && operatorElement && valueElement) {
+                const key = keyElement.value;
+                const operator = operatorElement.value;
+                let value;
+                if (valueElement.type == "checkbox") {
+                    value = valueElement.checked;
+                } else {
+                    value = valueElement.value;
+                }
+                if (key && operator && value !== null) {
+                    return { key, operator, value };
+                }
             }
             return null;
         }).filter(rule => rule !== null);
