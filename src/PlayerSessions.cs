@@ -14,6 +14,8 @@ namespace PlayerSessions
 
         public override void Load(bool hotReload)
         {
+            // update config if changed after update
+            Config.Update();
             // initialize IP lookup
             InitializeIP2Country();
             // load player list
@@ -106,7 +108,8 @@ namespace PlayerSessions
 
         private void OnMapEnd()
         {
-            // save config
+            // save config(s)
+            Config.Update();
             SavePlayerConfigs();
             SavePlayerList();
         }
