@@ -60,6 +60,7 @@ namespace PlayerSessions
         // Geolite2 Country or City binary file (.mmdb)
         [JsonPropertyName("geolite2")] public string Geolite2 { get; set; } = "GeoLite2-City.mmdb";
         // ranking points configuration
+        [JsonPropertyName("ranking_points_during_warmup")] public bool RankingPointsDuringWarmup { get; set; } = false;
         [JsonPropertyName("ranking_points_per_kill")] public int RankingPointsPerKill { get; set; } = 2;
         [JsonPropertyName("ranking_points_per_kill_assist")] public int RankingPointsPerKillAssist { get; set; } = 1;
         [JsonPropertyName("ranking_points_per_death")] public int RankingPointsPerDeath { get; set; } = -1;

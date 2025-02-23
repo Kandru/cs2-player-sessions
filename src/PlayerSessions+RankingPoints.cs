@@ -11,12 +11,12 @@ namespace PlayerSessions
                 || player.IsBot) return;
             data ??= [];
             if (!_playerList.ContainsKey(player.NetworkIDString)) return;
-            if (_isDuringRound)
+            if (_isDuringRound || Config.RankingPointsDuringWarmup)
                 _playerList[player.NetworkIDString].RankingPoints += points;
             // let player know
             if (data.ContainsKey("type"))
             {
-                if (_isDuringRound && points != 0)
+                if ((_isDuringRound || Config.RankingPointsDuringWarmup) && points != 0)
                 {
                     string pointsString = points > 0 ? $"+{points:N0}" : points.ToString("N0");
                     string message = Localizer[$"rankingpoints.added.{data["type"]}"].Value.Replace("{points}", pointsString);
