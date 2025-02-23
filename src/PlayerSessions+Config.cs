@@ -82,6 +82,7 @@ namespace PlayerSessions
                 string playerConfigPath = Path.Combine(
                     $"{Path.GetDirectoryName(Config.GetConfigPath())}/players/" ?? "./players/", $"{safeSteamId}.json"
                 );
+                // add playerconfig
                 if (!Path.Exists(playerConfigPath))
                 {
                     _playerConfigs.Add(steamId, new PlayerConfig());
@@ -107,6 +108,11 @@ namespace PlayerSessions
                         }
                         _playerConfigs.Add(steamId, new PlayerConfig());
                     }
+                }
+                // add playerlist entry
+                if (!_playerList.ContainsKey(steamId))
+                {
+                    _playerList.Add(steamId, new PlayerList());
                 }
             }
             return _playerConfigs[steamId];
