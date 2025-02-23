@@ -56,6 +56,16 @@
 					"value": "true"
 				},
 				{
+					"key": "isteamkill",
+					"operator": "bool==",
+					"value": "false"
+				},
+				{
+					"key": "isselfkill",
+					"operator": "bool==",
+					"value": "false"
+				},
+				{
 					"key": "weapon",
 					"operator": "contains",
 					"value": "taser"
@@ -77,6 +87,16 @@
 					"key": "isduringround",
 					"operator": "bool==",
 					"value": "true"
+				},
+				{
+					"key": "isteamkill",
+					"operator": "bool==",
+					"value": "false"
+				},
+				{
+					"key": "isselfkill",
+					"operator": "bool==",
+					"value": "false"
 				},
 				{
 					"key": "weapon",
@@ -102,6 +122,16 @@
 					"value": "true"
 				},
 				{
+					"key": "isteamkill",
+					"operator": "bool==",
+					"value": "false"
+				},
+				{
+					"key": "isselfkill",
+					"operator": "bool==",
+					"value": "false"
+				},
+				{
 					"key": "weapon",
 					"operator": "contains",
 					"value": "taser"
@@ -123,6 +153,16 @@
 					"key": "isduringround",
 					"operator": "bool==",
 					"value": "true"
+				},
+				{
+					"key": "isteamkill",
+					"operator": "bool==",
+					"value": "false"
+				},
+				{
+					"key": "isselfkill",
+					"operator": "bool==",
+					"value": "false"
 				},
 				{
 					"key": "weapon",
@@ -148,6 +188,16 @@
 					"value": "true"
 				},
 				{
+					"key": "isteamkill",
+					"operator": "bool==",
+					"value": "false"
+				},
+				{
+					"key": "isselfkill",
+					"operator": "bool==",
+					"value": "false"
+				},
+				{
 					"key": "weapon",
 					"operator": "contains",
 					"value": "hegrenade"
@@ -169,6 +219,16 @@
 					"key": "isduringround",
 					"operator": "bool==",
 					"value": "true"
+				},
+				{
+					"key": "isteamkill",
+					"operator": "bool==",
+					"value": "false"
+				},
+				{
+					"key": "isselfkill",
+					"operator": "bool==",
+					"value": "false"
 				},
 				{
 					"key": "weapon",
@@ -194,6 +254,16 @@
 					"value": "true"
 				},
 				{
+					"key": "isteamkill",
+					"operator": "bool==",
+					"value": "false"
+				},
+				{
+					"key": "isselfkill",
+					"operator": "bool==",
+					"value": "false"
+				},
+				{
 					"key": "weapon",
 					"operator": "contains",
 					"value": "knife"
@@ -217,6 +287,16 @@
 					"value": "true"
 				},
 				{
+					"key": "isteamkill",
+					"operator": "bool==",
+					"value": "false"
+				},
+				{
+					"key": "isselfkill",
+					"operator": "bool==",
+					"value": "false"
+				},
+				{
 					"key": "weapon",
 					"operator": "contains",
 					"value": "knife"
@@ -238,6 +318,16 @@
 					"key": "isduringround",
 					"operator": "bool==",
 					"value": "true"
+				},
+				{
+					"key": "isteamkill",
+					"operator": "bool==",
+					"value": "false"
+				},
+				{
+					"key": "isselfkill",
+					"operator": "bool==",
+					"value": "false"
 				},
 				{
 					"key": "weapon",
@@ -268,6 +358,16 @@
 					"value": "true"
 				},
 				{
+					"key": "isteamkill",
+					"operator": "bool==",
+					"value": "false"
+				},
+				{
+					"key": "isselfkill",
+					"operator": "bool==",
+					"value": "false"
+				},
+				{
 					"key": "weapon",
 					"operator": "contains",
 					"value": "deagle"
@@ -291,6 +391,16 @@
 					"value": "true"
 				},
 				{
+					"key": "isteamkill",
+					"operator": "bool==",
+					"value": "false"
+				},
+				{
+					"key": "isselfkill",
+					"operator": "bool==",
+					"value": "false"
+				},
+				{
 					"key": "weapon",
 					"operator": "contains",
 					"value": "deagle"
@@ -312,6 +422,16 @@
 					"key": "isduringround",
 					"operator": "bool==",
 					"value": "true"
+				},
+				{
+					"key": "isteamkill",
+					"operator": "bool==",
+					"value": "false"
+				},
+				{
+					"key": "isselfkill",
+					"operator": "bool==",
+					"value": "false"
 				},
 				{
 					"key": "weapon",
@@ -342,6 +462,16 @@
 					"value": "true"
 				},
 				{
+					"key": "isteamkill",
+					"operator": "bool==",
+					"value": "false"
+				},
+				{
+					"key": "isselfkill",
+					"operator": "bool==",
+					"value": "false"
+				},
+				{
 					"key": "weapon",
 					"operator": "contains",
 					"value": "ssg08"
@@ -363,6 +493,16 @@
 					"key": "isduringround",
 					"operator": "bool==",
 					"value": "true"
+				},
+				{
+					"key": "isteamkill",
+					"operator": "bool==",
+					"value": "false"
+				},
+				{
+					"key": "isselfkill",
+					"operator": "bool==",
+					"value": "false"
 				},
 				{
 					"key": "weapon",
@@ -393,6 +533,16 @@
 					"value": "true"
 				},
 				{
+					"key": "isteamkill",
+					"operator": "bool==",
+					"value": "false"
+				},
+				{
+					"key": "isselfkill",
+					"operator": "bool==",
+					"value": "false"
+				},
+				{
 					"key": "weapon",
 					"operator": "contains",
 					"value": "ssg08"
@@ -421,6 +571,16 @@
 					"value": "true"
 				},
 				{
+					"key": "isteamkill",
+					"operator": "bool==",
+					"value": "false"
+				},
+				{
+					"key": "isselfkill",
+					"operator": "bool==",
+					"value": "false"
+				},
+				{
 					"key": "weapon",
 					"operator": "contains",
 					"value": "negev"
@@ -444,6 +604,16 @@
 					"value": "true"
 				},
 				{
+					"key": "isteamkill",
+					"operator": "bool==",
+					"value": "false"
+				},
+				{
+					"key": "isselfkill",
+					"operator": "bool==",
+					"value": "false"
+				},
+				{
 					"key": "weapon",
 					"operator": "contains",
 					"value": "negev"
@@ -465,6 +635,16 @@
 					"key": "isduringround",
 					"operator": "bool==",
 					"value": "true"
+				},
+				{
+					"key": "isteamkill",
+					"operator": "bool==",
+					"value": "false"
+				},
+				{
+					"key": "isselfkill",
+					"operator": "bool==",
+					"value": "false"
 				},
 				{
 					"key": "weapon",
@@ -495,6 +675,16 @@
 					"value": "true"
 				},
 				{
+					"key": "isteamkill",
+					"operator": "bool==",
+					"value": "false"
+				},
+				{
+					"key": "isselfkill",
+					"operator": "bool==",
+					"value": "false"
+				},
+				{
 					"key": "hitgroup",
 					"operator": "==",
 					"value": "3"
@@ -516,6 +706,16 @@
 					"key": "isduringround",
 					"operator": "bool==",
 					"value": "true"
+				},
+				{
+					"key": "isteamkill",
+					"operator": "bool==",
+					"value": "false"
+				},
+				{
+					"key": "isselfkill",
+					"operator": "bool==",
+					"value": "false"
 				},
 				{
 					"key": "hitgroup",
@@ -541,6 +741,16 @@
 					"value": "true"
 				},
 				{
+					"key": "isteamkill",
+					"operator": "bool==",
+					"value": "false"
+				},
+				{
+					"key": "isselfkill",
+					"operator": "bool==",
+					"value": "false"
+				},
+				{
 					"key": "hitgroup",
 					"operator": "==",
 					"value": "7"
@@ -564,6 +774,16 @@
 					"value": "true"
 				},
 				{
+					"key": "isteamkill",
+					"operator": "bool==",
+					"value": "false"
+				},
+				{
+					"key": "isselfkill",
+					"operator": "bool==",
+					"value": "false"
+				},
+				{
 					"key": "headshot",
 					"operator": "bool==",
 					"value": "true"
@@ -585,6 +805,16 @@
 					"key": "isduringround",
 					"operator": "bool==",
 					"value": "true"
+				},
+				{
+					"key": "isteamkill",
+					"operator": "bool==",
+					"value": "false"
+				},
+				{
+					"key": "isselfkill",
+					"operator": "bool==",
+					"value": "false"
 				},
 				{
 					"key": "headshot",
@@ -615,6 +845,16 @@
 					"value": "true"
 				},
 				{
+					"key": "isteamkill",
+					"operator": "bool==",
+					"value": "false"
+				},
+				{
+					"key": "isselfkill",
+					"operator": "bool==",
+					"value": "false"
+				},
+				{
 					"key": "headshot",
 					"operator": "bool==",
 					"value": "true"
@@ -643,6 +883,16 @@
 					"value": "true"
 				},
 				{
+					"key": "isteamkill",
+					"operator": "bool==",
+					"value": "false"
+				},
+				{
+					"key": "isselfkill",
+					"operator": "bool==",
+					"value": "false"
+				},
+				{
 					"key": "dominated",
 					"operator": ">=",
 					"value": "1"
@@ -664,6 +914,16 @@
 					"key": "isduringround",
 					"operator": "bool==",
 					"value": "true"
+				},
+				{
+					"key": "isteamkill",
+					"operator": "bool==",
+					"value": "false"
+				},
+				{
+					"key": "isselfkill",
+					"operator": "bool==",
+					"value": "false"
 				},
 				{
 					"key": "dominated",
@@ -689,6 +949,16 @@
 					"value": "true"
 				},
 				{
+					"key": "isteamkill",
+					"operator": "bool==",
+					"value": "false"
+				},
+				{
+					"key": "isselfkill",
+					"operator": "bool==",
+					"value": "false"
+				},
+				{
 					"key": "dominated",
 					"operator": ">=",
 					"value": "1"
@@ -710,6 +980,16 @@
 					"key": "isduringround",
 					"operator": "bool==",
 					"value": "true"
+				},
+				{
+					"key": "isteamkill",
+					"operator": "bool==",
+					"value": "false"
+				},
+				{
+					"key": "isselfkill",
+					"operator": "bool==",
+					"value": "false"
 				},
 				{
 					"key": "attackerblind",
@@ -735,6 +1015,16 @@
 					"value": "true"
 				},
 				{
+					"key": "isteamkill",
+					"operator": "bool==",
+					"value": "false"
+				},
+				{
+					"key": "isselfkill",
+					"operator": "bool==",
+					"value": "false"
+				},
+				{
 					"key": "attackerblind",
 					"operator": "bool==",
 					"value": "true"
@@ -756,6 +1046,16 @@
 					"key": "isduringround",
 					"operator": "bool==",
 					"value": "true"
+				},
+				{
+					"key": "isteamkill",
+					"operator": "bool==",
+					"value": "false"
+				},
+				{
+					"key": "isselfkill",
+					"operator": "bool==",
+					"value": "false"
 				},
 				{
 					"key": "attackerblind",
@@ -786,6 +1086,16 @@
 					"value": "true"
 				},
 				{
+					"key": "isteamkill",
+					"operator": "bool==",
+					"value": "false"
+				},
+				{
+					"key": "isselfkill",
+					"operator": "bool==",
+					"value": "false"
+				},
+				{
 					"key": "thrusmoke",
 					"operator": "bool==",
 					"value": "true"
@@ -807,6 +1117,16 @@
 					"key": "isduringround",
 					"operator": "bool==",
 					"value": "true"
+				},
+				{
+					"key": "isteamkill",
+					"operator": "bool==",
+					"value": "false"
+				},
+				{
+					"key": "isselfkill",
+					"operator": "bool==",
+					"value": "false"
 				},
 				{
 					"key": "thrusmoke",
@@ -832,6 +1152,16 @@
 					"value": "true"
 				},
 				{
+					"key": "isteamkill",
+					"operator": "bool==",
+					"value": "false"
+				},
+				{
+					"key": "isselfkill",
+					"operator": "bool==",
+					"value": "false"
+				},
+				{
 					"key": "thrusmoke",
 					"operator": "bool==",
 					"value": "true"
@@ -853,6 +1183,16 @@
 					"key": "isduringround",
 					"operator": "bool==",
 					"value": "true"
+				},
+				{
+					"key": "isteamkill",
+					"operator": "bool==",
+					"value": "false"
+				},
+				{
+					"key": "isselfkill",
+					"operator": "bool==",
+					"value": "false"
 				},
 				{
 					"key": "attackerintheair",
@@ -878,6 +1218,16 @@
 					"value": "true"
 				},
 				{
+					"key": "isteamkill",
+					"operator": "bool==",
+					"value": "false"
+				},
+				{
+					"key": "isselfkill",
+					"operator": "bool==",
+					"value": "false"
+				},
+				{
 					"key": "attackerintheair",
 					"operator": "bool==",
 					"value": "true"
@@ -899,6 +1249,16 @@
 					"key": "isduringround",
 					"operator": "bool==",
 					"value": "true"
+				},
+				{
+					"key": "isteamkill",
+					"operator": "bool==",
+					"value": "false"
+				},
+				{
+					"key": "isselfkill",
+					"operator": "bool==",
+					"value": "false"
 				},
 				{
 					"key": "attackerintheair",
@@ -968,6 +1328,16 @@
 					"value": "true"
 				},
 				{
+					"key": "isteamflash",
+					"operator": "bool==",
+					"value": "false"
+				},
+				{
+					"key": "isselfflash",
+					"operator": "bool==",
+					"value": "false"
+				},
+				{
 					"key": "victim_isbot",
 					"operator": "bool==",
 					"value": "false"
@@ -984,6 +1354,16 @@
 					"key": "isduringround",
 					"operator": "bool==",
 					"value": "true"
+				},
+				{
+					"key": "isteamflash",
+					"operator": "bool==",
+					"value": "false"
+				},
+				{
+					"key": "isselfflash",
+					"operator": "bool==",
+					"value": "false"
 				},
 				{
 					"key": "blindduration",
@@ -1007,6 +1387,16 @@
 					"key": "isduringround",
 					"operator": "bool==",
 					"value": "true"
+				},
+				{
+					"key": "isteamflash",
+					"operator": "bool==",
+					"value": "false"
+				},
+				{
+					"key": "isselfflash",
+					"operator": "bool==",
+					"value": "false"
 				},
 				{
 					"key": "blindduration",

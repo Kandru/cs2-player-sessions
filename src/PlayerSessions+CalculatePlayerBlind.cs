@@ -1,4 +1,5 @@
 using CounterStrikeSharp.API.Core;
+using CounterStrikeSharp.API.Modules.Utils;
 
 namespace PlayerSessions
 {
@@ -15,13 +16,18 @@ namespace PlayerSessions
                 || victim == null
                 || !victim.IsValid) return;
             // check for challenge
+            Console.WriteLine(attacker.Team.ToString());
             CheckChallengeGoal(attacker, "blind", new Dictionary<string, string>
             {
                 { "isduringround", _isDuringRound.ToString() },
+                { "isteamflash", (attacker.TeamNum == victim.TeamNum).ToString() },
+                { "isselfflash", (attacker == victim).ToString() },
                 { "attacker", attacker.PlayerName },
                 { "attacker_isbot", attacker.IsBot.ToString() },
+                { "attacker_team", attacker.Team.ToString() },
                 { "victim", victim.PlayerName },
                 { "victim_isbot", victim.IsBot.ToString() },
+                { "victim_team", victim.Team.ToString() },
                 { "blindduration", @event.BlindDuration.ToString() }
             });
         }
