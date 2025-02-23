@@ -6,8 +6,6 @@ namespace PlayerSessions
     {
         private void CalculatePlayerBlind(EventPlayerBlind @event, GameEventInfo info)
         {
-            // only calculate if we have a round start (to avoid errors on hot-reload)
-            if (!_isDuringRound) return;
             CCSPlayerController? attacker = @event.Attacker;
             CCSPlayerController? victim = @event.Userid;
             if (attacker == null
@@ -19,6 +17,7 @@ namespace PlayerSessions
             // check for challenge
             CheckChallengeGoal(attacker, "blind", new Dictionary<string, string>
             {
+                { "isduringround", _isDuringRound.ToString() },
                 { "attacker", attacker.PlayerName },
                 { "attacker_isbot", attacker.IsBot.ToString() },
                 { "victim", victim.PlayerName },

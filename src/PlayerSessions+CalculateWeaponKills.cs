@@ -7,7 +7,6 @@ namespace PlayerSessions
         private void CalculateWeaponKillsPlayerDeath(EventPlayerDeath @event, GameEventInfo info)
         {
             // only calculate if we have a round start (to avoid errors on hot-reload)
-            if (!_isDuringRound) return;
             CCSPlayerController? attacker = @event.Attacker;
             CCSPlayerController? victim = @event.Userid;
             if (attacker == null
@@ -28,6 +27,7 @@ namespace PlayerSessions
                 UpdateRankingPoints(assister, Config.RankingPointsPerKillAssist, new Dictionary<string, string>
                 {
                     { "type", "kill_assist" },
+                    { "isduringround", _isDuringRound.ToString() },
                     { "attacker", attacker.PlayerName },
                     { "attacker_isbot", attacker.IsBot.ToString() },
                     { "assister", assister.PlayerName },
@@ -62,6 +62,7 @@ namespace PlayerSessions
                 UpdateRankingPoints(attacker, Config.RankingPointsPerKill, new Dictionary<string, string>
                 {
                     { "type", "kill" },
+                    { "isduringround", _isDuringRound.ToString() },
                     { "attacker", attacker.PlayerName },
                     { "attacker_isbot", attacker.IsBot.ToString() },
                     { "victim", victim.PlayerName },

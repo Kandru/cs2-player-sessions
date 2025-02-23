@@ -51,6 +51,11 @@
 			"amount": 3,
 			"rules": [
 				{
+					"key": "isduringround",
+					"operator": "bool==",
+					"value": "true"
+				},
+				{
 					"key": "weapon",
 					"operator": "contains",
 					"value": "taser"
@@ -68,6 +73,11 @@
 			"points": 25,
 			"amount": 10,
 			"rules": [
+				{
+					"key": "isduringround",
+					"operator": "bool==",
+					"value": "true"
+				},
 				{
 					"key": "weapon",
 					"operator": "contains",
@@ -87,6 +97,11 @@
 			"amount": 20,
 			"rules": [
 				{
+					"key": "isduringround",
+					"operator": "bool==",
+					"value": "true"
+				},
+				{
 					"key": "weapon",
 					"operator": "contains",
 					"value": "taser"
@@ -104,6 +119,11 @@
 			"points": 10,
 			"amount": 3,
 			"rules": [
+				{
+					"key": "isduringround",
+					"operator": "bool==",
+					"value": "true"
+				},
 				{
 					"key": "weapon",
 					"operator": "contains",
@@ -123,6 +143,11 @@
 			"amount": 5,
 			"rules": [
 				{
+					"key": "isduringround",
+					"operator": "bool==",
+					"value": "true"
+				},
+				{
 					"key": "weapon",
 					"operator": "contains",
 					"value": "hegrenade"
@@ -140,6 +165,11 @@
 			"points": 30,
 			"amount": 10,
 			"rules": [
+				{
+					"key": "isduringround",
+					"operator": "bool==",
+					"value": "true"
+				},
 				{
 					"key": "weapon",
 					"operator": "contains",
@@ -159,6 +189,11 @@
 			"amount": 1,
 			"rules": [
 				{
+					"key": "isduringround",
+					"operator": "bool==",
+					"value": "true"
+				},
+				{
 					"key": "weapon",
 					"operator": "contains",
 					"value": "knife"
@@ -177,6 +212,11 @@
 			"amount": 5,
 			"rules": [
 				{
+					"key": "isduringround",
+					"operator": "bool==",
+					"value": "true"
+				},
+				{
 					"key": "weapon",
 					"operator": "contains",
 					"value": "knife"
@@ -194,6 +234,11 @@
 			"points": 50,
 			"amount": 5,
 			"rules": [
+				{
+					"key": "isduringround",
+					"operator": "bool==",
+					"value": "true"
+				},
 				{
 					"key": "weapon",
 					"operator": "contains",
@@ -218,6 +263,11 @@
 			"amount": 3,
 			"rules": [
 				{
+					"key": "isduringround",
+					"operator": "bool==",
+					"value": "true"
+				},
+				{
 					"key": "weapon",
 					"operator": "contains",
 					"value": "deagle"
@@ -236,6 +286,11 @@
 			"amount": 10,
 			"rules": [
 				{
+					"key": "isduringround",
+					"operator": "bool==",
+					"value": "true"
+				},
+				{
 					"key": "weapon",
 					"operator": "contains",
 					"value": "deagle"
@@ -253,6 +308,11 @@
 			"points": 50,
 			"amount": 15,
 			"rules": [
+				{
+					"key": "isduringround",
+					"operator": "bool==",
+					"value": "true"
+				},
 				{
 					"key": "weapon",
 					"operator": "contains",
@@ -277,6 +337,11 @@
 			"amount": 5,
 			"rules": [
 				{
+					"key": "isduringround",
+					"operator": "bool==",
+					"value": "true"
+				},
+				{
 					"key": "weapon",
 					"operator": "contains",
 					"value": "ssg08"
@@ -294,6 +359,11 @@
 			"points": 25,
 			"amount": 5,
 			"rules": [
+				{
+					"key": "isduringround",
+					"operator": "bool==",
+					"value": "true"
+				},
 				{
 					"key": "weapon",
 					"operator": "contains",
@@ -318,6 +388,11 @@
 			"amount": 10,
 			"rules": [
 				{
+					"key": "isduringround",
+					"operator": "bool==",
+					"value": "true"
+				},
+				{
 					"key": "weapon",
 					"operator": "contains",
 					"value": "ssg08"
@@ -341,6 +416,11 @@
 			"amount": 5,
 			"rules": [
 				{
+					"key": "isduringround",
+					"operator": "bool==",
+					"value": "true"
+				},
+				{
 					"key": "weapon",
 					"operator": "contains",
 					"value": "negev"
@@ -359,6 +439,11 @@
 			"amount": 25,
 			"rules": [
 				{
+					"key": "isduringround",
+					"operator": "bool==",
+					"value": "true"
+				},
+				{
 					"key": "weapon",
 					"operator": "contains",
 					"value": "negev"
@@ -376,6 +461,11 @@
 			"points": 100,
 			"amount": 50,
 			"rules": [
+				{
+					"key": "isduringround",
+					"operator": "bool==",
+					"value": "true"
+				},
 				{
 					"key": "weapon",
 					"operator": "contains",
@@ -400,6 +490,11 @@
 			"amount": 5,
 			"rules": [
 				{
+					"key": "isduringround",
+					"operator": "bool==",
+					"value": "true"
+				},
+				{
 					"key": "hitgroup",
 					"operator": "==",
 					"value": "3"
@@ -417,6 +512,11 @@
 			"points": 25,
 			"amount": 5,
 			"rules": [
+				{
+					"key": "isduringround",
+					"operator": "bool==",
+					"value": "true"
+				},
 				{
 					"key": "hitgroup",
 					"operator": "==",
@@ -436,6 +536,11 @@
 			"amount": 5,
 			"rules": [
 				{
+					"key": "isduringround",
+					"operator": "bool==",
+					"value": "true"
+				},
+				{
 					"key": "hitgroup",
 					"operator": "==",
 					"value": "7"
@@ -454,6 +559,11 @@
 			"amount": 5,
 			"rules": [
 				{
+					"key": "isduringround",
+					"operator": "bool==",
+					"value": "true"
+				},
+				{
 					"key": "headshot",
 					"operator": "bool==",
 					"value": "true"
@@ -471,6 +581,11 @@
 			"points": 50,
 			"amount": 5,
 			"rules": [
+				{
+					"key": "isduringround",
+					"operator": "bool==",
+					"value": "true"
+				},
 				{
 					"key": "headshot",
 					"operator": "bool==",
@@ -495,6 +610,11 @@
 			"amount": 5,
 			"rules": [
 				{
+					"key": "isduringround",
+					"operator": "bool==",
+					"value": "true"
+				},
+				{
 					"key": "headshot",
 					"operator": "bool==",
 					"value": "true"
@@ -518,6 +638,11 @@
 			"amount": 3,
 			"rules": [
 				{
+					"key": "isduringround",
+					"operator": "bool==",
+					"value": "true"
+				},
+				{
 					"key": "dominated",
 					"operator": ">=",
 					"value": "1"
@@ -535,6 +660,11 @@
 			"points": 25,
 			"amount": 5,
 			"rules": [
+				{
+					"key": "isduringround",
+					"operator": "bool==",
+					"value": "true"
+				},
 				{
 					"key": "dominated",
 					"operator": ">=",
@@ -554,6 +684,11 @@
 			"amount": 10,
 			"rules": [
 				{
+					"key": "isduringround",
+					"operator": "bool==",
+					"value": "true"
+				},
+				{
 					"key": "dominated",
 					"operator": ">=",
 					"value": "1"
@@ -571,6 +706,11 @@
 			"points": 10,
 			"amount": 3,
 			"rules": [
+				{
+					"key": "isduringround",
+					"operator": "bool==",
+					"value": "true"
+				},
 				{
 					"key": "attackerblind",
 					"operator": "bool==",
@@ -590,6 +730,11 @@
 			"amount": 10,
 			"rules": [
 				{
+					"key": "isduringround",
+					"operator": "bool==",
+					"value": "true"
+				},
+				{
 					"key": "attackerblind",
 					"operator": "bool==",
 					"value": "true"
@@ -607,6 +752,11 @@
 			"points": 50,
 			"amount": 10,
 			"rules": [
+				{
+					"key": "isduringround",
+					"operator": "bool==",
+					"value": "true"
+				},
 				{
 					"key": "attackerblind",
 					"operator": "bool==",
@@ -631,6 +781,11 @@
 			"amount": 3,
 			"rules": [
 				{
+					"key": "isduringround",
+					"operator": "bool==",
+					"value": "true"
+				},
+				{
 					"key": "thrusmoke",
 					"operator": "bool==",
 					"value": "true"
@@ -648,6 +803,11 @@
 			"points": 25,
 			"amount": 5,
 			"rules": [
+				{
+					"key": "isduringround",
+					"operator": "bool==",
+					"value": "true"
+				},
 				{
 					"key": "thrusmoke",
 					"operator": "bool==",
@@ -667,6 +827,11 @@
 			"amount": 5,
 			"rules": [
 				{
+					"key": "isduringround",
+					"operator": "bool==",
+					"value": "true"
+				},
+				{
 					"key": "thrusmoke",
 					"operator": "bool==",
 					"value": "true"
@@ -684,6 +849,11 @@
 			"points": 10,
 			"amount": 3,
 			"rules": [
+				{
+					"key": "isduringround",
+					"operator": "bool==",
+					"value": "true"
+				},
 				{
 					"key": "attackerintheair",
 					"operator": "bool==",
@@ -703,6 +873,11 @@
 			"amount": 5,
 			"rules": [
 				{
+					"key": "isduringround",
+					"operator": "bool==",
+					"value": "true"
+				},
+				{
 					"key": "attackerintheair",
 					"operator": "bool==",
 					"value": "true"
@@ -720,6 +895,11 @@
 			"points": 50,
 			"amount": 5,
 			"rules": [
+				{
+					"key": "isduringround",
+					"operator": "bool==",
+					"value": "true"
+				},
 				{
 					"key": "attackerintheair",
 					"operator": "bool==",
@@ -742,21 +922,39 @@
 			"type": "jump",
 			"points": 10,
 			"amount": 100,
-			"rules": []
+			"rules": [
+				{
+					"key": "isduringround",
+					"operator": "bool==",
+					"value": "true"
+				}
+			]
 		},
 		"jump_challenge_medium": {
 			"title": "Jump Training ({count} / {total})",
 			"type": "jump",
 			"points": 50,
 			"amount": 1000,
-			"rules": []
+			"rules": [
+				{
+					"key": "isduringround",
+					"operator": "bool==",
+					"value": "true"
+				}
+			]
 		},
 		"jump_challenge_hard": {
 			"title": "Master Jumper ({count} / {total})",
 			"type": "jump",
 			"points": 100,
 			"amount": 50000,
-			"rules": []
+			"rules": [
+				{
+					"key": "isduringround",
+					"operator": "bool==",
+					"value": "true"
+				}
+			]
 		},
 		"blind_challenge_easy": {
 			"title": "Blitzdingsen ({count} / {total})",
@@ -764,6 +962,11 @@
 			"points": 10,
 			"amount": 50,
 			"rules": [
+				{
+					"key": "isduringround",
+					"operator": "bool==",
+					"value": "true"
+				},
 				{
 					"key": "victim_isbot",
 					"operator": "bool==",
@@ -777,6 +980,11 @@
 			"points": 25,
 			"amount": 50,
 			"rules": [
+				{
+					"key": "isduringround",
+					"operator": "bool==",
+					"value": "true"
+				},
 				{
 					"key": "blindduration",
 					"operator": ">=",
@@ -795,6 +1003,11 @@
 			"points": 25,
 			"amount": 50,
 			"rules": [
+				{
+					"key": "isduringround",
+					"operator": "bool==",
+					"value": "true"
+				},
 				{
 					"key": "blindduration",
 					"operator": ">=",
