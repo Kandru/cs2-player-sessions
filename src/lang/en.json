@@ -15,7 +15,7 @@
     "command.hidepersonalstatistics": "[PlayerSessions] {default}Closed statistics popup",
     "command.showpersonalchallenges": "[PlayerSessions] {default}Opened challenges popup",
     "command.hidepersonalchallenges": "[PlayerSessions] {default}Closed challenges popup",
-    "command.topplayers.title": "{default}== Top Players ==",
+    "command.topplayers.title": "{default}== Top Players ({total} total) ==",
     "command.topplayers.entry": "{default}#{rank} - {green}{name} {default}({green}{points}{default} points)",
     "command.topplayers.footer": "{default}==============",
     "challenges.progress": "{default}Challenge Progress: {green}{challenge}",

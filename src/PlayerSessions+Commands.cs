@@ -84,7 +84,8 @@ namespace PlayerSessions
                 .OrderByDescending(p => p.RankingPoints)
                 .Take(5)
                 .ToList();
-            SendGlobalChatMessage(Localizer["command.topplayers.title"]);
+            SendGlobalChatMessage(Localizer["command.topplayers.title"].Value
+                .Replace("{total}", _playerList.Count.ToString("N0")));
             foreach (var topPlayer in topPlayers)
             {
                 SendGlobalChatMessage(Localizer["command.topplayers.entry"].Value

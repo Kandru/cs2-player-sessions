@@ -15,7 +15,7 @@
     "command.hidepersonalstatistics": "[Spielsitzung] {default}Statistikfenster geschlossen",
     "command.showpersonalchallenges": "[Spielsitzung] {default}Herausforderungsfenster geöffnet",
     "command.hidepersonalchallenges": "[Spielsitzung] {default}Herausforderungsfenster geschlossen",
-    "command.topplayers.title": "{default}== Top Spieler ==",
+    "command.topplayers.title": "{default}== Top Spieler ({total} gesamt) ==",
     "command.topplayers.entry": "{default}#{rank} - {green}{name} {default}({green}{points}{default} Punkte)",
     "command.topplayers.footer": "{default}==============",
     "challenges.progress": "{default}Fortschritt: {green}{challenge}",
