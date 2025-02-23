@@ -6,6 +6,7 @@ namespace PlayerSessions
 {
     public partial class PlayerSessions : BasePlugin
     {
+        [ConsoleCommand("stat", "toggle your stats overview")]
         [ConsoleCommand("stats", "toggle your stats overview")]
         [CommandHelper(whoCanExecute: CommandUsage.CLIENT_ONLY, minArgs: 0, usage: "!stats")]
         public void CommandShowStats(CCSPlayerController player, CommandInfo command)
