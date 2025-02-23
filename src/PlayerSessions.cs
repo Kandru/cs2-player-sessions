@@ -264,7 +264,9 @@ namespace PlayerSessions
         {
             CCSPlayerController player = @event.Userid!;
             // skip bots
-            if (player == null || player.IsBot) return HookResult.Continue;
+            if (player == null
+            || player.IsBot
+            || string.IsNullOrEmpty(player.NetworkIDString)) return HookResult.Continue;
             // show GUIs
             ShowPersonalStatisticsOnSpawn(player);
             ShowPersonalChallengesOnSpawn(player);
