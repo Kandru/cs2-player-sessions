@@ -24,6 +24,7 @@ namespace PlayerSessions
             // register listeners
             // map events
             RegisterListener<Listeners.OnServerHibernationUpdate>(OnServerHibernationUpdate);
+            RegisterListener<Listeners.OnMapStart>(OnMapStart);
             RegisterListener<Listeners.OnMapEnd>(OnMapEnd);
             RegisterEventHandler<EventRoundStart>(OnRoundStart);
             RegisterEventHandler<EventRoundEnd>(OnRoundEnd);
@@ -48,6 +49,7 @@ namespace PlayerSessions
             // unregister listeners
             // map events
             RemoveListener<Listeners.OnServerHibernationUpdate>(OnServerHibernationUpdate);
+            RemoveListener<Listeners.OnMapStart>(OnMapStart);
             RemoveListener<Listeners.OnMapEnd>(OnMapEnd);
             DeregisterEventHandler<EventRoundStart>(OnRoundStart);
             DeregisterEventHandler<EventRoundEnd>(OnRoundEnd);
@@ -78,11 +80,11 @@ namespace PlayerSessions
                 // hide GUI(s)
                 HideAllPersonalStatisticsGUI();
                 HideAllPersonalChallengesGUI();
-                // garbage collection
-                PlayerConfigsGarbageCollection();
             }
             else
             {
+                // garbage collection
+                PlayerConfigsGarbageCollection();
                 // load
                 LoadPlayerlist();
                 LoadActivePlayerConfigs();
@@ -91,16 +93,22 @@ namespace PlayerSessions
             }
         }
 
+        private void OnMapStart(string mapName)
+        {
+            // garbage collection
+            PlayerConfigsGarbageCollection();
+            // load
+            LoadPlayerlist();
+            LoadActivePlayerConfigs();
+            LoadChallenges();
+            CheckForRunningChallenge();
+        }
+
         private void OnMapEnd()
         {
             // save config
             SavePlayerConfigs();
             SavePlayerList();
-            // load (new) challenges (if any)
-            LoadChallenges();
-            CheckForRunningChallenge();
-            // garbage collection
-            PlayerConfigsGarbageCollection();
         }
 
         private HookResult OnRoundStart(EventRoundStart @event, GameEventInfo info)
