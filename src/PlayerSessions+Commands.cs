@@ -47,8 +47,7 @@ namespace PlayerSessions
                 || player.IsBot
                 || player.PlayerPawn == null
                 || !player.PlayerPawn.IsValid
-                || player.PlayerPawn.Value == null
-                || !_playerConfigs.ContainsKey(player.NetworkIDString)) return;
+                || player.PlayerPawn.Value == null) return;
             if (_currentChallenge.Challenges.Count == 0)
             {
                 command.ReplyToCommand(Localizer["command.nochallenges"]);
