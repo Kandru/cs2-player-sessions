@@ -95,7 +95,6 @@ document.addEventListener('DOMContentLoaded', () => {
     function addRuleElement(key = '', operator = '', value = '') {
         const ruleDiv = document.createElement('div');
         ruleDiv.classList.add('rule', 'd-flex', 'align-items-center', 'mb-2');
-
         const keySelect = document.createElement('select');
         keySelect.name = 'key';
         keySelect.classList.add('form-select', 'bg-dark', 'text-light', 'me-2');
@@ -150,9 +149,14 @@ document.addEventListener('DOMContentLoaded', () => {
             rulesContainer.removeChild(ruleDiv);
         });
         ruleDiv.appendChild(deleteButton);
-
+        const ruleDescDiv = document.createElement('div');
+        ruleDescDiv.classList.add('rule', 'd-flex', 'align-items-center', 'mb-2');
+        const ruleDescText = document.createElement('div');
+        ruleDescText.textContent = allRules[typeSelect.value].rules.find(rule => rule.slug === keySelect.value).description;
+        ruleDescDiv.appendChild(ruleDescText);
         keySelect.addEventListener('change', () => {
             valueInput.type = allRules[typeSelect.value].rules.find(rule => rule.slug === keySelect.value).type;
+            ruleDescText.textContent = allRules[typeSelect.value].rules.find(rule => rule.slug === keySelect.value).description;
             if (valueInput.type == "checkbox") {
                 if (!valueInput.classList.contains('form-check-input')) valueInput.classList.add('form-check-input');
                 valueInput.checked = false;
@@ -163,8 +167,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 operatorSelect.selectedIndex = 0;
             }
         });
-
         rulesContainer.appendChild(ruleDiv);
+        rulesContainer.appendChild(ruleDescDiv);
     }
 
     function appendChallengeToList(slug, challenge)
