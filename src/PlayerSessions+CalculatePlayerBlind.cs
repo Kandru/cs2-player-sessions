@@ -16,7 +16,6 @@ namespace PlayerSessions
                 || victim == null
                 || !victim.IsValid) return;
             // check for challenge
-            Console.WriteLine(attacker.Team.ToString());
             CheckChallengeGoal(attacker, "blind", new Dictionary<string, string>
             {
                 { "isduringround", _isDuringRound.ToString() },
