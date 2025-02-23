@@ -177,10 +177,6 @@ namespace PlayerSessions
             if (country != "") _playerConfigs[steamId].Country = country;
             _playerConfigs[steamId].Username = username;
             _playerConfigs[steamId].LastConnected = GetUnixTimestamp();
-            // update player list
-            _playerList[steamId].Username = username;
-            _playerList[steamId].Kills = _playerConfigs[steamId].Kills;
-            _playerList[steamId].Deaths = _playerConfigs[steamId].Deaths;
             // cooldown for connection counter (avoid counting rejoin)
             if (_playerConfigs[steamId].LastConnected == 0
                 || _playerConfigs[steamId].LastConnected >= (_playerConfigs[steamId].LastDisconnected + (60 * 5)))
@@ -212,6 +208,9 @@ namespace PlayerSessions
             // add data
             _playerConfigs[player.NetworkIDString].ClanTag = player.ClanName;
             // update player list
+            _playerList[player.NetworkIDString].Username = player.PlayerName;
+            _playerList[player.NetworkIDString].Kills = _playerConfigs[player.NetworkIDString].Kills;
+            _playerList[player.NetworkIDString].Deaths = _playerConfigs[player.NetworkIDString].Deaths;
             _playerList[player.NetworkIDString].ClanTag = player.ClanName;
             // show welcome message
             if (Config.WelcomeMessageEnable)
