@@ -10,6 +10,8 @@ namespace PlayerSessions
     {
         [JsonPropertyName("show_on_round_start")] public bool ShowOnRoundStart { get; set; } = true;
         [JsonPropertyName("on_round_start_duration")] public int OnRoundStartDuration { get; set; } = 3; // buy time + this value
+        [JsonPropertyName("show_after_respawn")] public bool ShowAfterRespawn { get; set; } = true;
+        [JsonPropertyName("after_respawn_duration")] public int AfterRespawnDuration { get; set; } = 5;
         [JsonPropertyName("menu_font_size")] public int FontSize { get; set; } = 28;
         [JsonPropertyName("menu_font_name")] public string FontName { get; set; } = "Arial Black Standard";
         [JsonPropertyName("menu_font_color")] public string FontColor { get; set; } = "#ffffff";
@@ -23,6 +25,8 @@ namespace PlayerSessions
     {
         [JsonPropertyName("show_on_round_start")] public bool ShowOnRoundStart { get; set; } = true;
         [JsonPropertyName("on_round_start_duration")] public int OnRoundStartDuration { get; set; } = 3; // buy time + this value
+        [JsonPropertyName("show_after_respawn")] public bool ShowAfterRespawn { get; set; } = true;
+        [JsonPropertyName("after_respawn_duration")] public int AfterRespawnDuration { get; set; } = 5;
         [JsonPropertyName("on_update_duration")] public float OnUpdateDuration { get; set; } = 5f;
         [JsonPropertyName("menu_display_maximum")] public int DisplayMaximum { get; set; } = 4;
         [JsonPropertyName("menu_font_size")] public int FontSize { get; set; } = 28;

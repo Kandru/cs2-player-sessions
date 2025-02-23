@@ -34,6 +34,7 @@ namespace PlayerSessions
             RegisterEventHandler<EventPlayerConnect>(OnPlayerConnect);
             RegisterEventHandler<EventPlayerConnectFull>(OnPlayerConnectFull);
             RegisterEventHandler<EventPlayerDisconnect>(OnPlayerDisconnect);
+            RegisterEventHandler<EventPlayerSpawn>(OnPlayerSpawn);
             RegisterEventHandler<EventPlayerDeath>(OnPlayerDeath);
             RegisterEventHandler<EventPlayerJump>(OnPlayerJump);
             RegisterEventHandler<EventPlayerBlind>(OnPlayerBlind);
@@ -59,6 +60,7 @@ namespace PlayerSessions
             DeregisterEventHandler<EventPlayerConnect>(OnPlayerConnect);
             DeregisterEventHandler<EventPlayerConnectFull>(OnPlayerConnectFull);
             DeregisterEventHandler<EventPlayerDisconnect>(OnPlayerDisconnect);
+            DeregisterEventHandler<EventPlayerSpawn>(OnPlayerSpawn);
             DeregisterEventHandler<EventPlayerDeath>(OnPlayerDeath);
             DeregisterEventHandler<EventPlayerJump>(OnPlayerJump);
             DeregisterEventHandler<EventPlayerBlind>(OnPlayerBlind);
@@ -258,12 +260,23 @@ namespace PlayerSessions
             return HookResult.Continue;
         }
 
+        private HookResult OnPlayerSpawn(EventPlayerSpawn @event, GameEventInfo info)
+        {
+            // show GUIs
+            ShowPersonalStatisticsOnSpawn(@event.Userid!);
+            ShowPersonalChallengesOnSpawn(@event.Userid!);
+            return HookResult.Continue;
+        }
+
         private HookResult OnPlayerDeath(EventPlayerDeath @event, GameEventInfo info)
         {
             // run functions
             CalculatePlaytimePlayerDeath(@event, info);
             CalculateWeaponKillsPlayerDeath(@event, info);
             CalculateWeaponDeathsPlayerDeath(@event, info);
+            // hide GUIs
+            HidePersonalStatisticsGUI(@event.Userid!);
+            HidePersonalChallengesGUI(@event.Userid!);
             return HookResult.Continue;
         }
 

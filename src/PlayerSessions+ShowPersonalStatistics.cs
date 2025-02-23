@@ -38,6 +38,25 @@ namespace PlayerSessions
             }
         }
 
+        private void ShowPersonalStatisticsOnSpawn(CCSPlayerController player)
+        {
+            if (!Config.Statistics.ShowAfterRespawn) return;
+            if (player == null
+                || !player.IsValid
+                || player.IsBot
+                || !_playerConfigs.ContainsKey(player.NetworkIDString)
+                || (player.TeamNum != (int)CsTeam.CounterTerrorist && player.TeamNum != (int)CsTeam.Terrorist)) return;
+            AddTimer(0.1f, () =>
+            {
+                // check for user preferences
+                float duration = _playerConfigs[player.NetworkIDString].Settings.Statistics.ShowAlways
+                    ? 0
+                    : Config.Statistics.AfterRespawnDuration;
+                // show GUI
+                ShowPersonalStatisticsGUI(player, duration);
+            });
+        }
+
         private void ShowPersonalStatisticsGUI(CCSPlayerController player, float duration = 10.0f)
         {
             if (player == null

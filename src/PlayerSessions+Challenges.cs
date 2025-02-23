@@ -255,6 +255,25 @@ namespace PlayerSessions
             }
         }
 
+        private void ShowPersonalChallengesOnSpawn(CCSPlayerController player)
+        {
+            if (!Config.Challenges.ShowAfterRespawn) return;
+            if (player == null
+                || !player.IsValid
+                || player.IsBot
+                || !_playerConfigs.ContainsKey(player.NetworkIDString)
+                || (player.TeamNum != (int)CsTeam.CounterTerrorist && player.TeamNum != (int)CsTeam.Terrorist)) return;
+            AddTimer(0.1f, () =>
+            {
+                // check for user preferences
+                float duration = _playerConfigs[player.NetworkIDString].Settings.Challenges.ShowAlways
+                    ? 0
+                    : Config.Challenges.AfterRespawnDuration;
+                // show GUI
+                ShowPersonalChallengesGUI(player, duration);
+            });
+        }
+
         private void ShowPersonalChallengesGUI(CCSPlayerController player, float duration = 10.0f)
         {
             if (player == null
