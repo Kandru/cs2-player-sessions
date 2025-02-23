@@ -23,14 +23,14 @@ namespace PlayerSessions
                     command.ReplyToCommand(Localizer["command.hidepersonalstatistics"]);
                     HidePersonalStatisticsGUI(player);
                     // save chosen user setting
-                    _playerConfigs[player.NetworkIDString].Settings.AlwaysShowPersonalStatistics = false;
+                    _playerConfigs[player.NetworkIDString].Settings.Statistics.ShowAlways = false;
                 }
                 else
                 {
                     command.ReplyToCommand(Localizer["command.showpersonalstatistics"]);
                     ShowPersonalStatisticsGUI(player, 0);
                     // save chosen user setting
-                    _playerConfigs[player.NetworkIDString].Settings.AlwaysShowPersonalStatistics = true;
+                    _playerConfigs[player.NetworkIDString].Settings.Statistics.ShowAlways = true;
                 }
             else
                 command.ReplyToCommand(Localizer["command.notalive"]);
@@ -59,14 +59,14 @@ namespace PlayerSessions
                     command.ReplyToCommand(Localizer["command.hidepersonalchallenges"]);
                     HidePersonalChallengesGUI(player);
                     // save chosen user setting
-                    _playerConfigs[player.NetworkIDString].Settings.AlwaysShowPersonalChallenges = false;
+                    _playerConfigs[player.NetworkIDString].Settings.Challenges.ShowAlways = false;
                 }
                 else
                 {
                     command.ReplyToCommand(Localizer["command.showpersonalchallenges"]);
                     ShowPersonalChallengesGUI(player, 0);
                     // save chosen user setting
-                    _playerConfigs[player.NetworkIDString].Settings.AlwaysShowPersonalChallenges = true;
+                    _playerConfigs[player.NetworkIDString].Settings.Challenges.ShowAlways = true;
                 }
             else
                 command.ReplyToCommand(Localizer["command.notalive"]);

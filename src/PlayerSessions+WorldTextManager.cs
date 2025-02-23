@@ -12,15 +12,14 @@ namespace PlayerSessions
     {
         internal static CPointWorldText? Create(
             CCSPlayerController? player,
-            string text,
+            string message,
             float size = 35,
             Color? color = null,
             string font = "",
             float shiftX = 0f,
             float shiftY = 0f,
             bool drawBackground = true,
-            float backgroundHeight = 0.2f,
-            float backgroundWidth = 0.15f
+            float backgroundFactor = 1f
         )
         {
             if (player == null
@@ -38,9 +37,18 @@ namespace PlayerSessions
                 handle.Raw = viewmodel.EntityHandle.Raw;
                 Utilities.SetStateChanged(playerPawn, "CCSPlayerPawnBase", "m_pViewModelServices");
             }
+            // set background height dynamically
+            float backgroundHeight = 0.01f * backgroundFactor * message.Split('\n').Length;
+            if (backgroundHeight == 0) backgroundHeight = 0.05f * backgroundFactor;
+            // set background width dynamically by counting the longest line
+            float backgroundWidth = 0.015f * backgroundFactor;
+            foreach (string line in message.Split('\n'))
+            {
+                if (backgroundWidth < line.Length * 0.012f * backgroundFactor) backgroundWidth = line.Length * 0.012f * backgroundFactor;
+            }
             // create worldText
             CPointWorldText worldText = Utilities.CreateEntityByName<CPointWorldText>("point_worldtext")!;
-            worldText.MessageText = text;
+            worldText.MessageText = message;
             worldText.Enabled = true;
             worldText.FontSize = size;
             worldText.Fullbright = true;

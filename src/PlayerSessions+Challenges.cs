@@ -219,15 +219,15 @@ namespace PlayerSessions
                         );
                     }
                     // show challenges gui if enabled
-                    if (Config.PersonalChallengesOnUpdateDuration > 0)
-                        ShowPersonalChallengesGUI(player, Config.PersonalChallengesOnUpdateDuration);
+                    if (Config.Challenges.OnUpdateDuration > 0)
+                        ShowPersonalChallengesGUI(player, Config.Challenges.OnUpdateDuration);
                 }
             }
         }
 
         private void ShowPersonalChallengesOnRoundStart()
         {
-            if (!_isDuringRound || !Config.ShowPersonalChallengesOnRoundStart) return;
+            if (!_isDuringRound || !Config.Challenges.ShowOnRoundStart) return;
             int freezeTime = 0;
             ConVar? mpFreezeTime = ConVar.Find("mp_freezetime");
             if (mpFreezeTime != null)
@@ -246,9 +246,9 @@ namespace PlayerSessions
                     if (player == null
                     || !player.IsValid) return;
                     // check for user preferences
-                    float duration = _playerConfigs[player.NetworkIDString].Settings.AlwaysShowPersonalChallenges
+                    float duration = _playerConfigs[player.NetworkIDString].Settings.Challenges.ShowAlways
                         ? 0
-                        : freezeTime + Config.PersonalChallengesOnRoundStartDuration;
+                        : freezeTime + Config.Challenges.OnRoundStartDuration;
                     // show GUI
                     ShowPersonalChallengesGUI(player, duration);
                 });
@@ -282,8 +282,8 @@ namespace PlayerSessions
                     if (isFinished) finishedChallenges++;
 
                     // display only unfinished challenges or all if they are less or equal than the maximum
-                    if (displayedChallenges < Config.PersonalChallengesDisplayMaximum && !isFinished
-                        || challenges.Count <= Config.PersonalChallengesDisplayMaximum)
+                    if (displayedChallenges < Config.Challenges.DisplayMaximum && !isFinished
+                        || challenges.Count <= Config.Challenges.DisplayMaximum)
                     {
                         string tmpMessage = $"\n{kvp.Value.Title}"
                             .Replace("{total}", kvp.Value.Amount.ToString("N0"))
@@ -295,8 +295,8 @@ namespace PlayerSessions
                 else
                 {
                     // display only unfinished challenges or all if they are less or equal than the maximum
-                    if (displayedChallenges < Config.PersonalChallengesDisplayMaximum
-                        || challenges.Count <= Config.PersonalChallengesDisplayMaximum)
+                    if (displayedChallenges < Config.Challenges.DisplayMaximum
+                        || challenges.Count <= Config.Challenges.DisplayMaximum)
                     {
                         string tmpMessage = $"\n{kvp.Value.Title}"
                             .Replace("{total}", kvp.Value.Amount.ToString("N0"))
@@ -313,15 +313,6 @@ namespace PlayerSessions
                     .Replace("{total}", _currentChallenge.Challenges.Count.ToString())
                     .Replace("{count}", finishedChallenges.ToString())
             );
-            // set background height dynamically
-            float backgroundHeight = 0.01f * message.Split('\n').Length;
-            if (backgroundHeight == 0) backgroundHeight = 0.05f;
-            // set background width dynamically by counting the longest line
-            float backgroundWidth = 0.015f;
-            foreach (string line in message.Split('\n'))
-            {
-                if (backgroundWidth < line.Length * 0.012f) backgroundWidth = line.Length * 0.012f;
-            }
             // use our entity if it still exists
             if (_playerHudPersonalChallenges.ContainsKey(player.NetworkIDString))
             {
@@ -340,14 +331,13 @@ namespace PlayerSessions
             CPointWorldText? hudText = WorldTextManager.Create(
                     player,
                     message,
-                    Config.PersonalChallengesFontSize,
-                    ColorTranslator.FromHtml(Config.PersonalChallengesFontColor),
-                    Config.PersonalChallengesFontName,
-                    Config.PersonalChallengesPositionX,
-                    Config.PersonalChallengesPositionY,
-                    Config.PersonalChallengesBackground,
-                    backgroundHeight,
-                    backgroundWidth
+                    Config.Challenges.FontSize,
+                    ColorTranslator.FromHtml(Config.Challenges.FontColor),
+                    Config.Challenges.FontName,
+                    Config.Challenges.PositionX,
+                    Config.Challenges.PositionY,
+                    Config.Challenges.Background,
+                    Config.Challenges.BackgroundFactor
                 );
             if (hudText == null) return;
             _playerHudPersonalChallenges.Add(player.NetworkIDString, hudText);

@@ -12,7 +12,7 @@ namespace PlayerSessions
 
         private void ShowPersonalStatisticsOnRoundStart()
         {
-            if (!_isDuringRound || !Config.ShowPersonalStatisticsOnRoundStart) return;
+            if (!_isDuringRound || !Config.Statistics.ShowOnRoundStart) return;
             int freezeTime = 0;
             ConVar? mpFreezeTime = ConVar.Find("mp_freezetime");
             if (mpFreezeTime != null)
@@ -29,9 +29,9 @@ namespace PlayerSessions
                 AddTimer(0.1f, () =>
                 {
                     // check for user preferences
-                    float duration = _playerConfigs[player.NetworkIDString].Settings.AlwaysShowPersonalStatistics
+                    float duration = _playerConfigs[player.NetworkIDString].Settings.Statistics.ShowAlways
                         ? 0
-                        : freezeTime + Config.PersonalStatisticsOnRoundStartDuration;
+                        : freezeTime + Config.Statistics.OnRoundStartDuration;
                     // show GUI
                     ShowPersonalStatisticsGUI(player, duration);
                 });
@@ -76,15 +76,6 @@ namespace PlayerSessions
                     .Replace("{headshots}", topWeapon.Value.AmountHeadshots.ToString("N0"))
                     .Replace("{distance}", string.Format("{0:0.00}", topWeapon.Value.LargestDistance));
             }
-            // set background height dynamically
-            float backgroundHeight = 0.01f * message.Split('\n').Length;
-            if (backgroundHeight == 0) backgroundHeight = 0.05f;
-            // set background width dynamically by counting the longest line
-            float backgroundWidth = 0.015f;
-            foreach (string line in message.Split('\n'))
-            {
-                if (backgroundWidth < line.Length * 0.012f) backgroundWidth = line.Length * 0.012f;
-            }
             // use our entity if it still exists
             if (_playerHudPersonalStatistics.ContainsKey(player.NetworkIDString))
             {
@@ -103,14 +94,13 @@ namespace PlayerSessions
             CPointWorldText? hudText = WorldTextManager.Create(
                     player,
                     message,
-                    Config.PersonalStatisticFontSize,
-                    ColorTranslator.FromHtml(Config.PersonalStatisticFontColor),
-                    Config.PersonalStatisticFontName,
-                    Config.PersonalStatisticPositionX,
-                    Config.PersonalStatisticPositionY,
-                    Config.PersonalStatisticBackground,
-                    backgroundHeight,
-                    backgroundWidth
+                    Config.Statistics.FontSize,
+                    ColorTranslator.FromHtml(Config.Statistics.FontColor),
+                    Config.Statistics.FontName,
+                    Config.Statistics.PositionX,
+                    Config.Statistics.PositionY,
+                    Config.Statistics.Background,
+                    Config.Statistics.BackgroundFactor
                 );
             if (hudText == null) return;
             _playerHudPersonalStatistics.Add(player.NetworkIDString, hudText);
