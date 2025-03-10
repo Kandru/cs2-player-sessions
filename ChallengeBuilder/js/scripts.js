@@ -42,15 +42,21 @@ document.addEventListener('DOMContentLoaded', () => {
         const points = document.getElementById('points').value;
         const amount = document.getElementById('amount').value;
         const rules = Array.from(document.querySelectorAll('#rules-container .rule')).map(ruleDiv => {
-            const key = ruleDiv.querySelector('[name="key"]').value;
-            const operator = ruleDiv.querySelector('[name="operator"]').value;
-            if (ruleDiv.querySelector('[name="value"]').type == "checkbox") {
-                var value = ruleDiv.querySelector('[name="value"]').checked;
-            } else {
-                var value = ruleDiv.querySelector('[name="value"]').value;
-            }
-            if (key && operator && value !== null) {
-                return { key, operator, value };
+            const keyElement = ruleDiv.querySelector('[name="key"]');
+            const operatorElement = ruleDiv.querySelector('[name="operator"]');
+            const valueElement = ruleDiv.querySelector('[name="value"]');
+            if (keyElement && operatorElement && valueElement) {
+                const key = keyElement.value;
+                const operator = operatorElement.value;
+                let value;
+                if (valueElement.type == "checkbox") {
+                    value = valueElement.checked;
+                } else {
+                    value = valueElement.value;
+                }
+                if (key && operator && value !== null) {
+                    return { key, operator, value };
+                }
             }
             return null;
         }).filter(rule => rule !== null);
@@ -95,7 +101,6 @@ document.addEventListener('DOMContentLoaded', () => {
     function addRuleElement(key = '', operator = '', value = '') {
         const ruleDiv = document.createElement('div');
         ruleDiv.classList.add('rule', 'd-flex', 'align-items-center', 'mb-2');
-
         const keySelect = document.createElement('select');
         keySelect.name = 'key';
         keySelect.classList.add('form-select', 'bg-dark', 'text-light', 'me-2');
@@ -150,9 +155,14 @@ document.addEventListener('DOMContentLoaded', () => {
             rulesContainer.removeChild(ruleDiv);
         });
         ruleDiv.appendChild(deleteButton);
-
+        const ruleDescDiv = document.createElement('div');
+        ruleDescDiv.classList.add('rule', 'd-flex', 'align-items-center', 'mb-2');
+        const ruleDescText = document.createElement('div');
+        ruleDescText.textContent = allRules[typeSelect.value].rules.find(rule => rule.slug === keySelect.value).description;
+        ruleDescDiv.appendChild(ruleDescText);
         keySelect.addEventListener('change', () => {
             valueInput.type = allRules[typeSelect.value].rules.find(rule => rule.slug === keySelect.value).type;
+            ruleDescText.textContent = allRules[typeSelect.value].rules.find(rule => rule.slug === keySelect.value).description;
             if (valueInput.type == "checkbox") {
                 if (!valueInput.classList.contains('form-check-input')) valueInput.classList.add('form-check-input');
                 valueInput.checked = false;
@@ -163,8 +173,8 @@ document.addEventListener('DOMContentLoaded', () => {
                 operatorSelect.selectedIndex = 0;
             }
         });
-
         rulesContainer.appendChild(ruleDiv);
+        rulesContainer.appendChild(ruleDescDiv);
     }
 
     function appendChallengeToList(slug, challenge)

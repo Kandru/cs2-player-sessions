@@ -29,3 +29,8 @@
 .bg-dark .form-select::placeholder {
     color: #6c757d;
 }
+
+input[type="checkbox"] {
+    width: 2em;
+    height: 2em;
+}
