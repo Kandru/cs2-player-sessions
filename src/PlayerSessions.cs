@@ -1,6 +1,9 @@
-﻿using CounterStrikeSharp.API.Core;
+﻿using ChallengesShared;
+using ChallengesShared.Events;
+using CounterStrikeSharp.API;
+using CounterStrikeSharp.API.Core;
+using CounterStrikeSharp.API.Core.Capabilities;
 using CounterStrikeSharp.API.Modules.Extensions;
-
 
 namespace PlayerSessions
 {
@@ -11,6 +14,8 @@ namespace PlayerSessions
 
         private Random _random = new Random(Guid.NewGuid().GetHashCode());
         private bool _isDuringRound = false;
+
+        private static PluginCapability<IChallengesEventSender> ChallengesEvents { get; } = new("challenges:events");
 
         public override void Load(bool hotReload)
         {
@@ -42,6 +47,11 @@ namespace PlayerSessions
             }
         }
 
+        public override void OnAllPluginsLoaded(bool isReload)
+        {
+            ChallengesEvents.Get()!.Events += OnChallengesEvent;
+        }
+
         public override void Unload(bool hotReload)
         {
             // unregister listeners
@@ -63,6 +73,8 @@ namespace PlayerSessions
             SavePlayerList();
             // hide GUI(s)
             HideAllPersonalStatisticsGUI();
+            // remove from event handler
+            ChallengesEvents.Get()!.Events -= OnChallengesEvent;
             Console.WriteLine(Localizer["core.unload"]);
         }
 
@@ -269,6 +281,29 @@ namespace PlayerSessions
             // hide GUIs
             HidePersonalStatisticsGUI(player);
             return HookResult.Continue;
+        }
+
+        // you can test this with the command `sendtestchallengeevent` in the game console (requires @css/root permissions)
+        private void OnChallengesEvent(object? sender, IChallengesEvent @event)
+        {
+            if (@event is not PlayerCompletedChallengeEvent playerCompletedChallenge) return;
+            if (!playerCompletedChallenge.Data.ContainsKey("PlayerSessions")) return;
+            CCSPlayerController? player = Utilities.GetPlayerFromUserid(playerCompletedChallenge.UserId);
+            if (player == null || !player.IsValid || player.IsBot) return;
+            foreach (var data in playerCompletedChallenge.Data["PlayerSessions"])
+            {
+                if (data.Key == "setpoints")
+                {
+                    if (!int.TryParse(data.Value, out int points)) continue;
+                    UpdateRankingPoints(
+                        player,
+                        points,
+                        new Dictionary<string, string>
+                        {
+                            { "type", "challenge" }
+                        });
+                }
+            }
         }
     }
 }

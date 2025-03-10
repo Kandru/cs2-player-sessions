@@ -33,5 +33,5 @@
     "rankingpoints.added.kill": "{green}{points} {default}point(s) for killing {green}{victim}",
     "rankingpoints.added.kill_assist": "{green}{points} {default}point(s) for assisting {attacker}.",
     "rankingpoints.added.death": "{green}{points} {default}point(s) for death by {green}{attacker}",
-    "rankingpoints.added.challenge": "{green}{points} {default}point(s) for completing challenge {green}{challenge}"
+    "rankingpoints.added.challenge": "{green}{points} {default}point(s) for completing a challenge!"
 }

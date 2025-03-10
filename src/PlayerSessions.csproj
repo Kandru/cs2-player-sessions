@@ -13,6 +13,9 @@
       <IncludeAssets>compile; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
     <PackageReference Include="MaxMind.GeoIP2" Version="5.2.0" />
+    <ProjectReference Include="..\Challenges\src\ChallengesShared\ChallengesShared.csproj">
+      <Private>false</Private>
+    </ProjectReference>
   </ItemGroup>
     <ItemGroup>
       <None Update="lang\**\*.*" CopyToOutputDirectory="PreserveNewest" />
