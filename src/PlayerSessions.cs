@@ -20,9 +20,6 @@ namespace PlayerSessions
             InitializeIP2Country();
             // load player list
             LoadPlayerlist();
-            // load challenges
-            LoadChallenges();
-            CheckForRunningChallenge();
             // register listeners
             // map events
             RegisterListener<Listeners.OnServerHibernationUpdate>(OnServerHibernationUpdate);
@@ -36,8 +33,6 @@ namespace PlayerSessions
             RegisterEventHandler<EventPlayerDisconnect>(OnPlayerDisconnect);
             RegisterEventHandler<EventPlayerSpawn>(OnPlayerSpawn);
             RegisterEventHandler<EventPlayerDeath>(OnPlayerDeath);
-            RegisterEventHandler<EventPlayerJump>(OnPlayerJump);
-            RegisterEventHandler<EventPlayerBlind>(OnPlayerBlind);
             // print message if hot reload
             if (hotReload)
             {
@@ -62,15 +57,12 @@ namespace PlayerSessions
             DeregisterEventHandler<EventPlayerDisconnect>(OnPlayerDisconnect);
             DeregisterEventHandler<EventPlayerSpawn>(OnPlayerSpawn);
             DeregisterEventHandler<EventPlayerDeath>(OnPlayerDeath);
-            DeregisterEventHandler<EventPlayerJump>(OnPlayerJump);
-            DeregisterEventHandler<EventPlayerBlind>(OnPlayerBlind);
             // save config(s)
             Config.Update();
             SavePlayerConfigs();
             SavePlayerList();
             // hide GUI(s)
             HideAllPersonalStatisticsGUI();
-            HideAllPersonalChallengesGUI();
             Console.WriteLine(Localizer["core.unload"]);
         }
 
@@ -83,7 +75,6 @@ namespace PlayerSessions
                 SavePlayerList();
                 // hide GUI(s)
                 HideAllPersonalStatisticsGUI();
-                HideAllPersonalChallengesGUI();
             }
             else
             {
@@ -92,8 +83,6 @@ namespace PlayerSessions
                 // load
                 LoadPlayerlist();
                 LoadActivePlayerConfigs();
-                LoadChallenges();
-                CheckForRunningChallenge();
             }
         }
 
@@ -104,8 +93,6 @@ namespace PlayerSessions
             // load
             LoadPlayerlist();
             LoadActivePlayerConfigs();
-            LoadChallenges();
-            CheckForRunningChallenge();
         }
 
         private void OnMapEnd()
@@ -123,7 +110,6 @@ namespace PlayerSessions
             // run functions
             CalculatePlaytimeRoundStart();
             ShowPersonalStatisticsOnRoundStart();
-            ShowPersonalChallengesOnRoundStart();
             return HookResult.Continue;
         }
 
@@ -268,7 +254,6 @@ namespace PlayerSessions
             || string.IsNullOrEmpty(player.NetworkIDString)) return HookResult.Continue;
             // show GUIs
             ShowPersonalStatisticsOnSpawn(player);
-            ShowPersonalChallengesOnSpawn(player);
             return HookResult.Continue;
         }
 
@@ -283,21 +268,6 @@ namespace PlayerSessions
             CalculateWeaponDeathsPlayerDeath(@event, info);
             // hide GUIs
             HidePersonalStatisticsGUI(player);
-            HidePersonalChallengesGUI(player);
-            return HookResult.Continue;
-        }
-
-        private HookResult OnPlayerJump(EventPlayerJump @event, GameEventInfo info)
-        {
-            // run functions
-            CalculatePlayerJump(@event, info);
-            return HookResult.Continue;
-        }
-
-        private HookResult OnPlayerBlind(EventPlayerBlind @event, GameEventInfo info)
-        {
-            // run functions
-            CalculatePlayerBlind(@event, info);
             return HookResult.Continue;
         }
     }

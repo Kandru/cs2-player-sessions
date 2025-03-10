@@ -27,9 +27,6 @@ namespace PlayerSessions
                     }
                     player.PrintToChat(message);
                 }
-                // check for challenge
-                if (!data["type"].Contains("challenge"))
-                    CheckChallengeGoal(player, data["type"], data);
             }
         }
     }
