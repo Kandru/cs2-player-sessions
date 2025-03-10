@@ -1,0 +1,3 @@
+[submodule "Challenges"]
+	path = Challenges
+	url = https://github.com/Kandru/cs2-challenges/
