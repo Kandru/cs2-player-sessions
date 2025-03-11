@@ -40,6 +40,11 @@
 				"key": "blindduration",
 				"operator": ">=",
 				"value": "2"
+			},
+			{
+				"key": "victim.isbot",
+				"operator": "bool==",
+				"value": "false"
 			}
 		],
 		"actions": [
@@ -222,6 +227,11 @@
 				"key": "blindduration",
 				"operator": ">=",
 				"value": "1"
+			},
+			{
+				"key": "victim.isbot",
+				"operator": "bool==",
+				"value": "false"
 			}
 		],
 		"actions": [
@@ -397,6 +407,11 @@
 			},
 			{
 				"key": "isselfflash",
+				"operator": "bool==",
+				"value": "false"
+			},
+			{
+				"key": "victim.isbot",
 				"operator": "bool==",
 				"value": "false"
 			}

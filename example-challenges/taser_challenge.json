@@ -35,6 +35,11 @@
 				"key": "isteamkill",
 				"operator": "bool==",
 				"value": "false"
+			},
+			{
+				"key": "victim.isbot",
+				"operator": "bool==",
+				"value": "false"
 			}
 		],
 		"actions": [
@@ -76,6 +81,11 @@
 				"key": "weapon",
 				"operator": "contains",
 				"value": "taser"
+			},
+			{
+				"key": "attacker.isbot",
+				"operator": "bool==",
+				"value": "false"
 			}
 		],
 		"actions": [
@@ -138,6 +148,11 @@
 				"key": "isteamkill",
 				"operator": "bool==",
 				"value": "false"
+			},
+			{
+				"key": "victim.isbot",
+				"operator": "bool==",
+				"value": "false"
 			}
 		],
 		"actions": [
@@ -179,6 +194,11 @@
 				"key": "weapon",
 				"operator": "contains",
 				"value": "taser"
+			},
+			{
+				"key": "attacker.isbot",
+				"operator": "bool==",
+				"value": "false"
 			}
 		],
 		"actions": [
@@ -239,6 +259,11 @@
 			},
 			{
 				"key": "isteamkill",
+				"operator": "bool==",
+				"value": "false"
+			},
+			{
+				"key": "victim.isbot",
 				"operator": "bool==",
 				"value": "false"
 			}

@@ -35,6 +35,11 @@
 				"key": "isselfkill",
 				"operator": "bool==",
 				"value": "false"
+			},
+			{
+				"key": "victim.isbot",
+				"operator": "bool==",
+				"value": "false"
 			}
 		],
 		"actions": [
@@ -85,6 +90,11 @@
 			},
 			{
 				"key": "isselfkill",
+				"operator": "bool==",
+				"value": "false"
+			},
+			{
+				"key": "victim.isbot",
 				"operator": "bool==",
 				"value": "false"
 			}
@@ -138,6 +148,11 @@
 			},
 			{
 				"key": "headshot",
+				"operator": "bool==",
+				"value": "false"
+			},
+			{
+				"key": "attacker.isbot",
 				"operator": "bool==",
 				"value": "false"
 			}
@@ -202,6 +217,11 @@
 				"key": "isselfkill",
 				"operator": "bool==",
 				"value": "false"
+			},
+			{
+				"key": "victim.isbot",
+				"operator": "bool==",
+				"value": "false"
 			}
 		],
 		"actions": [
@@ -239,6 +259,11 @@
 			},
 			{
 				"key": "headshot",
+				"operator": "bool==",
+				"value": "false"
+			},
+			{
+				"key": "victim.isbot",
 				"operator": "bool==",
 				"value": "false"
 			}
