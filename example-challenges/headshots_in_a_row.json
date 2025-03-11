@@ -17,6 +17,11 @@
 		},
 		"rules": [
 			{
+				"key": "global.iswarmup",
+				"operator": "bool==",
+				"value": "false"
+			},
+			{
 				"key": "global.isduringround",
 				"operator": "bool==",
 				"value": "true"
@@ -64,6 +69,11 @@
 		"data": {},
 		"rules": [
 			{
+				"key": "global.iswarmup",
+				"operator": "bool==",
+				"value": "false"
+			},
+			{
 				"key": "global.isduringround",
 				"operator": "bool==",
 				"value": "true"
@@ -81,6 +91,10 @@
 		],
 		"actions": [
 			{
+				"type": "notify.player.rule_broken",
+				"values": []
+			},
+			{
 				"type": "challenge.delete.progress",
 				"values": [
 					"OnPlayerKillHeadshot.hard"
@@ -91,10 +105,6 @@
 				"values": [
 					"OnPlayerKillHeadshot.hard.control.noheadshot"
 				]
-			},
-			{
-				"type": "notify.player.rule_broken",
-				"values": []
 			}
 		],
 		"dependencies": [
@@ -115,6 +125,11 @@
 		"data": {},
 		"rules": [
 			{
+				"key": "global.iswarmup",
+				"operator": "bool==",
+				"value": "false"
+			},
+			{
 				"key": "global.isduringround",
 				"operator": "bool==",
 				"value": "true"
@@ -127,6 +142,10 @@
 		],
 		"actions": [
 			{
+				"type": "notify.player.rule_broken",
+				"values": []
+			},
+			{
 				"type": "challenge.delete.progress",
 				"values": [
 					"OnPlayerKillHeadshot.hard"
@@ -137,10 +156,6 @@
 				"values": [
 					"OnPlayerKillHeadshot.hard.control.donotdie"
 				]
-			},
-			{
-				"type": "notify.player.rule_broken",
-				"values": []
 			}
 		],
 		"dependencies": [
@@ -164,6 +179,11 @@
 			}
 		},
 		"rules": [
+			{
+				"key": "global.iswarmup",
+				"operator": "bool==",
+				"value": "false"
+			},
 			{
 				"key": "global.isduringround",
 				"operator": "bool==",
@@ -204,6 +224,11 @@
 		"data": {},
 		"rules": [
 			{
+				"key": "global.iswarmup",
+				"operator": "bool==",
+				"value": "false"
+			},
+			{
 				"key": "global.isduringround",
 				"operator": "bool==",
 				"value": "true"
@@ -216,6 +241,10 @@
 		],
 		"actions": [
 			{
+				"type": "notify.player.rule_broken",
+				"values": []
+			},
+			{
 				"type": "challenge.delete.progress",
 				"values": [
 					"OnPlayerKillHeadshot.easy"
@@ -226,10 +255,6 @@
 				"values": [
 					"OnPlayerKillHeadshot.easy.control.noheadshot"
 				]
-			},
-			{
-				"type": "notify.player.rule_broken",
-				"values": []
 			}
 		],
 		"dependencies": []

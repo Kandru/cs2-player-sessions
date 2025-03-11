@@ -17,6 +17,11 @@
 		},
 		"rules": [
 			{
+				"key": "global.iswarmup",
+				"operator": "bool==",
+				"value": "false"
+			},
+			{
 				"key": "global.isduringround",
 				"operator": "bool==",
 				"value": "true"
@@ -58,6 +63,11 @@
 		"data": {},
 		"rules": [
 			{
+				"key": "global.iswarmup",
+				"operator": "bool==",
+				"value": "false"
+			},
+			{
 				"key": "global.isduringround",
 				"operator": "bool==",
 				"value": "true"
@@ -70,6 +80,10 @@
 		],
 		"actions": [
 			{
+				"type": "notify.player.rule_broken",
+				"values": []
+			},
+			{
 				"type": "challenge.delete.progress",
 				"values": [
 					"OnPlayerDeath.hard"
@@ -80,10 +94,6 @@
 				"values": [
 					"OnPlayerDeath.hard.control.notaserdeath"
 				]
-			},
-			{
-				"type": "notify.player.rule_broken",
-				"values": []
 			}
 		],
 		"dependencies": [
@@ -107,6 +117,11 @@
 			}
 		},
 		"rules": [
+			{
+				"key": "global.iswarmup",
+				"operator": "bool==",
+				"value": "false"
+			},
 			{
 				"key": "global.isduringround",
 				"operator": "bool==",
@@ -149,6 +164,11 @@
 		"data": {},
 		"rules": [
 			{
+				"key": "global.iswarmup",
+				"operator": "bool==",
+				"value": "false"
+			},
+			{
 				"key": "global.isduringround",
 				"operator": "bool==",
 				"value": "true"
@@ -161,6 +181,10 @@
 		],
 		"actions": [
 			{
+				"type": "notify.player.rule_broken",
+				"values": []
+			},
+			{
 				"type": "challenge.delete.progress",
 				"values": [
 					"OnPlayerDeath.medium"
@@ -171,10 +195,6 @@
 				"values": [
 					"OnPlayerDeath.medium.control.notaserdeath"
 				]
-			},
-			{
-				"type": "notify.player.rule_broken",
-				"values": []
 			}
 		],
 		"dependencies": [
@@ -198,6 +218,11 @@
 			}
 		},
 		"rules": [
+			{
+				"key": "global.iswarmup",
+				"operator": "bool==",
+				"value": "false"
+			},
 			{
 				"key": "global.isduringround",
 				"operator": "bool==",
