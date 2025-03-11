@@ -97,7 +97,9 @@
 		"actions": [
 			{
 				"type": "notify.player.progress.rule_broken",
-				"values": []
+				"values": [
+					"OnPlayerBlind.hard"
+				]
 			},
 			{
 				"type": "challenge.delete.progress",
@@ -158,7 +160,9 @@
 		"actions": [
 			{
 				"type": "notify.player.progress.rule_broken",
-				"values": []
+				"values": [
+					"OnPlayerBlind.hard"
+				]
 			},
 			{
 				"type": "challenge.delete.progress",
@@ -275,7 +279,9 @@
 		"actions": [
 			{
 				"type": "notify.player.progress.rule_broken",
-				"values": []
+				"values": [
+					"OnPlayerBlind.medium"
+				]
 			},
 			{
 				"type": "challenge.delete.progress",
@@ -336,7 +342,9 @@
 		"actions": [
 			{
 				"type": "notify.player.progress.rule_broken",
-				"values": []
+				"values": [
+					"OnPlayerBlind.medium"
+				]
 			},
 			{
 				"type": "challenge.delete.progress",
