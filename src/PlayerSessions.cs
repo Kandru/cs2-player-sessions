@@ -141,8 +141,9 @@ namespace PlayerSessions
             // skip bots
             if (@event.Bot) return HookResult.Continue;
             string username = @event.Name;
-            string ipAddress = @event.Address;
-            if (@event.Address.Contains(Separator)) ipAddress = ipAddress.Split(Separator)[0];
+            //string ipAddress = @event.U;
+            string ipAddress = "127.0.0.1"; // TODO: get real ip address due to update of CounterStrikeSharp
+            //if (@event.Address.Contains(Separator)) ipAddress = ipAddress.Split(Separator)[0];
             string steamId = @event.Networkid;
             string city = "";
             string country = "";
