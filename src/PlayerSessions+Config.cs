@@ -161,36 +161,6 @@ namespace PlayerSessions
             }
         }
 
-        private void LoadChallenges()
-        {
-            string challengesPath = Path.Combine(Path.GetDirectoryName(Config.GetConfigPath()) ?? "./", "challenges.json");
-            DebugPrint($"Loading challenges");
-            if (Path.Exists(challengesPath))
-            {
-                try
-                {
-                    var jsonString = File.ReadAllText(challengesPath);
-                    _playerChallenges = JsonSerializer.Deserialize<ChallengesConfig>(jsonString) ?? new();
-                }
-                catch
-                {
-                    Console.WriteLine(Localizer["core.faultyconfig"].Value.Replace("{config}", challengesPath));
-                }
-            }
-            else
-            {
-                SaveChallenges();
-            }
-        }
-
-        private void SaveChallenges()
-        {
-            string challengesPath = Path.Combine(Path.GetDirectoryName(Config.GetConfigPath()) ?? "./", "challenges.json");
-            DebugPrint($"Saving challenges");
-            var jsonString = JsonSerializer.Serialize(_playerChallenges, new JsonSerializerOptions { WriteIndented = true });
-            File.WriteAllText(challengesPath, jsonString);
-        }
-
         private void LoadPlayerlist()
         {
             string playerlistPath = Path.Combine(Path.GetDirectoryName(Config.GetConfigPath()) ?? "./", "playerlist.json");
