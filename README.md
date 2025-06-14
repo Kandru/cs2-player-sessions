@@ -1,3 +1,9 @@
+> [!CAUTION]
+> Work in progress. DOES NOT WORK ON YOUR SERVER.
+
+> [!TIP]
+> This plug-in got created prior to our CS2 Challenges plug-in and will be re-created to fullfill another purpose. Challenges are a unique way to offer your players the possibility to solve challenges in order to get something in return (e.g. giving VIP or other stuff). Check out our CS2 Challenges repository to get a good working version!
+
 # CounterstrikeSharp - Player Sessions
 
 [![UpdateManager Compatible](https://img.shields.io/badge/CS2-UpdateManager-darkgreen)](https://github.com/Kandru/cs2-update-manager/)
